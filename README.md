@@ -52,7 +52,7 @@ UIImageView的常见属性 @property(nonatomic,retain) UIImage *image;<p>
 UIImageView的常见⽅方法<p>
 - (void)startAnimating; // 开始动画<p>
 - (void)stopAnimating; // 停⽌止动画<p>
-- (BOOL)isAnimating; // 是否正在执⾏行动画<p>
+- (BOOL)isAnimating; // 是否正在执⾏行动画<p><p>
 
 
 <p><p><p><p><p><p>
@@ -119,289 +119,290 @@ UIButton、UIImageView、UILabel的选择<p>
 ￼
 <p><p><p>
 Plist⽂文件<p>
-● 直接将数据直接写在代码⾥里⾯面,不是⼀一种合理的做法。如果数据经常改,就
-● 因此,可以考虑将经常变的数据放在⽂文件中进⾏行存储,程序启动后从⽂文件中 读取最新的数据。如果要变动数据,直接修改数据⽂文件即可,不⽤用修改代码
-● ⼀一般可以使⽤用属性列表⽂文件存储NSArray或者NSDictionary之类的数据,这 种“属性列表⽂文件”的扩展名是plist,因此也称为“plist⽂文件”
-
-
-instancetype
-● instancetype在类型表⽰示上,跟id⼀一样,可以表⽰示任何对象类型
-● instancetype只能⽤用在返回值类型上,不能像id⼀一样⽤用在参数类型上
-● instancetype⽐比id多⼀一个好处:编译器会检测instancetype的真实类型
-
-
-类前缀
-● 使⽤用Objective-C开发iOS程序时,最好在每个类名前⾯面加⼀一个前缀,⽤用来标识这个类的“⽼老家”在哪
-● ⽬目的是防⽌止N个⼈人开发了⼀一样的类,冲突了
-● ⽐比如Jake Will、Kate Room在同⼀一个项⽬目中都各⾃自开发了个Button类,这样的程序是不能运⾏行起来的
-● 解决⽅方案:Jake Will的类名叫做JWButton,Kate Room的类名叫做KRButton
-
-
-view的封装
-● 如果⼀一个view内部的⼦子控件⽐比较多,⼀一般会考虑⾃自定义⼀一个view,把它内部
-● 外界可以传⼊入对应的模型数据给view,view拿到模型数据后给内部的⼦子控件 设置对应的数据
-● 封装控件的基本步骤
-● 在initWithFrame:⽅方法中添加⼦子控件,提供便利构造⽅方法
-● 在layoutSubviews⽅方法中设置⼦子控件的frame(⼀一定要调⽤用super的 layoutSubviews)
-● 增加模型属性,在模型属性set⽅方法中设置数据到⼦子控件上
-
-
-
-UITextField – ⽂文本输⼊入框
-● ⽂文本输⼊入框可以弹出键盘,让⽤用户输⼊入⽂文本内容
-
-
-UITextView – 能滚动的⽂文字显⽰示控件 
-● 如果⽂文字内容⽐比较多,需要换⾏行显⽰示,并且需要编辑
-
-
-UIProgressView – 进度条
-● ⽔水平进度条,⽐比如显⽰示⽂文件的下载进度,程序的启动进度
-
-
-
-UISlider – 滑块
-● 在2个数值之间滑动选择,⽐比如调节⾳音量⼤大⼩小
-
-
-UIActivityIndicator – 圈圈 
-● ⼀一直在转圈圈,表⽰示让⽤用户等待
-
-
-
-UIActionSheet – 底部弹框 
-● 从底部弹出⼀一个框提⽰示⽤用户下⼀一步该做什么
-
-
-UIAlertView – 对话框(中间弹框) 
-● 从中间弹出⼀一个框提⽰示⽤用户下⼀一步该做什么
-
-
-UIScrollView – 滚动的控件
-● 如果内容⽐比较多,超出了⼀一个屏幕,就可以⽤用它来显⽰示
-
-UIScrollView⽆无法滚动的解决办法
-● 如果UIScrollView⽆无法滚动,可能是以下原因: ➢ 没有设置contentSize
-➢ scrollEnabled = NO
-➢ 没有接收到触摸事件:userInteractionEnabled = NO
-
-代理方法
-// scrollview正在滚动的时候调用
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    int Pa =  (int)(scrollView.contentOffset.x / scrollView.frame.size.width+0.5);
-    page.currentPage = Pa;
-    
-    NSLog(@"正在滚动");
-}
-// 将要开始拖拽
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    NSLog(@"将要开始拖拽");
-}
-// 将要结束拖拽
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    NSLog(@"将要结束拖拽");
-}
-// 结束拖拽
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    NSLog(@"结束拖拽");
-}
-// 停止滚动时候调用
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSLog(@"停止滚动");
-}
-
-UIScrollView的常见属性
-● @property(nonatomic)CGPointcontentOffset; ➢ 这个属性⽤用来表⽰示UIScrollView滚动的位置 (其实就是内容左上⾓角与scrollView左上⾓角的间距值)
-● @property(nonatomic)CGSizecontentSize;
-➢ 这个属性⽤用来表⽰示UIScrollView内容的尺⼨寸,滚动范围(能滚多远)
-● @property(nonatomic)UIEdgeInsetscontentInset;
-➢ 这个属性能够在UIScrollView的4周增加额外的滚动区域,⼀一般⽤用来避免scrollView的内容被 其他控件挡住
-
-● @property(nonatomic) BOOL bounces;
-● 设置UIScrollView是否需要弹簧效果
-● @property(nonatomic,getter=isScrollEnabled)BOOLscrollEnabled;
-➢ 设置UIScrollView是否能滚动
-● @property(nonatomic) BOOL showsHorizontalScrollIndicator;
-➢ 是否显⽰示⽔水平滚动条
-● @property(nonatomic) BOOL showsVerticalScrollIndicator; ➢ 是否显⽰示垂直滚动条
-
-UIScrollView的缩放原理
-￼实现 ● 当⽤用户在UIScrollView⾝身上使⽤用捏合⼿手势时,UIScrollView会给代理发送⼀一条消息,询问 理
-相 代理究竟要缩放⾃自⼰己内部的哪⼀一个⼦子控件(哪⼀一块内容)
-
-• 当⽤用户在UIScrollView⾝身上使⽤用捏合⼿手势时,UIScrollView会调⽤用代理的 viewForZoomingInScrollView:⽅方法,这个⽅方法返回的控件就是需要进⾏行缩放的 控件
-
-
-缩放实现步骤
-1. 设置UIScrollView的id<UISCrollViewDelegate> delegate代理对象
-2. 设置minimumZoomScale :缩⼩小的最⼩小⽐比例
-3. 设置maximumZoomScale :放⼤大的最⼤大⽐比例
-4. 让代理对象实现下⾯面的⽅方法,返回需要缩放的视图控件
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
- 跟缩放相关的其他代理⽅方法
-  缩放完毕的时候调⽤用
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView
-withView:(UIView *)view
-正在缩放的时候调⽤用
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView
-
-
-UIPageControl – 分页控件 
-● 能显⽰示当前的页码
-● 只要将UIScrollView的pageEnabled属性设置为YES,UIScrollView会被分割成多个独⽴立页⾯面,⾥里⾯面的内容就能进⾏行分页展⽰示
-● ⼀一般会配合UIPageControl增强分页效果,UIPageControl常⽤用属性如下
-➢ ⼀一共有多少页
-@property(nonatomic) NSInteger numberOfPages; ➢ 当前显⽰示的页码
-@property(nonatomic) NSInteger currentPage;
-➢ 只有⼀一页时,是否需要隐藏页码指⽰示器
-@property(nonatomic) BOOL hidesForSinglePage;
-➢ 其他页码指⽰示器的颜⾊色
-@property(nonatomic,retain) UIColor *pageIndicatorTintColor; ➢ 当前页码指⽰示器的颜⾊色
-@property(nonatomic,retain) UIColor *currentPageIndicatorTintColor
-
-NSTimer
-● NSTimer叫做“定时器”,它的作⽤用如下 ➢ 在指定的时间执⾏行指定的任务
-➢ 每隔⼀一段时间执⾏行指定的任务
-● 调⽤用下⾯面的⽅方法就会开启⼀一个定时任务
-+ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti
-     target:(id)aTarget
-   selector:(SEL)aSelector
-   userInfo:(id)userInfo
-   repeats:(BOOL)yesOrNo;
-每隔ti秒,调⽤用⼀一次aTarget的aSelector⽅方法,yesOrNo决定了是否重复执⾏行这个任 务
-● 通过invalidate⽅方法可以停⽌止定时器的⼯工作,⼀一旦定时器被停⽌止了,就不能再次执⾏行任 务。只能再创建⼀一个新的定时器才领能先执业⾏行内I新T教的育任培务训⾏行业
-
-NSTimer
-● 解决定时器在主线程不⼯工作的问题
-NSTimer *timer = [NSTimer timerWithTimeInterval:2 target:self
-selector:@selector(next) userInfo:nil repeats:YES];
-[[NSRunLoop mainRunLoop] addTimer:timer
-forMode:NSRunLoopCommonModes];
-
-
-
-UITableView – 表格
-● 如果每⼀一⾏行显⽰示的内容格式差不多,就⽤用这个表格控件
-
-UITabBarController
-● UITabBarController的使⽤用步骤
-➢ 初始化UITabBarController
-➢ 设置UIWindow的rootViewController为UITabBarController
-➢ 根据具体情况,通过addChildViewController⽅方法添加对应个数的⼦子控制器
-
-● UITabBarController添加控制器的⽅方式有2种 ➢ 添加单个⼦子控制器
-- (void)addChildViewController:(UIViewController
-*)childController;
-➢ 设置⼦子控制器数组
-@property(nonatomic,copy) NSArray *viewControllers;
-
-UITabBar
-● 如果UITabBarController有N个⼦子控制器,那么UITabBar内部就会有N 个UITabBarButton作为⼦子控件
-
-UITabBarButton
-● UITabBarButton⾥里⾯面显⽰示什么内容,由对应⼦子控制器的tabBarItem属性决定
-
-● UITabBarItem有以下属性影响着UITabBarButton的内容 
-➢ 标题⽂文字
-@property(nonatomic,copy) NSString *title;
-➢ 图标
-@property(nonatomic,retain) UIImage *image;
-➢ 选中时的图标
-@property(nonatomic,retain) UIImage *selectedImage
-
-
-UICollectionView – 九宫格
-● 如果显⽰示的东西是⼀一块⼀一块、⼀一格⼀一格的,⽽而且每个格⼦子长的差不多,就可以 ⽤用它
-
-
-UIWebView – ⽹网页显⽰示控件
-● ⼀一般⽤用来显⽰示⽹网页,使⽤用它,就可以在⼿手机上浏览⽹网页
-
-
-
-UISwitch – 开关 
-● 要么打开,要么关上
-
-
-
-UISegmentControl – 选项卡 
-● 在固定的⼏几个选项之间进⾏行选择
-
-
-
-UIPickerView – 选择器 
-● 在多⾏行数据之间只选择⼀一⾏行
-1> 注意点:PickerView的高度不能改,默认162,PickerView里面每行的高度 可以改,不要弄混淆了
-1> 如何使用PickerView展示数据? 进入PickerView头文件,有数据源和代理,联想到UITableView,模仿 UITableView的用法。
-2> 让控制器作为PickerView的数据源,控制器遵守PickerView的数据源方法
-2.1>两种方式:1.拖线 2.代码 2.2>系统自带的控件,数据源和代理属性不需要IBOutlet,也能拖 线。自己的属性,想要拖线,必须写IBOutlet。
-3> PickerView的数据源方法
-1> numberOfComponentsInPickerView: 返回多少列
-2> pickerView:numberOfRowsInComponent: 返回第component列有多少 行
-3> 和UITableView的区别,每一行长什么样,是由PickerView的代理决 定的。
-4> 注意:如果没有返回每一行长什么样子,每行就会显示?,看见?,就 知道没有实现每一行长什么样子的方法。
-4> PickerView的代理方法
-1> 返回第component列第row行长什么样。
-第component列第row行的展示标题
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-第component列第row行带属性的标题
-- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger) component
-第component列第row行展示的视图
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;
-- 2> 返回第component列每一行的高度和宽度
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component;
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
-3> 选中第component列第row行调用
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
-- 
-
-<h3>随机选中某一列的某一行
-1> 如何选中某一行 [self.pickerView selectRow:row inComponent:component
-animated:YES];
-2> 先随机选中第0列的某一行,随机数取值范围看第0列总共有多少行,
-arc4random_uniform(x)随机0~x-1的数
-3> 避免随机出来的行数都一样,需要判断下,随机出来的行数和当前选中 的是否一样,一样就重新随机,用while判断,直到随机到不一样,才行。 3> 问题:label没有显示最新选中的一行。
-原因:手动调用pickview滚动,选中某一行,不会触发代理,我们自己 主动调用代理,让lebel显示选中哪一行.
-注意:只有用户手动滚动才可以触发pickview的代理方法。 4> 每一列都要随机选中,弄个for循序,遍历每一列都随机选中
-
-<h4> 二级联动的问题
-两列同时滚动,会报角标越界错误 原因:返回每一行的样子的代理方法会经常调用,只要有新的一行 出现就会调用。这里每次都会获取最新选中的省,而第0列展示的 是之前选中的省会,如果最新选中的省会的城市总数小于之前选中 的省会。 假设:最新选中的城市只有有4个,但是之前选中的省会城市有10 行,当第1列滚到5就会报角标越界错误。 解决方式:这里不能获取最新的选中省会,需要记录之前选中的, 且只需要记录一次,在选中一行的代理方法里记录。 注意:在刷新城市之前记住省会角标,应该刷新的城市,是当前选 中的省会的城市。
-4.8 监听城市选择,选中新的省会。 1> 记录选中的省会
-2> 刷新第1列
-3> 第一列默认选中第一个城市
-4> 把选中的省会和获取选中的城市显示到文本框
-
-
-UIDatePicker – ⽇日期选择器 
-● 选择⽇日期
-
-
-
-UIToolbar – ⼯工具条
-● ⼀一般显⽰示在底部或者键盘顶部,⾥里⾯面有⼏几个⼩小按钮
-
-
-
-UINavigationBar – 导航条 
-● 显⽰示在顶部的条
-
-UINavigationController的简单使⽤用
-● UINavigationController的使⽤用步骤
-➢ 初始化UINavigationController
-➢ 设置UIWindow的rootViewController为UINavigationController ➢ 根据具体情况,通过push⽅方法添加对应个数的⼦子控制器
-
-UINavigationController的⼦子控制器
-● UINavigationController以栈的形式保存⼦子控制器 @property(nonatomic,copy) NSArray *viewControllers; @property(nonatomic,readonly) NSArray *childViewControllers;
-● 使⽤用push⽅方法能将某个控制器压⼊入栈
-- (void)pushViewController:(UIViewController *)viewController
-animated:(BOOL)animated;
-● 使⽤用pop⽅方法可以移除控制器
-➢ 将栈顶的控制器移除
+● 直接将数据直接写在代码⾥里⾯面,不是⼀一种合理的做法。如果数据经常改,就<p>
+● 因此,可以考虑将经常变的数据放在⽂文件中进⾏行存储,程序启动后从⽂文件中<p><p> 读取最新的数据。如果要变动数据,直接修改数据⽂文件即可,不⽤用修改代码<p>
+● ⼀一般可以使⽤用属性列表⽂文件存储NSArray或者NSDictionary之类的数据,这<p> 种“属性列表⽂文件”的扩展名是plist,因此也称为“plist⽂文件”<p>
+
+<p><p><p>
+instancetype<p>
+● instancetype在类型表⽰示上,跟id⼀一样,可以表⽰示任何对象类型<p>
+● instancetype只能⽤用在返回值类型上,不能像id⼀一样⽤用在参数类型上<p>
+● instancetype⽐比id多⼀一个好处:编译器会检测instancetype的真实类型<p>
+
+<p><p><p>
+类前缀<p>
+● 使⽤用Objective-C开发iOS程序时,最好在每个类名前⾯面加⼀一个前缀,⽤用来标识这个类的“⽼老家”在哪<p>
+● ⽬目的是防⽌止N个⼈人开发了⼀一样的类,冲突了<p><p><p>
+● ⽐比如Jake Will、Kate Room在同⼀一个项⽬目中都各⾃自开发了个Button类,这样的程序是不能运⾏行起来的<p><p>
+● 解决⽅方案:Jake Will的类名叫做JWButton,Kate Room的类名叫做KRButton<p>
+
+
+view的封装<p>
+● 如果⼀一个view内部的⼦子控件⽐比较多,⼀一般会考虑⾃自定义⼀一个view,把它内部<p>
+● 外界可以传⼊入对应的模型数据给view,view拿到模型数据后给内部的⼦子控件 设置对应的数据<p>
+● 封装控件的基本步骤<p>
+● 在initWithFrame:⽅方法中添加⼦子控件,提供便利构造⽅方法<p>
+● 在layoutSubviews⽅方法中设置⼦子控件的frame(⼀一定要调⽤用super的 layoutSubviews)<p>
+● 增加模型属性,在模型属性set⽅方法中设置数据到⼦子控件上<p>
+
+
+<p><p><p>
+UITextField – ⽂文本输⼊入框<p>
+● ⽂文本输⼊入框可以弹出键盘,让⽤用户输⼊入⽂文本内容<p>
+
+<p>
+UITextView – 能滚动的⽂文字显⽰示控件 <p>
+● 如果⽂文字内容⽐比较多,需要换⾏行显⽰示,并且需要编辑<p>
+<p><p>
+
+UIProgressView – 进度条<p>
+● ⽔水平进度条,⽐比如显⽰示⽂文件的下载进度,程序的启动进度<p>
+
+<p><p><p>
+
+UISlider – 滑块<p>
+● 在2个数值之间滑动选择,⽐比如调节⾳音量⼤大⼩小<p>
+<p><p><p>
+
+UIActivityIndicator – 圈圈 <p>
+● ⼀一直在转圈圈,表⽰示让⽤用户等待<p>
+<p><p><p>
+
+
+UIActionSheet – 底部弹框 <p>
+● 从底部弹出⼀一个框提⽰示⽤用户下⼀一步该做什么<p>
+<p><p><p>
+
+UIAlertView – 对话框(中间弹框) <p>
+● 从中间弹出⼀一个框提⽰示⽤用户下⼀一步该做什么<p>
+
+<p><p><p>
+UIScrollView – 滚动的控件<p>
+● 如果内容⽐比较多,超出了⼀一个屏幕,就可以⽤用它来显⽰示<p>
+<p><p>
+UIScrollView⽆无法滚动的解决办法<p>
+● 如果UIScrollView⽆无法滚动,可能是以下原因: ➢ 没有设置contentSize<p>
+➢ scrollEnabled = NO<p>
+➢ 没有接收到触摸事件:userInteractionEnabled = NO<p>
+<p>
+代理方法<p>
+// scrollview正在滚动的时候调用<p>
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView<p>
+{<p>
+    int Pa =  (int)(scrollView.contentOffset.x / scrollView.frame.size.width+0.5);<p>
+    page.currentPage = Pa;<p>
+    <p>
+    NSLog(@"正在滚动");<p>
+}<p>
+// 将要开始拖拽<p>
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView<p>
+{<p>
+    NSLog(@"将要开始拖拽");<p>
+}<p>
+// 将要结束拖拽<p>
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity<p> targetContentOffset:(inout CGPoint *)targetContentOffset<p>
+{<p>
+    NSLog(@"将要结束拖拽");<p>
+}<p>
+// 结束拖拽<p>
+- (void)scrollViewDidEndDragging:(UIScrollView *<p>)scrollView willDecelerate:(BOOL)decelerate<p>
+{<p>
+    NSLog(@"结束拖拽");<p>
+}<p>
+// 停止滚动时候调用<p>
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView<p>
+{<p>
+    NSLog(@"停止滚动");<p>
+}<p>
+<p><p><p>
+UIScrollView的常见属性<p>
+● @property(nonatomic)CGPointcontentOffset; ➢ 这个属性⽤用来表⽰示UIScrollView滚动的位置<p> (其实就是内容左上⾓角与scrollView左上⾓角的间距值)<p>
+● @property(nonatomic)CGSizecontentSize;<p>
+➢ 这个属性⽤用来表⽰示UIScrollView内容的尺⼨寸,滚动范围(能滚多远)<p>
+● @property(nonatomic)UIEdgeInsetscontentInset;<p>
+➢ 这个属性能够在UIScrollView的4周增加额外的滚动区域,⼀一般⽤用来避免scrollView的内容被 其他控件挡住<p>
+<p><p>
+● @property(nonatomic) BOOL bounces;<p>
+● 设置UIScrollView是否需要弹簧效果<p>
+● @property(nonatomic,getter=isScrollEnabled)BOOLscrollEnabled;<p>
+➢ 设置UIScrollView是否能滚动<p>
+● @property(nonatomic) BOOL showsHorizontalScrollIndicator;<p>
+➢ 是否显⽰示⽔水平滚动条<p>
+● @property(nonatomic) BOOL showsVerticalS<p>crollIndicator; <p><p>
+➢ 是否显⽰示垂直滚动条<p><p>
+
+UIScrollView的缩放原理<p><p>
+￼实现 ● 当⽤用户在UIScrollView⾝身上使⽤用捏合⼿手势时,UIScrollView会给代理发送⼀一条消息,询问 理<p><p>
+相 代理究竟要缩放⾃自⼰己内部的哪⼀一个⼦子控件(哪⼀一块内容)<p><p>
+<p><p>
+• 当⽤用户在UIScrollView⾝身上使⽤用捏合⼿手势时,UIScrollView会调⽤用代理的<p><p> viewForZoomingInScrollView:⽅方法,这个⽅方法返回的控件就是需要进⾏行缩放的 控件<p><p>
+
+<p><p>
+缩放实现步骤<p><p>
+1. 设置UIScrollView的id<UISCrollViewDelegate> de<p><p>legate代理对象<p><p>
+2. 设置minimumZoomScale :缩⼩小的最⼩小⽐比例<p><p>
+3. 设置maximumZoomScale :放⼤大的最⼤大⽐比例<p><p>
+4. 让代理对象实现下⾯面的⽅方法,返回需要缩放的视图控件<p>
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;<p>
+ 跟缩放相关的其他代理⽅方法<p>
+  缩放完毕的时候调⽤用<p>
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView<p>
+withView:(UIView *)view<p>
+正在缩放的时候调⽤用<p>
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView<p>
+<p>
+<p>
+UIPageControl – 分页控件 <p>
+● 能显⽰示当前的页码<p>
+● 只要将UIScrollView的pageEnabled属性设置为YES,UIScrollView会被分割成多个独⽴立页⾯面,⾥里⾯面的内容就能进⾏行分页展⽰示<p>
+● ⼀一般会配合UIPageControl增强分页效果,UIPageControl常⽤用属性如下<p>
+➢ ⼀一共有多少页<p>
+@property(nonatomic) NSInteger numberOfPages; ➢ 当前显⽰示的页码<p>
+@property(nonatomic) NSInteger currentPage;<p>
+➢ 只有⼀一页时,是否需要隐藏页码指⽰示器<p>
+@property(nonatomic) BOOL hidesForSinglePage;<p>
+➢ 其他页码指⽰示器的颜⾊色<p>
+@property(nonatomic,retain) UIColor *pageIndicatorTintColor; ➢ 当前页码指⽰示器的颜⾊色<p>
+@property(nonatomic,retain) UIColor *currentPageIndicatorTintColor<p>
+<p><p><p>
+NSTimer<p><p>
+● NSTimer叫做“定时器”,它的作⽤用如下 ➢ 在指定的时间执⾏行指定的任务<p><p>
+➢ 每隔⼀一段时间执⾏行指定的任务<p><p>
+● 调⽤用下⾯面的⽅方法就会开启⼀一个定时任务<p><p>
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti<p><p>
+     target:(id)aTarget<p><p>
+   selector:(SEL)aSelector<p><p>
+   userInfo:(id)userInfo<p><p>
+   repeats:(BOOL)yesOrNo;<p><p>
+每隔ti秒,调⽤用⼀一次aTarget的aSelector⽅方法,yesOrNo决定了是否重复执⾏行这个任 务<p><p>
+● 通过invalidate⽅方法可以停⽌止定时器的⼯工作,⼀一旦定时器被停⽌止了,就不能再次执⾏行任<p><p> 务。只能再创建⼀一个新的定时器才领能先执业⾏行内I新T教的育任培务训⾏行业<p><p>
+<p><p>
+NSTimer<p><p>
+● 解决定时器在主线程不⼯工作的问题<p><p>
+NSTimer *timer = [NSTimer timerWithTimeInterval:2 target:self<p><p>
+selector:@selector(next) userInfo:nil repeats:YES];<p>
+[[NSRunLoop mainRunLoop] addTimer:timer<p>
+forMode:NSRunLoopCommonModes];<p>
+<p>
+<p>
+
+UITableView – 表格<p>
+● 如果每⼀一⾏行显⽰示的内容格式差不多,就⽤用这个表格控件<p>
+<p>
+UITabBarController<p>
+● UITabBarController的使⽤用步骤<p>
+➢ 初始化UITabBarController<p>
+➢ 设置UIWindow的rootViewController为UITabBarController<p>
+➢ 根据具体情况,通过addChildViewController⽅方法添加对应个数的⼦子控制器<p>
+<p>
+● UITabBarController添加控制器的⽅方式有2种 ➢ 添加单个⼦子控制器<p>
+- (void)addChildViewController:(UIViewController<p>
+*)childController;<p>
+➢ 设置⼦子控制器数组<p>
+@property(nonatomic,copy) NSArray *viewControllers;<p>
+<p>
+UITabBar<p>
+● 如果UITabBarController有N个⼦子控制器,那么UITabBar内部就会有N 个UITabBarButton作为⼦子控件<p>
+<p><p>
+UITabBarButton<p><p>
+● UITabBarButton⾥里⾯面显⽰示什么内容,由对应⼦子控制器的tabBarItem属性决定<p><p>
+<p><p>
+● UITabBarItem有以下属性影响着UITabBarButton的内容 <p><p>
+➢ 标题⽂文字<p><p>
+@property(nonatomic,copy) NSString *title;<p><p>
+➢ 图标<p><p>
+@property(nonatomic,retain) UIImage *image;<p><p>
+➢ 选中时的图标<p><p>
+@property(nonatomic,retain) UIImage *selectedImage<p><p>
+<p><p>
+<p><p>
+UICollectionView – 九宫格<p><p>
+● 如果显⽰示的东西是⼀一块⼀一块、⼀一格⼀一格的,⽽而且每个格⼦子长的差不多,就可以 ⽤用它<p><p>
+<p><p>
+<p><p>
+UIWebView – ⽹网页显⽰示控件<p><p>
+● ⼀一般⽤用来显⽰示⽹网页,使⽤用它,就可以在⼿手机上浏览⽹网页<p><p>
+<p><p>
+<p><p>
+
+UISwitch – 开关 <p><p>
+● 要么打开,要么关上<p><p>
+
+<p>
+<p>
+UISegmentControl – 选项卡 <p>
+● 在固定的⼏几个选项之间进⾏行选择<p>
+
+<p>
+<p>
+UIPickerView – 选择器 <p>
+● 在多⾏行数据之间只选择⼀一⾏行<p>
+1> 注意点:PickerView的高度不能改,默认162,PickerView里面每行的高度 可以改,不要弄混淆了<p>
+1> 如何使用PickerView展示数据? 进入PickerView头文件,有数据源和代理,联想到UITableView,模仿 UITableView的用法。<p>
+2> 让控制器作为PickerView的数据源,控制器遵守PickerView的数据源方法<p>
+2.1>两种方式:1.拖线 2.代码 2.2>系统自带的控件,数据源和代理属性不需要IBOutlet,也能拖<p> 线。自己的属性,想要拖线,必须写IBOutlet。<p>
+3> PickerView的数据源方法<p>
+1> numberOfComponentsInPickerView: 返回多少列<p>
+2> pickerView:numberOfRowsInComponent: 返回第component列有多少 行<p>
+3> 和UITableView的区别,每一行长什么样,是由PickerView的代理决 定的。<p>
+4> 注意:如果没有返回每一行长什么样子,每行就会显示?,看见?,就 知道没有实现每一行长什么样子的方法。<p>
+4> PickerView的代理方法<p>
+1> 返回第component列第row行长什么样。<p>
+第component列第row行的展示标题<p>
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component<p><p><p><p>
+第component列第row行带属性的标题<p><p><p><p>
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row<p><p><p><p> forComponent:(NSInteger) component<p><p><p><p>
+第component列第row行展示的视图<p><p><p><p>
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;<p><p><p><p>
+- 2> 返回第component列每一行的高度和宽度<p><p><p><p>
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component;<p><p><p><p>
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;<p><p><p><p>
+3> 选中第component列第row行调用<p><p><p><p>
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;<p><p><p><p>
+- <p><p><p><p>
+<p><p><p><p>
+<h3>随机选中某一列的某一行<p><p><p><p>
+1> 如何选中某一行 [self.pickerView selectRow:row inComponent:component<p><p><p><p>
+animated:YES];<p><p><p><p>
+2> 先随机选中第0列的某一行,随机数取值范围看第0列总共有多少行,<p><p><p><p>
+arc4random_uniform(x)随机0~x-1的数<p><p><p><p>
+3> 避免随机出来的行数都一样,需要判断下,随机出来的行数和当前选中<p><p><p><p> 的是否一样,一样就重新随机,用while判断,直到随机到不一样,才行。 3> 问题:label没有显示最新选中的一行。<p><p><p>
+原因:手动调用pickview滚动,选中某一行,不会触发代理,我们自己 主动调用代理,让lebel显示选中哪一行.<p><p><p>
+注意:只有用户手动滚动才可以触发pickview的代理方法。 4> 每一列都要随机选中,弄个for循序,遍历每一列都随机选中<p><p><p>
+<p><p><p>
+<h4> 二级联动的问题<p><p><p>
+两列同时滚动,会报角标越界错误 原因:返回每一行的样子的代理方法会经常调用,只要有新的一行<p><p><p> 出现就会调用。这里每次都会获取最新选中的省,而第0列展示的<p><p><p> 是之前选中的省会,如果最新选中的省会的城市总数小于之前选中 的省会。<p><p><p> 假设:最新选中的城市只有有4个,但是之前选中的省会城市有10 行,当第1列滚到5就会报角标越界错误。<p><p><p> 解决方式:这里不能获取最新的选中省会,需要记录之前选中的, 且只需要记录一次,在选中一行的代理方法里记录。<p><p><p> 注意:在刷新城市之前记住省会角标,应该刷新的城市,是当前选 中的省会的城市。<p><p><p>
+4.8 监听城市选择,选中新的省会。 1> 记录选中的省会<p><p><p>
+2> 刷新第1列<p><p><p>
+3> 第一列默认选中第一个城市<p><p>
+4> 把选中的省会和获取选中的城市显示到文本框<p><p>
+<p><p>
+<p><p>
+UIDatePicker – ⽇日期选择器 <p><p>
+● 选择⽇日期<p><p>
+<p><p>
+<p><p>
+
+UIToolbar – ⼯工具条<p><p>
+● ⼀一般显⽰示在底部或者键盘顶部,⾥里⾯面有⼏几个⼩小按钮<p><p>
+<p><p>
+<p><p>
+
+UINavigationBar – 导航条 <p><p>
+● 显⽰示在顶部的条<p><p>
+
+UINavigationController的简单使⽤用<p>
+● UINavigationController的使⽤用步骤<p>
+➢ 初始化UINavigationController<p>
+➢ 设置UIWindow的rootViewController为UINavigationController ➢ 根据具体情况,通过push⽅方法添加对应个数的⼦子控制器<p>
+<p>
+UINavigationController的⼦子控制器<p>
+● UINavigationController以栈的形式保存⼦子控制器 @property(nonatomic,copy) NSArray *viewControllers;<p> @property(nonatomic,readonly) NSArray *childViewControllers;<p>
+● 使⽤用push⽅方法能将某个控制器压⼊入栈<p>
+- (void)pushViewController:(UIViewController *)viewController<p>
+animated:(BOOL)animated;<p>
+● 使⽤用pop⽅方法可以移除控制器<p>
+➢ 将栈顶的控制器移除<p>
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated;
 ➢ 回到指定的⼦子控制器
 - (NSArray *)popToViewController:(UIViewController *)viewController animated:
@@ -607,6 +608,124 @@ Modal
 - (void)dismissViewControllerAnimated: (BOOL)flag completion:
 (void (^)(void))completion;
 
+
+# 触摸事件
+响应者对象
+● 在iOS中不是任何对象都能处理事件,只有继承了UIResponder的对象才能接收并处理事 件。我们称之为“响应者对象”
+● UIApplication、UIViewController、UIView都继承⾃自UIResponder,因此它们都 是响应者对象,都能够接收并处理事件
+
+UIResponder
+● UIResponder内部提供了以下⽅方法来处理事件
+➢ 触摸事件
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+➢ 加速计事件
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+➢ 远程控制事件
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event;
+- 
+
+UIView的触摸事件处理
+● UIView是UIResponder的⼦子类,可以覆盖下列4个⽅方法处理不同的触摸事件
+➢ ⼀一根或者多根⼿手指开始触摸view,系统会⾃自动调⽤用view的下⾯面⽅方法
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+➢ ⼀一根或者多根⼿手指在view上移动,系统会⾃自动调⽤用view的下⾯面⽅方法(随着⼿手指的移动,会 持续调⽤用该⽅方法)
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event ➢ ⼀一根或者多根⼿手指离开view,系统会⾃自动调⽤用view的下⾯面⽅方法
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+➢ 触摸结束前,某个系统事件(例如电话呼⼊入)会打断触摸过程,系统会⾃自动调⽤用view的下⾯面
+⽅方法
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event 提⽰示:touches中存放的都是UITouch对象
+- 
+UITouch的属性 ● 触摸产⽣生时所处的窗⼜⼝口
+@property(nonatomic,readonly,retain) UIWindow *window; ● 触摸产⽣生时所处的视图
+@property(nonatomic,readonly,retain) UIView *view; ● 短时间内点按屏幕的次数,可以根据tapCount判断单击、双击或更多的点击
+@property(nonatomic,readonly) NSUInteger tapCount; ● 记录了触摸事件产⽣生或变化时的时间,单位是秒
+@property(nonatomic,readonly) NSTimeInterval      timestamp;
+
+● 当前触摸事件所处的状态
+@property(nonatomic,readonly) UITouchPhase phase;
+
+UITouch的⽅方法
+● -(CGPoint)locationInView:(UIView*)view; 返回值表⽰示触摸在view上的位置 这⾥里返回的位置是针对view的坐标系的(以view的左上⾓角为原点(0, 0)) 调⽤用时传⼊入的view参数为nil的话,返回的是触摸点在UIWindow的位置
+- (CGPoint)previousLocationInView:(UIView *)view; 该⽅方法记录了前⼀一个触摸点的位置
+- 
+
+UIEvent
+● 每产⽣生⼀一个事件,就会产⽣生⼀一个UIEvent对象
+● UIEvent:称为事件对象,记录事件产⽣生的时刻和类型
+● 常见属性
+➢ 事件类型
+@property(nonatomic,readonly) UIEventType type; @property(nonatomic,readonly) UIEventSubtype subtype;
+➢ 事件产⽣生的时间
+@property(nonatomic,readonly) NSTimeInterval timestamp;
+
+● UIEvent还提供了相应的⽅方法可以领获先得业在内某IT个教育vi培e训w⾏行上业⾯面w的ww触.5摸20i对t.co象m(UITouch)
+
+touches和event参数
+● ⼀一次完整的触摸过程,会经历3个状态:
+￼➢ ➢ ➢ ➢
+触摸开始:- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+触摸移动:- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+触摸结束:- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+触摸取消(可能会经历):- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+4个触摸事件处理⽅方法中,都有NSSet *touches和UIEvent *event两个参数
+➢ 如果两根⼿手指同时触摸⼀一个view,那么view只会调⽤用⼀一次touchesBegan:withEvent:
+●
+➢ ⼀一次完整的触摸过程中,只会产⽣生⼀一个事件对象,4个触摸⽅方法都是同⼀一个event参数
+￼⽅方法,touches参数中装着2个UITouch对象
+
+
+事件的产⽣生和传递
+● 发⽣生触摸事件后,系统会将该事件加⼊入到⼀一个由UIApplication管理的事件队列中
+● UIApplication会从事件队列中取出最前⾯面的事件,并将事件分发下去以便处理,通
+常,先发送事件给应⽤用程序的主窗⼜⼝口(keyWindow)
+● 主窗⼜⼝口会在视图层次结构中找到⼀一个最合适的视图来处理触摸事件,这也是整个事件处理
+过程的第⼀一步
+
+
+UIView不接收触摸事件的三种情况 . 不接收⽤用户交互
+userInteractionEnabled = NO . 隐藏
+hidden = YES . 透明
+alpha = 0.0 ~ 0.01 提⽰示:UIImageView的userInteractionEnabled默认就是NO,因此UIImageView以
+  及它的⼦子控件默认是不能接收触摸事件的
+  
+  touches⽅方法的默认做法是将事件顺着响应者链条向上传递,将事件交给上⼀一个响 应者进⾏行处理
+  
+  
+  <h4>事件传递的完整过程
+1> 先将事件对象由上往下传递(由⽗父控件传递给⼦子控件),找到最合适的控件 来处理这个事件。
+￼2> 调⽤用最合适控件的touches....⽅方法
+3> 如果调⽤用了[super touches....];就会将事件顺着响应者链条往上传递,传递
+给上⼀一个响应者
+4> 接着就会调⽤用上⼀一个响应者的touches....⽅方法
+如何判断上⼀一个响应者
+1> 如果当前这个view是控制器的view,那么控制器就是上⼀一个响应者
+2> 如果当前这个view不是控制器的view,那么⽗父控件就是上⼀一个响应者
+
+<h3>响应者链的事件传递过程
+如果view的控制器存在,就传递给控制器;如果控制器不存在,则将其传递给它 的⽗父视图
+在视图层次结构的最顶级视图,如果也不能处理收到的事件或消息,则其将事件 或消息传递给window对象进⾏行处理
+如果window对象也不处理,则其将事件或消息传递给UIApplication对象 如果UIApplication也不能处理该事件或消息,则将其丢弃
+
+
+
+<h5>UIGestureRecognizer
+● 为了完成⼿手势识别,必须借助于⼿手势识别器----UIGestureRecognizer
+● 利⽤用UIGestureRecognizer,能轻松识别⽤用户在某个view上⾯面做的⼀一些常见⼿手势
+● UIGestureRecognizer是⼀一个抽象类,定义了所有⼿手势的基本⾏行为,使⽤用它的⼦子类才能 处理具体的⼿手势
+➢ UITapGestureRecognizer(敲击)
+➢ UIPinchGestureRecognizer(捏合,⽤用于缩放) ➢ UIPanGestureRecognizer(拖拽)
+➢ UISwipeGestureRecognizer(轻扫)
+➢ UIRotationGestureRecognizer(旋转)
+➢ UILongPressGestureRecognizer(长按)
+
+// 点击手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    [self.image addGestureRecognizer:tap];
 
 # 数据存储
 
@@ -1787,6 +1906,20 @@ didReceiveResponse:(NSURLResponse *)response;
 - (void)connection:(NSURLConnection *)connection didFailWithError:
 (NSError *)error;
 
+<h4>获得⽂文件的MIMEType
+● 利⽤用NSURLConnection
+- (NSString *)MIMEType:(NSURL *)url {
+// 1.创建⼀一个请求
+NSURLRequest *request = [NSURLRequest
+requestWithURL:url];
+// 2.发送请求(返回响应)
+   NSURLResponse *response = nil;
+   [NSURLConnection sendSynchronousRequest:request
+returningResponse:&response error:nil];
+// 3.获得MIMEType
+   return response.MIMEType;
+}
+
 
 
 NSMutableURLRequest
@@ -1915,7 +2048,55 @@ NSError *error))failure
     
     // 开始监听
     [net startMonitoring];⽰示:要监控⽹网络连接状态,必须要先调⽤用单例的startMonitoring⽅方法
+    
+    
+    # JSON和XML
+JSON解析⽅方案
+● 在iOS中,JSON的常见解析⽅方案有4种
+● 第三⽅方框架:JSONKit、SBJson、TouchJSON(性能从左到右,越差)
+● 苹果原⽣生(⾃自带):NSJSONSerialization(性能最好)
+● NSJSONSerialization的常见⽅方法
+● JSON数据 -- OC对象
++ (id)JSONObjectWithData:(NSData *)data options:
+(NSJSONReadingOptions)opt error:(NSError **)error;
+● OC对象 -- JSON数据
++ (NSData *)dataWithJSONObject:(id)obj options:
+(NSJSONWritingOptions)opt error:(NSError **)error;
 
+<h4>iOS中的XML解析
+● 在iOS中,解析XML的⼿手段有很多
+● 苹果原⽣生
+• NSXMLParser:SAX⽅方式解析,使⽤用简单
+● 第三⽅方框架
+• libxml2:纯C语⾔言,默认包含在iOS SDK中,同时⽀支持DOM和SAX⽅方式解析 • GDataXML:DOM⽅方式解析,由Google开发,基于libxml2
+● XML解析⽅方式的选择建议
+● ⼤大⽂文件:NSXMLParser、libxml2
+● ⼩小⽂文件:GDataXML、NSXMLParser、libxml2
+
+NSXMLParser
+● 使⽤用步骤
+// 传⼊入XML数据,创建解析器
+NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data]; // 设置代理,监听解析过程
+parser.delegate = self;
+// 开始解析
+[parser parse];
+● NSXMLParser采取的是SAX⽅方式解析,特点是事件驱动,下⾯面情况都会通知代理 ● 当扫描到⽂文档(Document)的开始与结束
+● 当扫描到元素(Element)的开始与结束
+
+
+NSXMLParserDelegate
+● 当扫描到⽂文档的开始时调⽤用(开始解析)
+- (void)parserDidStartDocument:(NSXMLParser *)parser
+● 当扫描到⽂文档的结束时调⽤用(解析完毕)
+- (void)parserDidEndDocument:(NSXMLParser *)parser
+● 当扫描到元素的开始时调⽤用(attributeDict存放着元素的属性)
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString
+*)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:
+(NSString *)qName attributes:(NSDictionary *)attributeDict
+● 当扫描到元素的结束时调⽤用
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString
+*)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:
+(NSString *)qName
 
 
 
@@ -2003,4 +2184,434 @@ RunLoop应⽤用
 ● ImageView显⽰
 ● PerformSelector 
 ● 常驻线程
+ 1.源实现造成线程停驻(用当前的runloop添加一个mach事件源)
+//    [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];
+[[NSRunLoop currentRunLoop] run];
+// 2.定时器实现线程停驻
+    NSTimer *time = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(test) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] run];
 ● 自动释放池
+
+
+
+<h5>视频
+● iOS提供了MPMoviePlayerController、MPMoviePlayerViewController两个类, 可以⽤用来轻松播放视频和⽹网络流媒体/⽹网络⾳音频
+● 提⽰示:⽹网络⾳音频同样使⽤用此控制器播放
+● YouTobe就是⽤用MPMoviePlayerController实现的 
+● MPMoviePlayerViewController只能全屏播放视频 
+● 上述两个类都定义在了MediaPlayer框架中
+
+MPMoviePlayerController⽀支持的格式
+
+MPMoviePlayerController
+● 继承⾃自NSObject
+● 内部有个view可以展⽰示视频内容
+● 将该视图添加其他控制器的view上,即可显⽰示视频内容
+MPMoviePlayerController可以播放的视频格式包括: ● H.264、MPEG-4等
+⽀支持的⽂文件扩展名包括:avi,mkv,mov,m4v,mp4等
+
+
+MPMoviePlayerController的使⽤用
+● 加载视频资源(注意,如果url为nil同样可以加载)
+NSAssert(self.url, @"URL不能为空");
+[[MPMoviePlayerController alloc] initWithContentURL:self.url];
+● 显⽰示
+[self.view addSubview:self.moviePlayer.view];
+通过设置AutoresizingMask属性可以在横竖屏转换时⾃自动调整视图⼤大⼩小
+● 播放
+  [self.moviePlayer play];
+● 全屏
+  [self.moviePlayer setFullscreen:YES animated:YES];
+● MPMoviePlayerController的播放状态是通过通知中⼼心监听的
+
+
+常⽤用监听通知事件
+● 状态变化 MPMoviePlayerPlaybackStateDidChangeNotification
+● 播放结束 MPMoviePlayerPlaybackDidFinishNotification
+● 退出全屏 MPMoviePlayerDidExitFullscreenNotification
+● 截屏完成 MPMoviePlayerThumbnailImageRequestDidFinishNotification
+● 截屏⽅方法 -requestThumbnailImagesAtTimes:timeOption:
+
+
+<h5>UIWebView
+
+● 什么是UIWebView
+● UIWebView是iOS内置的浏览器控件
+● 系统⾃自带的Safari浏览器就是通过UIWebView实现的
+● UIWebView不但能加载远程的⽹网页资源,还能加载绝⼤大部分的常见⽂文件 ● html\htm
+● pdf、doc、ppt、txt
+● mp4
+●......
+● UIWebView常⽤用的加载资源的⽅方法
+- (void)loadRequest:(NSURLRequest *)request;
+- 
+常⽤用属性和⽅方法
+● 重新加载(刷新) - (void)reload;
+● 停⽌止加载
+- (void)stopLoading;
+● 回退
+- (void)goBack;
+● 前进
+- (void)goForward;
+● 需要进⾏行检测的数据类型
+@property(nonatomic) UIDataDetectorTypes dataDetectorTypes
+
+● 是否能回退 @property(nonatomic,readonly,getter=canGoBack) BOOL
+canGoBack;
+● 是否能前进 @property(nonatomic,readonly,getter=canGoForward) BOOL
+canGoForward;
+● 是否正在加载中
+@property(nonatomic,readonly,getter=isLoading) BOOL loading;
+● 是否伸缩内容⾄至适应屏幕当前尺⼨寸 @property(nonatomic) BOOL scalesPageToFit;
+
+
+监听UIWebView的加载过程
+● 成为UIWebView的代理,遵守UIWebViewDelegate协议,就能监
+听UIWebView的加载过程
+● 开始发送请求(加载数据)时调⽤用这个⽅方法
+- (void)webViewDidStartLoad:(UIWebView *)webView;
+● 请求完毕(加载数据完毕)时调⽤用这个⽅方法
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+● 请求错误时调⽤用这个⽅方法
+- (void)webView:(UIWebView *)webView didFailLoadWithError:
+(NSError *)error;
+
+
+监听UIWebView的加载过程
+● UIWebView在发送请求之前,都会调⽤用这个⽅方法,如果返回NO,代表停⽌止加载
+- (BOOL)webView:(UIWebView *)webView
+shouldStartLoadWithRequest:(NSURLRequest *)request
+navigationType:(UIWebViewNavigationType)navigationType;
+
+
+
+
+# HTML5
+⽹网页的组成
+● ⼀一个有具体功能的完整的⽹网页,⼀一般由3部分组成 ● HTML
+• ⽹网页的具体内容和结构
+● CSS
+• ⽹网页的样式(美化⽹网页最重要的⼀一块)
+● JavaScript(掌握)
+• ⽹网页的交互效果,⽐比如对⽤用户⿏鼠标事件做出响应
+
+常见的HTML标签
+● 标题:h1、h2、h3、h4、h5....
+● 段落:p
+● 换⾏行:br
+● 容器:div、span(⽤用来容纳其他标签) ● 表格:table、tr、td
+● 列表:ul、ol、li ● 图⽚片:img
+● 表单:input
+● 链接:a
+
+HTML5新增标签 HTML5新增了27个标签元素,废弃了16个标签元素,主要包括结构
+1.结构性标签 负责Web上下⽂文结构的定义,确保HTML⽂文档,包括:
+● article ⽂文章主体内容(⼀一篇博客、⼀一篇论坛帖⼦子、⼀一段⽤用户评论、插件)
+● header 标记头部区域内容
+● footer 标记脚部区域内容
+● section 区域章节表述
+● nav 菜单导航,链接导航
+
+HTML5新增标签
+2.块级性标签 完成Web页⾯面区域的划分,确保内容的有效分隔,包括:
+● aside 注记,贴⼠士,侧栏,摘要,插⼊入的引⽤用作为补充主体的内容
+● figure 对多个元素组合并展⽰示的元素,常与figcaption联合使⽤用 ● code 表⽰示⼀一段代码块
+● dialog ⼈人与⼈人之间对话,包含dt和dd两个组合元素(dt⽤用于表⽰示说话者、dd⽤用 于表⽰示说话者的内容)
+
+
+HTML5新增标签 3.⾏行内语义性标签
+完成Web页⾯面具体内容的引⽤用和表述,丰富展⽰示内容,包括:
+● meter 特定范围内的数值,如⼯工资、数量、百分⽐比
+● time 时间值
+● progress 进度条,可⽤用max、min、step进⾏行控制,完成对进度的表⽰示和监听 ● video 视频元素,⽤用于视频播放,⽀支持缓冲预载和多种视频媒体格式
+● audio ⾳音频元素,⽤用于⾳音频播放,⽀支持缓冲预载和多种⾳音频媒体格式
+
+HTML5新增标签 4.交互性标签
+功能性内容的表达,有⼀一定的内容和数据的关联,是各种事件的基础,包
+括:
+● details 表⽰示⼀一段具体的内容,默认不显⽰示,通过某种⽅方式(单击)与legend交互 才会显⽰示
+● datagrid 控制客户端数据与显⽰示,可⽤用于动态脚本及时更新 ● menu ⽤用于交互菜单
+● command ⽤用来处理命令按钮
+
+
+<h4>CSS
+● 什么是CSS
+● CSS的全称是Cascading Style Sheets,层叠样式表
+● 它⽤用来控制HTML标签的样式,在美化⽹网页中起到⾮非常重要的作⽤用
+● CSS的编写格式是键值对形式的,⽐比如 color: red;
+background-color: blue; font-size: 20px;
+● 冒号:左边的是属性名,冒号:右边的属性值
+
+
+CSS的3种书写形式
+● CSS有3种书写形式
+● ⾏行内样式:(内联样式)直接在标签的style属性中书写 <body style="color: red;">
+● 页内样式:在本⽹网页的style标签中书写 <style>
+   body {
+       color: red;
+}
+</style>
+● 外部样式:在单独的CSS⽂文件中书写,然后在⽹网页中⽤用link标签引⽤用 <link rel="stylesheet" href="index.css">
+
+
+CSS的两⼤大重点 ● 属性
+通过属性的复杂叠加才能做出漂亮的⽹网页
+● 选择器 通过选择器找到对应的标签设置样式
+
+
+CSS选择器 – 选择器优先级 ● 优先级排序
+● important > 内联 > id > 类 > 标签 | 伪类 | 属性选择 > 伪元素 > 通配符 > 继承
+
+
+
+HTML标签类型
+● HTML有N多标签,根据显⽰示的类型,主要可以分为3⼤大类 ● 块级标签
+• 独占⼀一⾏行的标签
+• 能随时设置宽度和⾼高度(⽐比如div、p、h1、h2、ul、li)
+● ⾏行内标签(内联标签)
+• 多个⾏行内标签能同时显⽰示在⼀一⾏行
+• 宽度和⾼高度取决于内容的尺⼨寸(⽐比如span、a、label)
+● ⾏行内-块级标签(内联-块级标签)
+• 多个⾏行内-块级标签可以显⽰示在同⼀一⾏行
+• 能随时设置宽度和⾼高度(⽐比如input、button)
+
+
+修改标签的显⽰示类型
+● CSS中有个display属性,能修改标签的显⽰示类型 ● none:隐藏标签
+● block:让标签变为块级标签
+● inline:让标签变为⾏行内标签
+● inline-block:让标签变为⾏行内-块级标签(内联-块级标签)
+
+
+CSS属性
+● CSS有N多属性,根据继承性,主要可以分为2⼤大类 ● 可继承属性
+• ⽗父标签的属性值会传递给⼦子标签
+• ⼀一般是⽂文字控制属性
+● 不可继承属性
+• ⽗父标签的属性值不能传递给⼦子标签 • ⼀一般是区块控制属性
+
+
+<h5>盒⼦子模型
+● ⽹网页上的每⼀一个标签都是⼀一个盒⼦子
+● 每个盒⼦子都有四个属性
+● 内容(content)
+• 盒⼦子⾥里装的东西
+• ⽹网页中通常是指⽂文字和图⽚片
+● 填充(padding,内边距)
+• 怕盒⼦子⾥里装的(贵重的)东西损坏,⽽而添加的泡沫或者其它抗震的辅料
+● 边框(border):盒⼦子本⾝身 ● 边界(margin,外边距)
+• 盒⼦子摆放的时候的不能全部堆在⼀一起,盒⼦子之间要留⼀一定空隙保持通风,同时也为了⽅方 便取出
+
+
+
+
+<h5>JavaScript
+
+● JS的常见⽤用途
+• HTML DOM操作(节点操作,⽐比如添加、修改、删除节点) • 给HTML⽹网页增加动态功能,⽐比如动画
+• 事件处理:⽐比如监听⿏鼠标点击、⿏鼠标滑动、键盘输⼊入
+
+
+JavaScript的书写⽅方式
+● JS常见的书写⽅方式有2种
+● 页内JS:在当前⽹网页的script标签中编写 <script type="text/javascript"> </script>
+● 外部JS
+<script src="index.js"></script>
+
+Canvas
+● HTML
+<canvas id="canvas"></canvas>
+● JS
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+context是⼀一个绘图的上下⽂文环境 2d是⼆二维图形
+
+
+Canvas绘制直线
+● 起点 context.moveTo(100,100);
+● 终点 context.lineTo(400, 400);
+● 绘制 context.stroke();
+● 设置线条颜⾊色和宽度 context.strokeStyle = 'red'; context.lineWidth = 5;
+● 设置填充⾊色 context.fillStyle = 'blue';
+
+
+Canvas绘制弧线
+context.arc(
+centerX, centerY, radius, startingAngle, endingAngle, anticlockwise=false
+)
+centerX, centerY: 圆⼼心的坐标
+radius: 半径
+startingAngle, endingAngle: 开始⾓角度,结束⾓角度 anticlockwise: false顺时针 true逆时针
+
+
+<h3>OC中调⽤用JavaScipt ● 如何在OC中调⽤用JavaScript代码
+使⽤用UIWebView的stringByEvaluatingJavaScriptFromString⽅方法即可
+
+
+# 真机调试
+
+● 真机调试的主要步骤 登录开发者主页
+⽣生成cer证书:cer是⼀一个跟电脑相关联的证书⽂文件,让电脑具备真机调试的功能 添加App ID:调试哪些app?
+注册真机设备:哪台设备需要做真机调试? ⽣生成MobileProvision⽂文件:结合2、3、4⽣生成⼀一个⼿手机规定⽂文件 导⼊入cer、MobileProvision⽂文件
+● 最终会得到2个⽂文件
+➢ Cer⽂文件:让电脑具备真机调试的功能
+➢ MobileProvision⽂文件:哪台设备、哪些app、哪台电脑需要做真机调试?
+
+
+真机调试的步骤01-登录开发者主页 ● 登录开发者主页
+https://developer.apple.com/membercenter/index.action
+● 管理证书(前提:得花99$或299$加⼊入开发者计划)
+
+真机调试的步骤02-⽣生成cer证书
+
+真机调试的步骤03-添加App ID
+
+真机调试的步骤04-注册真机设备
+
+真机调试的步骤05-⽣生成MobileProvision⽂文件
+
+真机调试的步骤06-导⼊入cer、MobileProvision ⽂文件
+
+
+#内购
+内购的五种产品类别
+￼● ⾮非消耗品(Nonconsumable)⼀一旦购买,终⾝身拥有
+● 指的是在游戏中⼀一次性购买并拥有永久访问权的物品或服务。⾮非消耗品物
+品可以被⽤用户再次下载,并且能够在⽤用户的所有设备上共享 ● 消耗品(Consumable),买了就⽤用,⽤用了就没
+● 消耗品购买不可被再次下载,根据其特点,消耗品不能在⽤用户的设备之间 跨设备使⽤用,除⾮非⾃自定义服务在⽤用户的账号之间共享这些信息
+● 以下三种类别在iBooks中使⽤用,⽬目前iBooks不⽀支持⼤大陆市场
+● ISBN:每本书的⼀一个ID
+● 免费订阅(Free subscriptions)
+● ⾃自动续费订阅(Auto-renewing subscriptions)
+● ⾮非⾃自动续费订阅(Nonrenewing subscriptions)
+￼
+
+添加StoreKit框架
+● 要使⽤用内购,需要导⼊入StoreKit框架
+
+内购的常⽤用⽅方法
+● 请求有效的产品代号集合
+● 购买指定产品
+● 验证购买(在购买完成之后,验证) ● 恢复购买(针对⾮非消耗品)
+
+
+请求有效产品集合
+// 1) 实例化产品请求
+SKProductsRequest *request = [[SKProductsRequest
+alloc]initWithProductIdentifiers:identifiers]; // 2) 设置代理
+[request setDelegate:self];
+// 3) 启动请求 [request start];
+提⽰示:
+1. 实例化请求时,必须指定有效的identifiers集合,之所以如此处理,主要是为了
+确保提交的内购商品真的通过了苹果的审批,处于可⽤用状态! 2. 要想获取到准确的可⽤用产品集合,需要通过代理⽅方法实现
+- (void)productsRequest:(SKProductsRequest *)request
+didReceiveResponse:(SKProductsResponse *)response
+3. 越狱⽤用户⽆无法测试内购,但是可以购买
+4. 
+
+购买产品
+1. 内购的交易过程是通过SKPaymentTransactionObserver监控的,因此需 要为IAPHelper添加交易观察者:
+// 添加交易观察者对象
+[[SKPaymentQueue
+defaultQueue]addTransactionObserver:sharedInstance]
+;
+2. 由于发起交易需要使⽤用SKProduct对象,因此需要使⽤用字典记录所 有可⽤用的商品
+NSMutableDictionary *_productsDict;
+
+交易队列回调⽅方法
+- (void)paymentQueue:(SKPaymentQueue *)queue
+updatedTransactions:(NSArray *)transactions
+{
+   for (SKPaymentTransaction *transaction in
+transactions) {
+// 购买完成
+if (transaction.transactionState ==
+SKPaymentTransactionStatePurchased) { NSLog(@"购买完成 %@",
+transaction.payment.productIdentifier);
+           [queue finishTransaction:transaction];
+       } else if (transaction.transactionState ==
+SKPaymentTransactionStateFailed) {
+ if (transaction.error.code !=￼￼￼SKErrorPaymentCancelled) {..
+}
+
+恢复购买
+[[SKPaymentQueue
+defaultQueue]restoreCompletedTransactions];
+
+
+购买数据记录问题——系统偏好 [[NSUserDefaults standardUserDefaults]setBool:isPurchased
+forKey:productId];
+[[NSUserDefaults standardUserDefaults]synchronize];
+
+
+#广告
+● 广告收益三七开
+● 添加 iAd.framework 框架
+● 添加 ADBannerView 视图,并设置代理⽅方法
+●广告条加载完成之前最好隐藏
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+   self.bannerBottomConstraint.constant = 20.0;
+   [UIView animateWithDuration:0.5 animations:^{
+       [self.view layoutIfNeeded];
+   }];
+NSLog(@"加载⼴广告成功"); }
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:
+(NSError *)error {
+NSLog(@"加载⼴广告失败 %@", error); }
+
+
+#二维码
+● 从iOS7开始集成了⼆二维码的⽣生成和读取功能
+● 此前被⼴广泛使⽤用的zbarsdk⽬目前不⽀支持64位处理器
+● ⽣生成⼆二维码的步骤: 导⼊入CoreImage框架
+通过滤镜CIFilter⽣生成⼆二维码
+● ⼆二维码的内容(传统的条形码只能放数字): ➢ 纯⽂文本
+➢ URL
+
+⽣生成⼆二维码
+// 1. 实例化⼆二维码滤镜
+CIFilter *filter = [CIFilter
+filterWithName:@"CIQRCodeGenerator"]; // 2. 恢复滤镜的默认属性
+[filter setDefaults];
+// 3. 将字符串转换成NSData NSData *data = [str
+dataUsingEncoding:NSUTF8StringEncoding]; // 4. 通过KVO设置滤镜inputMessage数据
+[filter setValue:data forKey:@"inputMessage"];
+ // 5. 获得滤镜输出的图像
+￼￼￼￼￼￼￼￼￼￼CIImage *outputImage = [filter outputImage];
+￼
+
+读取二维码
+● 读取二维码需要导⼊入AVFoundation框架
+● 利⽤用摄像头识别二维码中的内容(模拟器不⾏行)
+   输⼊入(摄像头)
+   由会话将摄像头采集到的二维码图像转换成字符串数据
+   输出(数据)
+   由预览图层显⽰示扫描场景
+   
+   设置拍摄会话
+// 1. 实例化拍摄设备
+AVCaptureDevice *device = [AVCaptureDevice
+defaultDeviceWithMediaType:AVMediaTypeVideo];
+// 2. 设置输⼊入设备
+AVCaptureDeviceInput *input = [AVCaptureDeviceInput
+deviceInputWithDevice:device error:nil];
+// 3. 设置元数据输出
+// 3.1 实例化拍摄元数据输出
+AVCaptureMetadataOutput *output =
+[[AVCaptureMetadataOutput alloc] init];
+// 3.3 设置输出数据代理
+[output setMetadataObjectsDelegate:self
+queue:dispatch_get_main_queue()];
+￼￼
+
+
+设置拍摄视频预览图层
+// 5. 视频预览图层
+// 5.1 实例化预览图层
+AVCaptureVideoPreviewLayer *preview =
+[AVCaptureVideoPreviewLayer layerWithSession:_session];
+preview.videoGravity = AVLayerVideoGravityResizeAspectFill; preview.frame = self.view.bounds;
+// 5.2 将图层插⼊入当前视图
+[self.view.layer insertSublayer:preview atIndex:100]; self.previewLayer = preview;
+// 6. 启动会话
+[_session startRunning];
