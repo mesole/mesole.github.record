@@ -2438,180 +2438,180 @@ Canvas绘制直线
 Canvas绘制弧线
 context.arc(
 centerX, centerY, radius, startingAngle, endingAngle, anticlockwise=false
-)
-centerX, centerY: 圆⼼心的坐标
-radius: 半径
-startingAngle, endingAngle: 开始⾓角度,结束⾓角度 anticlockwise: false顺时针 true逆时针
+)<p>
+centerX, centerY: 圆⼼心的坐标<p>
+radius: 半径<p>
+startingAngle, endingAngle: 开始⾓角度,结束⾓角度 anticlockwise: false顺时针 true逆时针<p>
+<p>
+<p>
+<h3>OC中调⽤用JavaScipt ● 如何在OC中调⽤用JavaScript代码<p>
+使⽤用UIWebView的stringByEvaluatingJavaScriptFromString⽅方法即可<p>
+<p>
+<p>
+# 真机调试<p>
+<p>
+● 真机调试的主要步骤 登录开发者主页<p>
+⽣生成cer证书:cer是⼀一个跟电脑相关联的证书⽂文件,让电脑具备真机调试的功能 添加App ID:调试哪些app?<p>
+注册真机设备:哪台设备需要做真机调试? ⽣生成MobileProvision⽂文件:结合2、3、4⽣生成⼀一个⼿手机规定⽂文件<p> 导⼊入cer、MobileProvision⽂文件<p>
+● 最终会得到2个⽂文件<p>
+➢ Cer⽂文件:让电脑具备真机调试的功能<p>
+➢ MobileProvision⽂文件:哪台设备、哪些app、哪台电脑需要做真机调试?<p>
+<p>
+<p>
+真机调试的步骤01-登录开发者主页 ● 登录开发者主页<p>
+https://developer.apple.com/membercenter/index.action<p>
+● 管理证书(前提:得花99$或299$加⼊入开发者计划)<p><p>
+<p><p>
+真机调试的步骤02-⽣生成cer证书<p><p>
+<p><p>
+真机调试的步骤03-添加App ID<p><p>
+<p><p>
+真机调试的步骤04-注册真机设备<p><p>
+<p><p>
+真机调试的步骤05-⽣生成MobileProvision⽂文件<p><p>
+<p><p>
+真机调试的步骤06-导⼊入cer、MobileProvision ⽂文件<p><p>
+<p><p>
 
-
-<h3>OC中调⽤用JavaScipt ● 如何在OC中调⽤用JavaScript代码
-使⽤用UIWebView的stringByEvaluatingJavaScriptFromString⽅方法即可
-
-
-# 真机调试
-
-● 真机调试的主要步骤 登录开发者主页
-⽣生成cer证书:cer是⼀一个跟电脑相关联的证书⽂文件,让电脑具备真机调试的功能 添加App ID:调试哪些app?
-注册真机设备:哪台设备需要做真机调试? ⽣生成MobileProvision⽂文件:结合2、3、4⽣生成⼀一个⼿手机规定⽂文件 导⼊入cer、MobileProvision⽂文件
-● 最终会得到2个⽂文件
-➢ Cer⽂文件:让电脑具备真机调试的功能
-➢ MobileProvision⽂文件:哪台设备、哪些app、哪台电脑需要做真机调试?
-
-
-真机调试的步骤01-登录开发者主页 ● 登录开发者主页
-https://developer.apple.com/membercenter/index.action
-● 管理证书(前提:得花99$或299$加⼊入开发者计划)
-
-真机调试的步骤02-⽣生成cer证书
-
-真机调试的步骤03-添加App ID
-
-真机调试的步骤04-注册真机设备
-
-真机调试的步骤05-⽣生成MobileProvision⽂文件
-
-真机调试的步骤06-导⼊入cer、MobileProvision ⽂文件
-
-
-#内购
-内购的五种产品类别
-￼● ⾮非消耗品(Nonconsumable)⼀一旦购买,终⾝身拥有
-● 指的是在游戏中⼀一次性购买并拥有永久访问权的物品或服务。⾮非消耗品物
-品可以被⽤用户再次下载,并且能够在⽤用户的所有设备上共享 ● 消耗品(Consumable),买了就⽤用,⽤用了就没
-● 消耗品购买不可被再次下载,根据其特点,消耗品不能在⽤用户的设备之间 跨设备使⽤用,除⾮非⾃自定义服务在⽤用户的账号之间共享这些信息
-● 以下三种类别在iBooks中使⽤用,⽬目前iBooks不⽀支持⼤大陆市场
-● ISBN:每本书的⼀一个ID
-● 免费订阅(Free subscriptions)
-● ⾃自动续费订阅(Auto-renewing subscriptions)
-● ⾮非⾃自动续费订阅(Nonrenewing subscriptions)
+#内购<p><p>
+内购的五种产品类别<p><p>
+￼● ⾮非消耗品(Nonconsumable)⼀一旦购买,终⾝身拥有<p><p>
+● 指的是在游戏中⼀一次性购买并拥有永久访问权的物品或服务。⾮非消耗品物<p><p>
+品可以被⽤用户再次下载,并且能够在⽤用户的所有设备上共享 ● 消耗品(Consumable),买了就⽤用,⽤用了就没<p><p>
+● 消耗品购买不可被再次下载,根据其特点,消耗品不能在⽤用户的设备之间<p><p> 跨设备使⽤用,除⾮非⾃自定义服务在⽤用户的账号之间共享这些信息<p><p>
+● 以下三种类别在iBooks中使⽤用,⽬目前iBooks不⽀支持⼤大陆市场<p><p>
+● ISBN:每本书的⼀一个ID<p><p><p>
+● 免费订阅(Free subscriptions)<p><p><p>
+● ⾃自动续费订阅(Auto-renewing subscriptions)<p><p><p>
+● ⾮非⾃自动续费订阅(Nonrenewing subscriptions)<p><p><p>
+￼<p><p><p>
+<p><p><p>
+添加StoreKit框架<p><p><p>
+● 要使⽤用内购,需要导⼊入StoreKit框架<p><p><p>
+<p><p><p>
+内购的常⽤用⽅方法<p><p><p>
+● 请求有效的产品代号集合<p><p><p>
+● 购买指定产品<p><p><p>
+● 验证购买(在购买完成之后,验证) ● 恢复购买(针对⾮非消耗品)<p><p><p>
+<p><p><p>
+<p><p><p>
+请求有效产品集合<p><p><p>
+// 1) 实例化产品请求<p><p><p>
+SKProductsRequest *request = [[SKProductsRequest<p><p><p>
+alloc]initWithProductIdentifiers:identifiers]; // 2) 设置代理<p><p><p>
+[request setDelegate:self];<p><p><p>
+// 3) 启动请求 [request start];<p><p><p>
+提⽰示:<p><p><p>
+1. 实例化请求时,必须指定有效的identifiers集合,之所以如此处理,主要是为了<p><p><p><p>
+确保提交的内购商品真的通过了苹果的审批,处于可⽤用状态! 2. 要想获取到准确的可⽤用产品集合,需要通过代理⽅方法实现<p><p><p><p>
+- (void)productsRequest:(SKProductsRequest *)request<p><p><p><p>
+didReceiveResponse:(SKProductsResponse *)response<p><p><p><p>
+3. 越狱⽤用户⽆无法测试内购,但是可以购买<p><p><p><p>
+4. <p><p><p><p>
+<p><p><p><p>
+购买产品<p><p><p><p>
+1. 内购的交易过程是通过SKPaymentTransactionObserver监控的,因此需 要为IAPHelper添加交易观察者:<p><p><p><p>
+// 添加交易观察者对象<p><p><p><p>
+[[SKPaymentQueue<p><p><p><p>
+defaultQueue]addTransactionObserver:sharedInstance]<p><p><p><p>
+;<p><p><p><p>
+2. 由于发起交易需要使⽤用SKProduct对象,因此需要使⽤用字典记录所 有可⽤用的商品<p><p><p><p>
+NSMutableDictionary *_productsDict;<p><p><p><p>
+<p><p><p><p>
+交易队列回调⽅方法<p><p><p><p>
+- (void)paymentQueue:(SKPaymentQueue *)queue<p><p><p><p>
+updatedTransactions:(NSArray *)transactions<p><p><p><p>
+{<p><p><p><p>
+   for (SKPaymentTransaction *transaction in<p><p><p><p>
+transactions) {<p><p><p><p><p>
+// 购买完成<p><p><p><p><p>
+if (transaction.transactionState ==<p><p><p><p><p>
+SKPaymentTransactionStatePurchased) { NSLog(@"购买完成 %@",<p><p><p><p><p>
+transaction.payment.productIdentifier);<p><p><p><p><p>
+           [queue finishTransaction:transaction];<p><p><p><p><p>
+       } else if (transaction.transactionState ==<p><p><p><p><p>
+SKPaymentTransactionStateFailed) {<p><p><p><p><p>
+ if (transaction.error.code !=￼￼￼SKErrorPaymentCancelled) {..<p><p><p><p><p>
+}<p><p><p><p><p>
+<p><p><p><p><p>
+恢复购买<p><p><p><p><p>
+[[SKPaymentQueue<p><p><p><p><p>
+defaultQueue]restoreCompletedTransactions];<p><p><p><p><p>
+<p><p><p><p><p>
+<p><p><p><p><p>
+购买数据记录问题——系统偏好 [[NSUserDefaults standardUserDefaults]setBool:isPurchased<p><p><p><p><p>
+forKey:productId];<p><p><p><p><p>
+[[NSUserDefaults standardUserDefaults]synchronize];<p><p><p><p><p>
+<p><p><p><p><p>
+<p><p><p><p><p>
+#广告<p><p><p><p><p><p>
+● 广告收益三七开<p><p><p><p><p><p>
+● 添加 iAd.framework 框架<p><p><p><p><p><p>
+● 添加 ADBannerView 视图,并设置代理⽅方法<p><p><p><p><p><p>
+●广告条加载完成之前最好隐藏<p><p><p><p><p><p>
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {<p><p><p><p><p><p>
+   self.bannerBottomConstraint.constant = 20.0;<p><p><p><p><p><p>
+   [UIView animateWithDuration:0.5 animations:^{<p><p><p><p><p><p>
+       [self.view layoutIfNeeded];<p><p><p><p><p><p>
+   }];<p><p><p><p><p><p>
+NSLog(@"加载⼴广告成功"); }<p><p><p><p><p><p>
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:<p><p><p><p><p><p>
+(NSError *)error {<p><p><p><p><p><p>
+NSLog(@"加载⼴广告失败 %@", error); }<p><p><p><p><p><p>
+<p><p><p><p><p><p>
+<p><p><p><p><p><p>
+#二维码<p><p><p><p><p><p>
+● 从iOS7开始集成了⼆二维码的⽣生成和读取功能<p><p><p><p><p><p>
+● 此前被⼴广泛使⽤用的zbarsdk⽬目前不⽀支持64位处理器<p><p><p><p><p><p>
+● ⽣生成⼆二维码的步骤: 导⼊入CoreImage框架<p><p><p><p><p><p>
+通过滤镜CIFilter⽣生成⼆二维码<p><p><p><p><p><p>
+● ⼆二维码的内容(传统的条形码只能放数字): ➢ 纯⽂文本<p><p><p><p><p><p>
+➢ URL<p><p><p><p><p><p><p>
+<p><p><p><p><p><p><p>
+⽣生成⼆二维码<p><p><p><p><p><p><p>
+// 1. 实例化⼆二维码滤镜<p><p><p><p><p><p><p>
+CIFilter *filter = [CIFilter<p><p><p><p><p><p><p>
+filterWithName:@"CIQRCodeGenerator"]; // 2. 恢复滤镜的默认属性<p><p><p><p><p><p><p>
+[filter setDefaults];<p><p><p><p><p><p><p>
+// 3. 将字符串转换成NSData NSData *data = [str<p><p><p><p><p><p><p>
+dataUsingEncoding:NSUTF8StringEncoding]; // 4. 通过KVO设置滤镜inputMessage数据<p><p><p><p><p><p><p>
+[filter setValue:data forKey:@"inputMessage"];<p><p><p><p><p><p><p>
+ // 5. 获得滤镜输出的图像<p><p><p><p><p><p><p>
+￼￼￼￼￼￼￼￼￼￼CIImage *outputImage = [filter output<p><p><p><p><p><p><p>Image];
 ￼
-
-添加StoreKit框架
-● 要使⽤用内购,需要导⼊入StoreKit框架
-
-内购的常⽤用⽅方法
-● 请求有效的产品代号集合
-● 购买指定产品
-● 验证购买(在购买完成之后,验证) ● 恢复购买(针对⾮非消耗品)
-
-
-请求有效产品集合
-// 1) 实例化产品请求
-SKProductsRequest *request = [[SKProductsRequest
-alloc]initWithProductIdentifiers:identifiers]; // 2) 设置代理
-[request setDelegate:self];
-// 3) 启动请求 [request start];
-提⽰示:
-1. 实例化请求时,必须指定有效的identifiers集合,之所以如此处理,主要是为了
-确保提交的内购商品真的通过了苹果的审批,处于可⽤用状态! 2. 要想获取到准确的可⽤用产品集合,需要通过代理⽅方法实现
-- (void)productsRequest:(SKProductsRequest *)request
-didReceiveResponse:(SKProductsResponse *)response
-3. 越狱⽤用户⽆无法测试内购,但是可以购买
-4. 
-
-购买产品
-1. 内购的交易过程是通过SKPaymentTransactionObserver监控的,因此需 要为IAPHelper添加交易观察者:
-// 添加交易观察者对象
-[[SKPaymentQueue
-defaultQueue]addTransactionObserver:sharedInstance]
-;
-2. 由于发起交易需要使⽤用SKProduct对象,因此需要使⽤用字典记录所 有可⽤用的商品
-NSMutableDictionary *_productsDict;
-
-交易队列回调⽅方法
-- (void)paymentQueue:(SKPaymentQueue *)queue
-updatedTransactions:(NSArray *)transactions
-{
-   for (SKPaymentTransaction *transaction in
-transactions) {
-// 购买完成
-if (transaction.transactionState ==
-SKPaymentTransactionStatePurchased) { NSLog(@"购买完成 %@",
-transaction.payment.productIdentifier);
-           [queue finishTransaction:transaction];
-       } else if (transaction.transactionState ==
-SKPaymentTransactionStateFailed) {
- if (transaction.error.code !=￼￼￼SKErrorPaymentCancelled) {..
-}
-
-恢复购买
-[[SKPaymentQueue
-defaultQueue]restoreCompletedTransactions];
-
-
-购买数据记录问题——系统偏好 [[NSUserDefaults standardUserDefaults]setBool:isPurchased
-forKey:productId];
-[[NSUserDefaults standardUserDefaults]synchronize];
-
-
-#广告
-● 广告收益三七开
-● 添加 iAd.framework 框架
-● 添加 ADBannerView 视图,并设置代理⽅方法
-●广告条加载完成之前最好隐藏
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-   self.bannerBottomConstraint.constant = 20.0;
-   [UIView animateWithDuration:0.5 animations:^{
-       [self.view layoutIfNeeded];
-   }];
-NSLog(@"加载⼴广告成功"); }
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:
-(NSError *)error {
-NSLog(@"加载⼴广告失败 %@", error); }
-
-
-#二维码
-● 从iOS7开始集成了⼆二维码的⽣生成和读取功能
-● 此前被⼴广泛使⽤用的zbarsdk⽬目前不⽀支持64位处理器
-● ⽣生成⼆二维码的步骤: 导⼊入CoreImage框架
-通过滤镜CIFilter⽣生成⼆二维码
-● ⼆二维码的内容(传统的条形码只能放数字): ➢ 纯⽂文本
-➢ URL
-
-⽣生成⼆二维码
-// 1. 实例化⼆二维码滤镜
-CIFilter *filter = [CIFilter
-filterWithName:@"CIQRCodeGenerator"]; // 2. 恢复滤镜的默认属性
-[filter setDefaults];
-// 3. 将字符串转换成NSData NSData *data = [str
-dataUsingEncoding:NSUTF8StringEncoding]; // 4. 通过KVO设置滤镜inputMessage数据
-[filter setValue:data forKey:@"inputMessage"];
- // 5. 获得滤镜输出的图像
-￼￼￼￼￼￼￼￼￼￼CIImage *outputImage = [filter outputImage];
-￼
-
-读取二维码
-● 读取二维码需要导⼊入AVFoundation框架
-● 利⽤用摄像头识别二维码中的内容(模拟器不⾏行)
-   输⼊入(摄像头)
-   由会话将摄像头采集到的二维码图像转换成字符串数据
-   输出(数据)
-   由预览图层显⽰示扫描场景
-   
-   设置拍摄会话
-// 1. 实例化拍摄设备
+<p><p><p><p><p><p><p>
+读取二维码<p><p><p><p><p><p><p>
+● 读取二维码需要导⼊入AVFoundation框架<p><p><p><p><p><p><p>
+● 利⽤用摄像头识别二维码中的内容(模拟器不⾏行)<p><p><p><p><p><p><p>
+   输⼊入(摄像头)<p><p><p><p><p><p><p>
+   由会话将摄像头采集到的二维码图像转换成字符串数据<p><p><p><p><p><p><p>
+   输出(数据)<p><p><p><p><p><p><p>
+   由预览图层显⽰示扫描场景<p><p><p><p><p><p><p>
+   <p><p><p><p><p><p><p>
+   设置拍摄会话<p><p><p><p><p><p><p>
+// 1. 实例化拍摄设备<p><p><p><p><p><p><p>
 AVCaptureDevice *device = [AVCaptureDevice
 defaultDeviceWithMediaType:AVMediaTypeVideo];
-// 2. 设置输⼊入设备
-AVCaptureDeviceInput *input = [AVCaptureDeviceInput
-deviceInputWithDevice:device error:nil];
-// 3. 设置元数据输出
-// 3.1 实例化拍摄元数据输出
+// 2. 设置输⼊入设备<p><p><p><p><p><p><p><p>
+AVCaptureDeviceInput *input = [AVCaptureDeviceInput<p><p><p><p><p><p><p><p>
+deviceInputWithDevice:device error:nil];<p><p><p><p><p><p><p><p>
+// 3. 设置元数据输出<p><p><p><p><p><p><p><p>
+// 3.1 实例化拍摄元数据输出<p><p><p><p><p><p><p><p>
 AVCaptureMetadataOutput *output =
-[[AVCaptureMetadataOutput alloc] init];
-// 3.3 设置输出数据代理
-[output setMetadataObjectsDelegate:self
-queue:dispatch_get_main_queue()];
+[[AVCaptureMetadataOutput alloc] init];<p><p><p><p><p><p><p><p>
+// 3.3 设置输出数据代理<p><p><p><p><p><p><p><p>
+[output setMetadataObjectsDelegate:self<p><p><p><p><p><p><p><p>
+queue:dispatch_get_main_queue()];<p><p><p><p><p><p><p><p>
 ￼￼
-
-
-设置拍摄视频预览图层
-// 5. 视频预览图层
-// 5.1 实例化预览图层
-AVCaptureVideoPreviewLayer *preview =
-[AVCaptureVideoPreviewLayer layerWithSession:_session];
-preview.videoGravity = AVLayerVideoGravityResizeAspectFill; preview.frame = self.view.bounds;
-// 5.2 将图层插⼊入当前视图
-[self.view.layer insertSublayer:preview atIndex:100]; self.previewLayer = preview;
-// 6. 启动会话
-[_session startRunning];
+<p><p><p><p><p><p><p><p>
+<p><p><p><p><p><p><p><p>
+设置拍摄视频预览图层<p><p><p><p><p><p><p><p>
+// 5. 视频预览图层<p><p><p><p><p><p><p><p>
+// 5.1 实例化预览图层<p><p><p><p><p><p><p><p>
+AVCaptureVideoPreviewLayer *preview =<p><p><p><p><p><p><p><p>
+[AVCaptureVideoPreviewLayer layerWithSession:_session];<p><p><p><p><p><p><p><p>
+preview.videoGravity = AVLayerVideoGravityResizeAspectFill; preview.frame = self.view.bounds;<p><p><p><p><p><p><p><p>
+// 5.2 将图层插⼊入当前视图<p><p><p><p><p><p><p><p>
+[self.view.layer insertSublayer:preview atIndex:100]; self.previewLayer = preview;<p><p><p><p><p><p><p><p>
+// 6. 启动会话<p><p><p><p><p><p><p><p>
+[_session startRunning];<p><p><p><p><p><p><p><p>
