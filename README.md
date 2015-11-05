@@ -403,2044 +403,2043 @@ UINavigationController的⼦子控制器<p>
 animated:(BOOL)animated;<p>
 ● 使⽤用pop⽅方法可以移除控制器<p>
 ➢ 将栈顶的控制器移除<p>
-- (UIViewController *)popViewControllerAnimated:(BOOL)animated;
-➢ 回到指定的⼦子控制器
-- (NSArray *)popToViewController:(UIViewController *)viewController animated:
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated;<p>
+➢ 回到指定的⼦子控制器<p>
+- (NSArray *)popToViewController:(UIViewController *)viewController animated:<p>
+<p>
+修改导航栏的内容<p>
+● 导航栏的内容由栈顶控制器的navigationItem属性决定<p>
+● UINavigationItem有以下属性影响着导航栏的内容<p>
+➢ 左上⾓角的返回按钮<p>
+@property(nonatomic,retain) UIBarButtonItem *backBarButtonItem; ➢ 中间的标题视图<p>
+@property(nonatomic,retain) UIView *titleView; ➢ 中间的标题⽂文字<p>
+@property(nonatomic,copy) NSString *title; ➢ 左上⾓角的视图<p>
+@property(nonatomic,retain) UIBarButtonItem *leftBarButtonItem; ➢ UIBarButtonItem *rightBarButtonItem<p> 右上⾓角的视图<p>
+@property(nonatomic,retain) UIBarButtonItem *rightBarButtonItem;<p>
+<p>
+<p>
+<p>
 
-修改导航栏的内容
-● 导航栏的内容由栈顶控制器的navigationItem属性决定
-● UINavigationItem有以下属性影响着导航栏的内容
-➢ 左上⾓角的返回按钮
-@property(nonatomic,retain) UIBarButtonItem *backBarButtonItem; ➢ 中间的标题视图
-@property(nonatomic,retain) UIView *titleView; ➢ 中间的标题⽂文字
-@property(nonatomic,copy) NSString *title; ➢ 左上⾓角的视图
-@property(nonatomic,retain) UIBarButtonItem *leftBarButtonItem; ➢ UIBarButtonItem *rightBarButtonItem 右上⾓角的视图
-@property(nonatomic,retain) UIBarButtonItem *rightBarButtonItem;
-
-
-
-
-# UIApplication
-什么是UIApplication
-● UIApplication对象是应⽤用程序的象征
-● 每⼀一个应⽤用都有⾃自⼰己的UIApplication对象,⽽而且是单例的
-● 通过[UIApplication sharedApplication]可以获得这个单例对象
-● ⼀一个iOS程序启动后创建的第⼀一个对象就是UIApplication对象
-● 利⽤用UIApplication对象,能进⾏行⼀一些应⽤用级别的操作
-
-
-UIApplication的常⽤用属性 
-● 设置应⽤用程序图标右上⾓角的红⾊色提醒数字
-@property(nonatomic) NSInteger applicationIconBadgeNumber;
-● 设置联⽹网指⽰示器的可见性 @property(nonatomic,getter=isNetworkActivityIndicatorVisible)
-BOOL networkActivityIndicatorVisible;
-
-
-iOS7中的状态栏
-● 从iOS7开始,系统提供了2种管理状态栏的⽅方式
-➢ 通过UIViewController管理(每⼀一个UIViewController都可以拥有⾃自⼰己不同的状 态栏)
-➢ 通过UIApplication管理(⼀一个应⽤用程序的状态栏都由它统⼀一管理) ● 在iOS7中,默认情况下,状态栏都是由UIViewController管理
-的,UIViewController实现下列⽅方法就可以轻松管理状态栏的可见性和样式 ➢ 状态栏的样式
-- (UIStatusBarStyle)preferredStatusBarStyle;
-➢ 状态栏的可见性
-- (BOOL)prefersStatusBarHidden;
-
-
-openURL:
-● UIApplication有个功能⼗〸十分强⼤大的openURL:⽅方法 - (BOOL)openURL:(NSURL*)url;
-● openURL:⽅方法的部分功能有
-➢ 打电话
-UIApplication *app = [UIApplication sharedApplication]; [app openURL:[NSURL URLWithString:@"tel://10086"]];
-➢ 发短信
-[app openURL:[NSURL URLWithString:@"sms://10086"]];
-➢ 发邮件
-[app openURL:[NSURL URLWithString:@"mailto://12345@qq.com"]]
+# UIApplication<p>
+什么是UIApplication<p>
+● UIApplication对象是应⽤用程序的象征<p>
+● 每⼀一个应⽤用都有⾃自⼰己的UIApplication对象,⽽而且是单例的<p>
+● 通过[UIApplication sharedApplication]可以获得这个单例对象<p>
+● ⼀一个iOS程序启动后创建的第⼀一个对象就是UIApplication对象<p>
+● 利⽤用UIApplication对象,能进⾏行⼀一些应⽤用级别的操作<p><p>
+<p><p>
+<p><p>
+UIApplication的常⽤用属性 <p><p>
+● 设置应⽤用程序图标右上⾓角的红⾊色提醒数字<p><p>
+@property(nonatomic) NSInteger applicationIconBadgeNumber;<p><p>
+● 设置联⽹网指⽰示器的可见性 @property(nonatomic,getter=isNetworkActivityIndicatorVisible)<p><p>
+BOOL networkActivityIndicatorVisible;<p><p>
+<p><p>
+<p><p>
+iOS7中的状态栏<p><p>
+● 从iOS7开始,系统提供了2种管理状态栏的⽅方式<p><p>
+➢ 通过UIViewController管理(每⼀一个UIViewController都可以拥有⾃自⼰己不同的状 态栏)<p><p>
+➢ 通过UIApplication管理(⼀一个应⽤用程序的状态栏都由它统⼀一管理) ●<p><p> 在iOS7中,默认情况下,状态栏都是由UIViewController管理<p><p>
+的,UIViewController实现下列⽅方法就可以轻松管理状态栏的可见性和样式 ➢ 状态栏的样式<p><p>
+- (UIStatusBarStyle)preferredStatusBarStyle;<p><p>
+➢ 状态栏的可见性<p><p>
+- (BOOL)prefersStatusBarHidden;<p><p>
 
 
+openURL:<p><p>
+● UIApplication有个功能⼗〸十分强⼤大的openURL:⽅方法 - (BOOL)openURL:(NSURL*)url;<p><p>
+● openURL:⽅方法的部分功能有<p><p>
+➢ 打电话<p>
+UIApplication *app = [UIApplication sharedApplication]; [app openURL:[NSURL URLWithString:@"tel://10086"]];<p>
+➢ 发短信<p>
+[app openURL:[NSURL URLWithString:@"sms://10086"]];<p>
+➢ 发邮件<p>
+[app openURL:[NSURL URLWithString:@"mailto://12345@qq.com"]]<p>
+<p>
+<p>
+<p>
+# UIWindow<p>
+<p>
+● UIWindow是⼀一种特殊的UIView,通常在⼀一个app中只会有⼀一个UIWindow<p>
+● iOS程序启动完毕后,创建的第⼀一个视图控件就是UIWindow,接着创建控制器的view,<p>
+最后将控制器的view添加到UIWindow上,于是控制器的view就显⽰示在屏幕上了 ●<p> ⼀一个iOS程序之所以能显⽰示到屏幕上,完全是因为它有UIWindow<p>
+● 也就说,没有UIWindow,就看不见任何UI界⾯面<p>
+<p>
+UIWindow<p>
+● 添加UIView到UIWindow中两种常见⽅方式:<p>
+➢ -(void)addSubview:(UIView*)view; 直接将view添加到UIWindow中,但并不会理会view对应的UIViewController<p>
+➢ @property(nonatomic,retain)UIViewController*rootViewController;<p> ⾃自动将rootViewController的view添加到UIWindow中,负责管理rootViewController<p>
+的⽣生命周期<p>
+● 常⽤用⽅方法<p><p>
+➢ -(void)makeKeyWindow; 让当前UIWindow变成keyWindow(主窗⼜口)<p><p>
+￼￼￼➢ -(void)makeKeyAndVisible;让当前UIWindow变成keyWindow,并显⽰示出来<p><p>
+<p><p>
+<p><p>
+UIWindow的获得<p><p>
+● [UIApplicationsharedApplication].windows<p><p> 在本应⽤用中打开的UIWindow列表,这样就可以接触应⽤用中的任何⼀一个UIView对象<p><p> (平时输⼊入⽂文字弹出的键盘,就处在⼀一个新的UIWindow中)<p><p>
+● [UIApplicationsharedApplication].keyWindow<p><p>
+⽤用来接收键盘以及⾮非触摸类的消息事件的UIWindow,⽽而且程序中每个时刻只能有⼀一 个UIWindow是keyWindow。如果某个UIWindow内部的⽂文本框不能输⼊入⽂文字,可能是因为这 个UIWindow不是keyWindow<p><p>
+● view.window 获得某个UIView所在的UIWindow<p><p>
+<p><p>
+<p><p>
+<p><p>
+# 程序启动原理<p><p>
+1.创建UIApplication对象 2.创建UIApplication的代理对象，并且设置为UIApplication的代理.<p><p> 3.开启一个主运行循环，处理事件 4.加载info.plist文件，判断是否有Main.storyboard,如果有就会去加载。<p><p> 有Main.storyboard才会执行第5步 5.加载Main.storyboard， 5.1 创建窗口 5.2<p><p> 加载Main.storyboard，初始化storyboard描述的控制器 5.3 设置窗口的根控制器，并且显示窗口<p><p>
+<p><p>
+二、窗口，应用程序创建的第一个控件。<p><p> 1.添加子控件，一般把窗口的根控制器添加上去，通过设置rootViewController就可以把根控制器的view添加到窗口上。<p> 2.介绍窗口如何显示。 2.1 设置窗口的hiddle属性 3.应用程序是有主窗口，通常调用makeKeyAndVisible<p> 4.windons属性，可以识别应用程序中哪些控件还是窗口，有一个比较特殊，状态栏。 5.window层级，alert(2000) ><p> statusBar(1000) > normal(0)<p>
 
-# UIWindow
+<p>
 
-● UIWindow是⼀一种特殊的UIView,通常在⼀一个app中只会有⼀一个UIWindow
-● iOS程序启动完毕后,创建的第⼀一个视图控件就是UIWindow,接着创建控制器的view,
-最后将控制器的view添加到UIWindow上,于是控制器的view就显⽰示在屏幕上了 ● ⼀一个iOS程序之所以能显⽰示到屏幕上,完全是因为它有UIWindow
-● 也就说,没有UIWindow,就看不见任何UI界⾯面
+<p>
 
-UIWindow
-● 添加UIView到UIWindow中两种常见⽅方式:
-➢ -(void)addSubview:(UIView*)view; 直接将view添加到UIWindow中,但并不会理会view对应的UIViewController
-➢ @property(nonatomic,retain)UIViewController*rootViewController; ⾃自动将rootViewController的view添加到UIWindow中,负责管理rootViewController
-的⽣生命周期
-● 常⽤用⽅方法
-➢ -(void)makeKeyWindow; 让当前UIWindow变成keyWindow(主窗⼜口)
-￼￼￼➢ -(void)makeKeyAndVisible;让当前UIWindow变成keyWindow,并显⽰示出来
+# UIView<p>
 
 
-UIWindow的获得
-● [UIApplicationsharedApplication].windows 在本应⽤用中打开的UIWindow列表,这样就可以接触应⽤用中的任何⼀一个UIView对象 (平时输⼊入⽂文字弹出的键盘,就处在⼀一个新的UIWindow中)
-● [UIApplicationsharedApplication].keyWindow
-⽤用来接收键盘以及⾮非触摸类的消息事件的UIWindow,⽽而且程序中每个时刻只能有⼀一 个UIWindow是keyWindow。如果某个UIWindow内部的⽂文本框不能输⼊入⽂文字,可能是因为这 个UIWindow不是keyWindow
-● view.window 获得某个UIView所在的UIWindow
-
-
-
-# 程序启动原理
-1.创建UIApplication对象 2.创建UIApplication的代理对象，并且设置为UIApplication的代理. 3.开启一个主运行循环，处理事件 4.加载info.plist文件，判断是否有Main.storyboard,如果有就会去加载。 有Main.storyboard才会执行第5步 5.加载Main.storyboard， 5.1 创建窗口 5.2 加载Main.storyboard，初始化storyboard描述的控制器 5.3 设置窗口的根控制器，并且显示窗口
-
-二、窗口，应用程序创建的第一个控件。 1.添加子控件，一般把窗口的根控制器添加上去，通过设置rootViewController就可以把根控制器的view添加到窗口上。 2.介绍窗口如何显示。 2.1 设置窗口的hiddle属性 3.应用程序是有主窗口，通常调用makeKeyAndVisible 4.windons属性，可以识别应用程序中哪些控件还是窗口，有一个比较特殊，状态栏。 5.window层级，alert(2000) > statusBar(1000) > normal(0)
-
-
-
-
-
-# UIView
-
-
-• 每⼀一个控制器(UIViewController)内部都有个默认的UIView属性
-- @property(nonatomic,retain) UIView *view;
-- 控制器中管理的其他所有控件都是这个view的⼦子控件(直接或者间接)
+• 每⼀一个控制器(UIViewController)内部都有个默认的UIView属性<p>
+- @property(nonatomic,retain) UIView *view;<p>
+- 控制器中管理的其他所有控件都是这个view的⼦子控件(直接或者间接)<p>
+- 
+<p>
+<p>
 - 
 
 
-- 
+<p>
+UIView的常见属性<p>
+@property(nonatomic,readonly) UIView *superview;<p>
+➢ 获得⾃自⼰己的⽗父控件对象 @property(nonatomic,readonly,copy) NSArray *subviews;<p><p>
+➢ 获得⾃自⼰己的所有⼦子控件对象 @property(nonatomic) NSInteger tag;<p><p>
+➢ 控件的ID(标识),⽗父控件可以通过tag来找到对应的⼦子控件 @property(nonatomic) CGAffineTransform transform;<p><p>
+➢ 控件的形变属性(可以设置旋转⾓角度、⽐比例缩放、平移等属性) <p><p>
+<p><p>
+<p><p>
+<p><p>
+常见属性<p><p>
+- (void)addSubview:(UIView *)view;<p><p>
+➢ 添加⼀一个⼦子控件view<p><p>
+- (void)removeFromSuperview;<p><p>
+➢ 从⽗父控件中移除<p><p>
+- (UIView *)viewWithTag:(NSInteger)tag;<p><p>
+➢ 根据⼀一个tag标识找出对应的控件(⼀一般都是⼦子控件)<p><p>
+<p><p>
+<p><p>
 
+UIView的常见属性 @property(nonatomic) CGRect frame;<p><p>
+➢ 控件矩形框在⽗父控件中的位置和尺⼨寸(以⽗父控件的左上⾓角为坐标原点) @property(nonatomic) CGRect bounds;<p><p>
+➢ 控件矩形框的位置和尺⼨寸(以⾃自⼰己左上⾓角为坐标原点,所以bounds的x、y⼀一般为0) @property(nonatomic) CGPoint<p><p> center;<p><p>
+➢ 控件中点的位置(以⽗父控件的左上⾓角为坐标原点)<p><p>
+<p>
+<p>
 
-
-UIView的常见属性
-@property(nonatomic,readonly) UIView *superview;
-➢ 获得⾃自⼰己的⽗父控件对象 @property(nonatomic,readonly,copy) NSArray *subviews;
-➢ 获得⾃自⼰己的所有⼦子控件对象 @property(nonatomic) NSInteger tag;
-➢ 控件的ID(标识),⽗父控件可以通过tag来找到对应的⼦子控件 @property(nonatomic) CGAffineTransform transform;
-➢ 控件的形变属性(可以设置旋转⾓角度、⽐比例缩放、平移等属性) 
-
-
-
-常见属性
-- (void)addSubview:(UIView *)view;
-➢ 添加⼀一个⼦子控件view
-- (void)removeFromSuperview;
-➢ 从⽗父控件中移除
-- (UIView *)viewWithTag:(NSInteger)tag;
-➢ 根据⼀一个tag标识找出对应的控件(⼀一般都是⼦子控件)
-
-
-
-UIView的常见属性 @property(nonatomic) CGRect frame;
-➢ 控件矩形框在⽗父控件中的位置和尺⼨寸(以⽗父控件的左上⾓角为坐标原点) @property(nonatomic) CGRect bounds;
-➢ 控件矩形框的位置和尺⼨寸(以⾃自⼰己左上⾓角为坐标原点,所以bounds的x、y⼀一般为0) @property(nonatomic) CGPoint center;
-➢ 控件中点的位置(以⽗父控件的左上⾓角为坐标原点)
-
-
-
-如何创建⼀一个控制器
-● 控制器常见的创建⽅方式有以下⼏几种 ➢ 通过storyboard创建
-➢ 直接创建
-MJViewController *mj = [[MJViewController alloc] init];
-➢ 指定xib⽂文件来创建
-MJViewController *mj = [[MJViewController alloc]
-initWithNibName:@"MJViewController" bundle:nil];
-
-通过storyboard创建控制器 
-● 先加载storyboard⽂文件(Test是storyboard的⽂文件名)
-UIStoryboard *storyboard = [UIStoryboard
-storyboardWithName:@"Test" bundle:nil];
-● 接着初始化storyboard中的控制器
-➢ 初始化“初始控制器”(箭头所指的控制器)
-MJViewController *mj = [storyboard
-instantiateInitialViewController];
+如何创建⼀一个控制器<p>
+● 控制器常见的创建⽅方式有以下⼏几种 ➢ 通过storyboard创建<p>
+➢ 直接创建<p>
+MJViewController *mj = [[MJViewController alloc] init];<p>
+➢ 指定xib⽂文件来创建<p>
+MJViewController *mj = [[MJViewController alloc]<p>
+initWithNibName:@"MJViewController" bundle:nil];<p>
+<p>
+通过storyboard创建控制器 <p>
+● 先加载storyboard⽂文件(Test是storyboard的⽂文件名)<p>
+UIStoryboard *storyboard = [UIStoryboard<p>
+storyboardWithName:@"Test" bundle:nil];<p>
+● 接着初始化storyboard中的控制器<p>
+➢ 初始化“初始控制器”(箭头所指的控制器)<p>
+MJViewController *mj = [storyboard<p>
+instantiateInitialViewController];<p>
 ➢ 通过⼀一个标识初始化对应的控制器 MJViewController *mj = [storyboard
-instantiateViewControllerWithIdentifier:@”mj"];
+instantiateViewControllerWithIdentifier:@”mj"];<p>
 
-控制器view的延迟加载 ● 控制器的view是延迟加载的:⽤用到时再加载
-● 可以⽤用isViewLoaded⽅方法判断⼀一个UIViewController的view是否已经被加载 ● 控制器的view加载完毕就会调⽤用viewDidLoad⽅方法
+控制器view的延迟加载 ● 控制器的view是延迟加载的:⽤用到时再加载<p>
+● 可以⽤用isViewLoaded⽅方法判断⼀一个UIViewController的view是否已经被加载 ●<p> 控制器的view加载完毕就会调⽤用viewDidLoad⽅方法<p>
+<p>
+什么是Segue<p>
+● Storyboard上每⼀一根⽤用来界⾯面跳转的线,都是⼀一个UIStoryboardSegue对象(简称Segue)<p>
+<p>
+Segue的属性<p>
+● 每⼀一个Segue对象,都有3个属性<p>
+➢ 唯⼀一标识<p>
+@property (nonatomic, readonly) NSString *identifier;<p>
+➢ 来源控制器<p>
+@property (nonatomic, readonly) id sourceViewController;<p>
+➢ ⽬目标控制器<p>
+<p>
+Segue的类型<p><p><p>
+● 根据Segue的执⾏行(跳转)时刻,Segue可以分为2⼤大类型<p><p>
+➢ ⾃自动型:点击某个控件后(⽐比如按钮),⾃自动执⾏行Segue,⾃自动完成界⾯面跳转 ➢<p><p>
+⼿手动型:需要通过写代码⼿手动执⾏行Segue,才能完成界⾯面跳转<p><p>
+● 在恰当的时刻,使⽤用perform⽅方法执⾏行对应的Segue<p><p>
+[self performSegueWithIdentifier:@"login2contacts" sender:nil];<p><p>
+<p><p>
+performSegueWithIdentifier:sender:<p><p>
+● 利⽤用performSegueWithIdentifier:⽅方法可以执⾏行某个Segue,完成界⾯面跳转<p><p>
+● 接performSegueWithIdentifier:sender:⽅方法的完整执⾏行过程<p><p>
+[self performSegueWithIdentifier:@“login2contacts” sender:nil];<p><p>
+// 这个self是来源控制器<p><p>
+1. 根据identifier去storyboard中找到对应的线,新建UIStoryboardSegue对象 ➢<p><p> 设置Segue对象的sourceViewController(来源控制器)<p><p>
+➢ 新建并且设置Segue对象的destinationViewController(⽬目标控制器)<p><p>
+<p><p>
+1. 调⽤用sourceViewController的下⾯面⽅方法,做⼀一些跳转前的准备⼯工作并且传⼊入创建好的 Segue对象<p><p>
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:<p><p>
+ (id)sender;<p><p>
+// 这个sender是当初performSegueWithIdentifier:sender:中传⼊入的sender<p><p>
+2. 调⽤用Segue对象的- (void)perform;⽅方法开始执⾏行界⾯面跳转操作<p><p>
+(3) 如果segue的style是push<p>
+➢ 取得sourceViewController所在的UINavigationController<p>
+➢ 调⽤用UINavigationController的push⽅方法将destinationViewController压⼊入栈中,完成跳转 (4)<p> 如果segue的style是modal<p>
+➢ 调⽤用sourceViewController的presentViewController⽅方法将destinationViewController展⽰示出 来<p>
+<p>
+Sender参数的传递<p>
+[self performSegueWithIdentifier:@“login2contacts” sender:@“jack”];<p>
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;<p>
 
-什么是Segue
-● Storyboard上每⼀一根⽤用来界⾯面跳转的线,都是⼀一个UIStoryboardSegue对象(简称Segue)
-
-Segue的属性
-● 每⼀一个Segue对象,都有3个属性
-➢ 唯⼀一标识
-@property (nonatomic, readonly) NSString *identifier;
-➢ 来源控制器
-@property (nonatomic, readonly) id sourceViewController;
-➢ ⽬目标控制器
-
-Segue的类型
-● 根据Segue的执⾏行(跳转)时刻,Segue可以分为2⼤大类型
-➢ ⾃自动型:点击某个控件后(⽐比如按钮),⾃自动执⾏行Segue,⾃自动完成界⾯面跳转 ➢
-⼿手动型:需要通过写代码⼿手动执⾏行Segue,才能完成界⾯面跳转
-● 在恰当的时刻,使⽤用perform⽅方法执⾏行对应的Segue
-[self performSegueWithIdentifier:@"login2contacts" sender:nil];
-
-performSegueWithIdentifier:sender:
-● 利⽤用performSegueWithIdentifier:⽅方法可以执⾏行某个Segue,完成界⾯面跳转
-● 接performSegueWithIdentifier:sender:⽅方法的完整执⾏行过程
-[self performSegueWithIdentifier:@“login2contacts” sender:nil];
-// 这个self是来源控制器
-1. 根据identifier去storyboard中找到对应的线,新建UIStoryboardSegue对象 ➢ 设置Segue对象的sourceViewController(来源控制器)
-➢ 新建并且设置Segue对象的destinationViewController(⽬目标控制器)
-
-1. 调⽤用sourceViewController的下⾯面⽅方法,做⼀一些跳转前的准备⼯工作并且传⼊入创建好的 Segue对象
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:
- (id)sender;
-// 这个sender是当初performSegueWithIdentifier:sender:中传⼊入的sender
-2. 调⽤用Segue对象的- (void)perform;⽅方法开始执⾏行界⾯面跳转操作
-(3) 如果segue的style是push
-➢ 取得sourceViewController所在的UINavigationController
-➢ 调⽤用UINavigationController的push⽅方法将destinationViewController压⼊入栈中,完成跳转 (4) 如果segue的style是modal
-➢ 调⽤用sourceViewController的presentViewController⽅方法将destinationViewController展⽰示出 来
-
-Sender参数的传递
-[self performSegueWithIdentifier:@“login2contacts” sender:@“jack”];
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
-
-
-
-
-Modal
-● 除了push之外,还有另外⼀一种控制器的切换⽅方式,那就是Modal
-● 任何控制器都能通过Modal的形式展⽰示出来
-● Modal的默认效果:新控制器从屏幕的最底部往上钻,直到盖住之前的控制器为⽌止
-● 以Modal的形式展⽰示控制器
-- (void)presentViewController:(UIViewController
-*)viewControllerToPresent animated: (BOOL)flag completion:(void
-(^)(void))completion
-● 关闭当初Modal出来的控制器
-- (void)dismissViewControllerAnimated: (BOOL)flag completion:
-(void (^)(void))completion;
-
-
-# 触摸事件
-响应者对象
-● 在iOS中不是任何对象都能处理事件,只有继承了UIResponder的对象才能接收并处理事 件。我们称之为“响应者对象”
-● UIApplication、UIViewController、UIView都继承⾃自UIResponder,因此它们都 是响应者对象,都能够接收并处理事件
-
-UIResponder
-● UIResponder内部提供了以下⽅方法来处理事件
-➢ 触摸事件
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
-➢ 加速计事件
-- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event;
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
-- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;
-➢ 远程控制事件
-- (void)remoteControlReceivedWithEvent:(UIEvent *)event;
-- 
-
-UIView的触摸事件处理
-● UIView是UIResponder的⼦子类,可以覆盖下列4个⽅方法处理不同的触摸事件
-➢ ⼀一根或者多根⼿手指开始触摸view,系统会⾃自动调⽤用view的下⾯面⽅方法
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-➢ ⼀一根或者多根⼿手指在view上移动,系统会⾃自动调⽤用view的下⾯面⽅方法(随着⼿手指的移动,会 持续调⽤用该⽅方法)
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event ➢ ⼀一根或者多根⼿手指离开view,系统会⾃自动调⽤用view的下⾯面⽅方法
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-➢ 触摸结束前,某个系统事件(例如电话呼⼊入)会打断触摸过程,系统会⾃自动调⽤用view的下⾯面
-⽅方法
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event 提⽰示:touches中存放的都是UITouch对象
-- 
-UITouch的属性 ● 触摸产⽣生时所处的窗⼜⼝口
-@property(nonatomic,readonly,retain) UIWindow *window; ● 触摸产⽣生时所处的视图
-@property(nonatomic,readonly,retain) UIView *view; ● 短时间内点按屏幕的次数,可以根据tapCount判断单击、双击或更多的点击
-@property(nonatomic,readonly) NSUInteger tapCount; ● 记录了触摸事件产⽣生或变化时的时间,单位是秒
-@property(nonatomic,readonly) NSTimeInterval      timestamp;
-
-● 当前触摸事件所处的状态
-@property(nonatomic,readonly) UITouchPhase phase;
-
-UITouch的⽅方法
-● -(CGPoint)locationInView:(UIView*)view; 返回值表⽰示触摸在view上的位置 这⾥里返回的位置是针对view的坐标系的(以view的左上⾓角为原点(0, 0)) 调⽤用时传⼊入的view参数为nil的话,返回的是触摸点在UIWindow的位置
-- (CGPoint)previousLocationInView:(UIView *)view; 该⽅方法记录了前⼀一个触摸点的位置
-- 
-
-UIEvent
-● 每产⽣生⼀一个事件,就会产⽣生⼀一个UIEvent对象
-● UIEvent:称为事件对象,记录事件产⽣生的时刻和类型
-● 常见属性
-➢ 事件类型
-@property(nonatomic,readonly) UIEventType type; @property(nonatomic,readonly) UIEventSubtype subtype;
-➢ 事件产⽣生的时间
-@property(nonatomic,readonly) NSTimeInterval timestamp;
-
-● UIEvent还提供了相应的⽅方法可以领获先得业在内某IT个教育vi培e训w⾏行上业⾯面w的ww触.5摸20i对t.co象m(UITouch)
-
-touches和event参数
-● ⼀一次完整的触摸过程,会经历3个状态:
-￼➢ ➢ ➢ ➢
-触摸开始:- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-触摸移动:- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-触摸结束:- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-触摸取消(可能会经历):- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-4个触摸事件处理⽅方法中,都有NSSet *touches和UIEvent *event两个参数
-➢ 如果两根⼿手指同时触摸⼀一个view,那么view只会调⽤用⼀一次touchesBegan:withEvent:
-●
-➢ ⼀一次完整的触摸过程中,只会产⽣生⼀一个事件对象,4个触摸⽅方法都是同⼀一个event参数
-￼⽅方法,touches参数中装着2个UITouch对象
-
-
-事件的产⽣生和传递
-● 发⽣生触摸事件后,系统会将该事件加⼊入到⼀一个由UIApplication管理的事件队列中
-● UIApplication会从事件队列中取出最前⾯面的事件,并将事件分发下去以便处理,通
-常,先发送事件给应⽤用程序的主窗⼜⼝口(keyWindow)
-● 主窗⼜⼝口会在视图层次结构中找到⼀一个最合适的视图来处理触摸事件,这也是整个事件处理
-过程的第⼀一步
-
-
-UIView不接收触摸事件的三种情况 . 不接收⽤用户交互
-userInteractionEnabled = NO . 隐藏
-hidden = YES . 透明
+<p>
+<p>
+<p>
+Modal<p>
+● 除了push之外,还有另外⼀一种控制器的切换⽅方式,那就是Modal<p>
+● 任何控制器都能通过Modal的形式展⽰示出来<p>
+● Modal的默认效果:新控制器从屏幕的最底部往上钻,直到盖住之前的控制器为⽌止<p>
+● 以Modal的形式展⽰示控制器<p>
+- (void)presentViewController:(UIViewController<p>
+*)viewControllerToPresent animated: (BOOL)flag completion:(void<p>
+(^)(void))completion<p>
+● 关闭当初Modal出来的控制器<p>
+- (void)dismissViewControllerAnimated: (BOOL)flag completion:<p>
+(void (^)(void))completion;<p>
+<p>
+<p>
+# 触摸事件<p>
+响应者对象<p>
+● 在iOS中不是任何对象都能处理事件,只有继承了UIResponder的对象才能接收并处理事 件。我们称之为“响应者对象”<p>
+● UIApplication、UIViewController、UIView都继承⾃自UIResponder,因此它们都 是响应者对象,都能够接收并处理事件<p>
+<p>
+UIResponder<p>
+● UIResponder内部提供了以下⽅方法来处理事件<p>
+➢ 触摸事件<p>
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;<p>
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;<p>
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;<p>
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;<p>
+➢ 加速计事件<p>
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event;<p>
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;<p>
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;<p>
+➢ 远程控制事件<p>
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event;<p>
+- <p>
+<p>
+UIView的触摸事件处理<p>
+● UIView是UIResponder的⼦子类,可以覆盖下列4个⽅方法处理不同的触摸事件<p>
+➢ ⼀一根或者多根⼿手指开始触摸view,系统会⾃自动调⽤用view的下⾯面⽅方法<p>
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event<p>
+➢ ⼀一根或者多根⼿手指在view上移动,系统会⾃自动调⽤用view的下⾯面⽅方法(随着⼿手指的移动,会 持续调⽤用该⽅方法)<p>
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event ➢<p> ⼀一根或者多根⼿手指离开view,系统会⾃自动调⽤用view的下⾯面⽅方法<p>
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event<p>
+➢ 触摸结束前,某个系统事件(例如电话呼⼊入)会打断触摸过程,系统会⾃自动调⽤用view的下⾯面<p>
+⽅方法<p>
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event 提⽰示:touches中存放的都是UITouch对象<p>
+- <p>
+UITouch的属性 ● 触摸产⽣生时所处的窗⼜⼝口<p>
+@property(nonatomic,readonly,retain) UIWindow *window; ● 触摸产⽣生时所处的视图<p>
+@property(nonatomic,readonly,retain) UIView *view; ●<p> 短时间内点按屏幕的次数,可以根据tapCount判断单击、双击或更多的点击<p>
+@property(nonatomic,readonly) NSUInteger tapCount; ● 记录了触摸事件产⽣生或变化时的时间,单位是秒<p>
+@property(nonatomic,readonly) NSTimeInterval      timestamp;<p>
+<p>
+● 当前触摸事件所处的状态<p>
+@property(nonatomic,readonly) UITouchPhase phase;<p>
+<p>
+UITouch的⽅方法<p>
+● -(CGPoint)locationInView:(UIView*)view; 返回值表⽰示触摸在view上的位置<p> 这⾥里返回的位置是针对view的坐标系的(以view的左上⾓角为原点(0, 0))<p> 调⽤用时传⼊入的view参数为nil的话,返回的是触摸点在UIWindow的位置<p>
+- (CGPoint)previousLocationInView:(UIView *)view; 该⽅方法记录了前⼀一个触摸点的位置<p>
+- <p>
+<p>
+UIEvent<p>
+● 每产⽣生⼀一个事件,就会产⽣生⼀一个UIEvent对象<p>
+● UIEvent:称为事件对象,记录事件产⽣生的时刻和类型<p>
+● 常见属性<p>
+➢ 事件类型<p>
+@property(nonatomic,readonly) UIEventType type; @property(nonatomic,readonly) UIEventSubtype subtype;<p>
+➢ 事件产⽣生的时间<p>
+@property(nonatomic,readonly) NSTimeInterval timestamp;<p>
+<p>
+● UIEvent还提供了相应的⽅方法可以领获先得业在内某IT个教育vi培e训w⾏行上业⾯面w的ww触.5摸20i对t.co象m(UITouch)<p>
+<p>
+touches和event参数<p>
+● ⼀一次完整的触摸过程,会经历3个状态:<p>
+￼➢ ➢ ➢ ➢<p>
+触摸开始:- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event<p>
+触摸移动:- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event<p>
+触摸结束:- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event<p>
+触摸取消(可能会经历):- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event<p>
+4个触摸事件处理⽅方法中,都有NSSet *touches和UIEvent *event两个参数<p>
+➢ 如果两根⼿手指同时触摸⼀一个view,那么view只会调⽤用⼀一次touchesBegan:withEvent:<p>
+●<p>
+➢ ⼀一次完整的触摸过程中,只会产⽣生⼀一个事件对象,4个触摸⽅方法都是同⼀一个event参数<p>
+￼⽅方法,touches参数中装着2个UITouch对象<p>
+<p>
+<p>
+事件的产⽣生和传递<p>
+● 发⽣生触摸事件后,系统会将该事件加⼊入到⼀一个由UIApplication管理的事件队列中<p>
+● UIApplication会从事件队列中取出最前⾯面的事件,并将事件分发下去以便处理,通<p>
+常,先发送事件给应⽤用程序的主窗⼜⼝口(keyWindow)<p>
+● 主窗⼜⼝口会在视图层次结构中找到⼀一个最合适的视图来处理触摸事件,这也是整个事件处理<p>
+过程的第⼀一步<p>
+<p>
+<p>
+UIView不接收触摸事件的三种情况 . 不接收⽤用户交互<p>
+userInteractionEnabled = NO . 隐藏<p>
+hidden = YES . 透明<p>
 alpha = 0.0 ~ 0.01 提⽰示:UIImageView的userInteractionEnabled默认就是NO,因此UIImageView以
-  及它的⼦子控件默认是不能接收触摸事件的
-  
-  touches⽅方法的默认做法是将事件顺着响应者链条向上传递,将事件交给上⼀一个响 应者进⾏行处理
-  
-  
-  <h4>事件传递的完整过程
-1> 先将事件对象由上往下传递(由⽗父控件传递给⼦子控件),找到最合适的控件 来处理这个事件。
-￼2> 调⽤用最合适控件的touches....⽅方法
-3> 如果调⽤用了[super touches....];就会将事件顺着响应者链条往上传递,传递
-给上⼀一个响应者
-4> 接着就会调⽤用上⼀一个响应者的touches....⽅方法
-如何判断上⼀一个响应者
-1> 如果当前这个view是控制器的view,那么控制器就是上⼀一个响应者
-2> 如果当前这个view不是控制器的view,那么⽗父控件就是上⼀一个响应者
+  及它的⼦子控件默认是不能接收触摸事件的<p>
+  <p>
+  touches⽅方法的默认做法是将事件顺着响应者链条向上传递,将事件交给上⼀一个响 应者进⾏行处理<p>
+  <p>
+  <p>
+  <h4>事件传递的完整过程<p>
+1> 先将事件对象由上往下传递(由⽗父控件传递给⼦子控件),找到最合适的控件 来处理这个事件。<p>
+￼2> 调⽤用最合适控件的touches....⽅方法<p>
+3> 如果调⽤用了[super touches....];就会将事件顺着响应者<p>链条往上传递,传递<p>
+给上⼀一个响应者<p>
+4> 接着就会调⽤用上⼀一个响应者的touches....⽅方法<p>
+如何判断上⼀一个响应者<p>
+1> 如果当前这个view是控制器的view,那么控制器就是上⼀一个响应者<p>
+2> 如果当前这个view不是控制器的view,那么⽗父控件就是上⼀一个响应者<p>
+<p>
+<h3>响应者链的事件传递过程<p>
+如果view的控制器存在,就传递给控制器;如果控制器不存在,则将其传递给它 的⽗父视图<p>
+在视图层次结构的最顶级视图,如果也不能处理收到的事件或消息,则其将事件 或消息传递给window对象进⾏行处理<p>
+如果window对象也不处理,则其将事件或消息传递给UIApplication对象 如果UIApplication也不能处理该事件或消息,则将其丢弃<p>
+<p>
 
-<h3>响应者链的事件传递过程
-如果view的控制器存在,就传递给控制器;如果控制器不存在,则将其传递给它 的⽗父视图
-在视图层次结构的最顶级视图,如果也不能处理收到的事件或消息,则其将事件 或消息传递给window对象进⾏行处理
-如果window对象也不处理,则其将事件或消息传递给UIApplication对象 如果UIApplication也不能处理该事件或消息,则将其丢弃
+<p>
+<h5>UIGestureRecognizer<p>
+● 为了完成⼿手势识别,必须借助于⼿手势识别器----UIGestureRecognizer<p>
+● 利⽤用UIGestureRecognizer,能轻松识别⽤用户在某个view上⾯面做的⼀一些常见⼿手势<p>
+● UIGestureRecognizer是⼀一个抽象类,定义了所有⼿手势的基本⾏行为,使⽤用它的⼦子类才能 处理具体的⼿手势<p>
+➢ UITapGestureRecognizer(敲击)<p>
+➢ UIPinchGestureRecognizer(捏合,⽤用于缩放) ➢ UIPanGestureRecognizer(拖拽)<p>
+➢ UISwipeGestureRecognizer(轻扫)<p>
+➢ UIRotationGestureRecognizer(旋转)<p>
+➢ UILongPressGestureRecognizer(长按)<p>
+<p>
+// 点击手势<p>
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];<p>
+    [self.image addGestureRecognizer:tap];<p>
+<p>
+# 数据存储<p>
+<p>
+iOS应⽤用数据存储的常⽤用⽅方式<p>
+● XML属性列表(plist)归档 ● Preference(偏好设置)<p>
+● NSKeyedArchiver归档(NSCoding) ● SQLite3<p>
+● Core Data<p>
+<p>
+<p>
 
-
-
-<h5>UIGestureRecognizer
-● 为了完成⼿手势识别,必须借助于⼿手势识别器----UIGestureRecognizer
-● 利⽤用UIGestureRecognizer,能轻松识别⽤用户在某个view上⾯面做的⼀一些常见⼿手势
-● UIGestureRecognizer是⼀一个抽象类,定义了所有⼿手势的基本⾏行为,使⽤用它的⼦子类才能 处理具体的⼿手势
-➢ UITapGestureRecognizer(敲击)
-➢ UIPinchGestureRecognizer(捏合,⽤用于缩放) ➢ UIPanGestureRecognizer(拖拽)
-➢ UISwipeGestureRecognizer(轻扫)
-➢ UIRotationGestureRecognizer(旋转)
-➢ UILongPressGestureRecognizer(长按)
-
-// 点击手势
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
-    [self.image addGestureRecognizer:tap];
-
-# 数据存储
-
-iOS应⽤用数据存储的常⽤用⽅方式
-● XML属性列表(plist)归档 ● Preference(偏好设置)
-● NSKeyedArchiver归档(NSCoding) ● SQLite3
-● Core Data
-
-
-
-
-应⽤用沙盒
-● 每个iOS应⽤用都有⾃自⼰己的应⽤用沙盒(应⽤用沙盒就是⽂文件系统⽬目录),与其 他⽂文件系统隔离。应⽤用必须待在⾃自⼰己的沙盒⾥里,其他应⽤用不能访问该沙 盒
-
-
-应⽤用沙盒结构分析
-应⽤用程序包:(上图中的Layer)包含了所有的资源⽂文件和可执⾏行⽂文件 Documents:保存应⽤用运⾏行时⽣生成的需要持久化的数据,iTunes同步设备时会
-备份该⽬目录。例如,游戏应⽤用可将游戏存档保存在该⽬目录
-tmp:保存应⽤用运⾏行时所需的临时数据,使⽤用完毕后再将相应的⽂文件从该⽬目录删 除。应⽤用没有运⾏行时,系统也可能会清除该⽬目录下的⽂文件。iTunes同步设备时 不会备份该⽬目录
-Library/Caches:保存应⽤用运⾏行时⽣生成的需要持久化的数据,iTunes同步设 备时不会备份该⽬目录。⼀一般存储体积⼤大、不需要备份的⾮非重要数据
-Library/Preference:保存应⽤用的所有偏好设置,iOS的Settings(设置) 应⽤用会在该⽬目录中查找应⽤用的设置信息。iTunes同步设备时会备份该⽬目录
-
-
-应⽤用沙盒⽬目录的常见获取⽅方式
-● 沙盒根⽬目录:NSString *home = NSHomeDirectory(); ● Documents:(2种⽅方式)
-● 利⽤用沙盒根⽬目录拼接”Documents”字符串
-NSString *home = NSHomeDirectory();
-NSString *documents = [home stringByAppendingPathComponent:@"Documents"]; // 不建议采⽤用,因为新版本的操作系统可能会修改⽬目录名
-● 利⽤用NSSearchPathForDirectoriesInDomains函数
-// NSUserDomainMask 代表从⽤用户⽂文件夹下找
-// YES 代表展开路径中的波浪字符“~”
-NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, NO); // 在iOS中,只有⼀一个⽬目录跟传⼊入的参数匹配,所以这个集合⾥里⾯面只有⼀一个元素
-￼￼￼领先业内IT教育培训⾏行业 www.520it.com NSString *documents = [array objectAtIndex:0];
-
-
-
+<p>
+应⽤用沙盒<p>
+● 每个iOS应⽤用都有⾃自⼰己的应⽤用沙盒(应⽤用沙盒就是⽂文件系统⽬目录),与其<p> 他⽂文件系统隔离。应⽤用必须待在⾃自⼰己的沙盒⾥里,其他应⽤用不能访问该沙 盒<p>
+<p>
+<p>
+应⽤用沙盒结构分析<p>
+应⽤用程序包:(上图中的Layer)包含了所有的资源⽂文件和可执⾏行⽂文件<p> Documents:保存应⽤用运⾏行时⽣生成的需要持久化的数据,iTunes同步设备时会<p>
+备份该⽬目录。例如,游戏应⽤用可将游戏存档保存在该⽬目录<p>
+tmp:保存应⽤用运⾏行时所需的临时数据,使⽤用完毕后再将相应的⽂文件从该⽬目录删<p> 除。应⽤用没有运⾏行时,系统也可能会清除该⽬目录下的⽂文件。iTunes同步设备时 不会备份该⽬目录<p>
+Library/Caches:保存应⽤用运⾏行时⽣生成的需要持久化的数据,iTunes同步设<p> 备时不会备份该⽬目录。⼀一般存储体积⼤大、不需要备份的⾮非重要数据<p>
+Library/Preference:保存应⽤用的所有偏好设置,iOS的Settings(设置)<p> 应⽤用会在该⽬目录中查找应⽤用的设置信息。iTunes同步设备时会备份该⽬目录<p>
+<p>
+<p>
+应⽤用沙盒⽬目录的常见获取⽅方式<p>
+● 沙盒根⽬目录:NSString *home = NSHomeDirectory(); ● Documents:(2种⽅方式)<p>
+● 利⽤用沙盒根⽬目录拼接”Documents”字符串<p>
+NSString *home = NSHomeDirectory();<p><p><p>
+NSString *documents = [home stringByAppendingPathComponent:@"Documents"]; //<p><p><p> 不建议采⽤用,因为新版本的操作系统可能会修改⽬目录名<p><p><p>
+● 利⽤用NSSearchPathForDirectoriesInDomains函数<p><p><p>
+// NSUserDomainMask 代表从⽤用户⽂文件夹下找<p><p><p>
+// YES 代表展开路径中的波浪字符“~”<p><p><p>
+NSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, NO); //<p><p><p> 在iOS中,只有⼀一个⽬目录跟传⼊入的参数匹配,所以这个集合⾥里⾯面只有⼀一个元素<p><p><p>
+￼￼￼领先业内IT教育培训⾏行业 www.520it.com NSString *documents = [array objectAtIndex:0];<p><p><p>
+<p><p><p>
 
 
-● tmp:NSString *tmp = NSTemporaryDirectory();
-● Library/Caches:(跟Documents类似的2种⽅方法)
-● 利⽤用沙盒根⽬目录拼接”Caches”字符串
-● 利⽤用NSSearchPathForDirectoriesInDomains函数(将函数的第2个参数改 为:NSCachesDirectory即可)
-● Library/Preference:通过NSUserDefaults类存取该⽬目录下的设置信息
+<p><p><p>
 
+● tmp:NSString *tmp = NSTemporaryDirectory();<p><p><p>
+● Library/Caches:(跟Documents类似的2种⽅方法)<p><p><p>
+● 利⽤用沙盒根⽬目录拼接”Caches”字符串<p><p><p>
+● 利⽤用NSSearchPathForDirectoriesInDomains函数(将函数的第2个参数改 为:NSCachesDirectory即可)<p><p><p>
+● Library/Preference:通过NSUserDefaults类存取该⽬目录下的设置信息<p><p><p>
 
+<p><p>
+<p><p>
 
+属性列表-归档NSDictionary<p><p>
+● 将⼀一个NSDictionary对象归档到⼀一个plist属性列表中 // 将数据封装成字典<p><p>
+NSMutableDictionary *dict = [NSMutableDictionary dictionary]; [dict setObject:@"母鸡" forKey:@"name"];<p><p>
+[dict setObject:@"15013141314" forKey:@"phone"]; [dict setObject:@"27" forKey:@"age"];<p><p>
+// 将字典持久化到Documents/stu.plist⽂文件中<p><p>
+[dict writeToFile:path atomically:YES];<p><p>
+<p><p>
+<p><p>
+属性列表-恢复NSDictionary<p><p>
+● 读取属性列表,恢复NSDictionary对象<p><p>
+// 读取Documents/stu.plist的内容,实例化NSDictionary<p><p>
+NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path]; NSLog(@"name:%@", [dict objectForKey:@"name"]); NSLog(@"phone:%@", [dict objectForKey:@"phone"]); NSLog(@"age:%@", [dict objectForKey:@"age"]);<p><p>
 
-属性列表-归档NSDictionary
-● 将⼀一个NSDictionary对象归档到⼀一个plist属性列表中 // 将数据封装成字典
-NSMutableDictionary *dict = [NSMutableDictionary dictionary]; [dict setObject:@"母鸡" forKey:@"name"];
-[dict setObject:@"15013141314" forKey:@"phone"]; [dict setObject:@"27" forKey:@"age"];
-// 将字典持久化到Documents/stu.plist⽂文件中
-[dict writeToFile:path atomically:YES];
-
-
-属性列表-恢复NSDictionary
-● 读取属性列表,恢复NSDictionary对象
-// 读取Documents/stu.plist的内容,实例化NSDictionary
-NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path]; NSLog(@"name:%@", [dict objectForKey:@"name"]); NSLog(@"phone:%@", [dict objectForKey:@"phone"]); NSLog(@"age:%@", [dict objectForKey:@"age"]);
-
-
-
-
-偏好设置
-● 读取上次保存的设置
-NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; NSString *username = [defaults stringForKey:@"username"];
-float textSize = [defaults floatForKey:@"text_size"];
-BOOL autoLogin = [defaults boolForKey:@"auto_login"];
-● 注意:UserDefaults设置数据时,不是⽴立即写⼊入,⽽而是根据时间戳定时地把缓存中 的数据写⼊入本地磁盘。所以调⽤用了set⽅方法之后数据有可能还没有写⼊入磁盘应⽤用程序 就终⽌止了。出现以上问题,可以通过调⽤用synchornize⽅方法强制写⼊入
-[defaults synchornize];
-
-
-
-NSKeyedArchiver-归档对象的注意
-● 如果⽗父类也遵守了NSCoding协议,请注意:
-● 应该在encodeWithCoder:⽅方法中加上⼀一句 [super encodeWithCode:encode]; 确保继承的实例变量也能被编码,即也能被归档 ● 应该在initWithCoder:⽅方法中加上⼀一句
-self = [super initWithCoder:decoder];
-确保继承的实例变量也能被解码,即也能被恢复
-
-
-NSData-归档2个Person对象到同⼀一⽂文件中
-● 归档(编码)
-// 新建⼀一块可变数据区
-NSMutableData *data = [NSMutableData data];
-// 将数据区连接到⼀一个NSKeyedArchiver对象
-NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
-// 开始存档对象,存档的数据都会存储到NSMutableData中 [archiver encodeObject:person1 forKey:@"person1"]; [archiver encodeObject:person2 forKey:@"person2"];
-// 存档完毕(⼀一定要调⽤用这个⽅方法)
-￼￼[archiver finishEncoding]; // 将存档的数据写⼊入⽂文件
-
-
-NSData-从同⼀一⽂文件中恢复2个Person对象
-● 恢复(解码)
-// 从⽂文件中读取数据
-NSData *data = [NSData dataWithContentsOfFile:path];
-// 根据数据,解析成⼀一个NSKeyedUnarchiver对象
-NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-Person *person1 = [unarchiver decodeObjectForKey:@"person1"]; Person *person2 = [unarchiver decodeObjectForKey:@"person2"]; // 恢复完毕
-[unarchiver finishDecoding];
-
-
-利⽤用归档实现深复制
-eDaO● ⽐比如对⼀一个Person对象进⾏行深复制
-tbja //临时存储person1的数据
-eWNSData *data = [NSKeyedArchiver archivedDataWithRootObject:person1];
-ict // 解析data,⽣生成⼀一个新的Person对象
-hWStudent *person2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+<p>
+<p>
+<p>
+偏好设置<p>
+● 读取上次保存的设置<p>
+NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; NSString *username = [defaults stringForKey:@"username"];<p>
+float textSize = [defaults floatForKey:@"text_size"];<p>
+BOOL autoLogin = [defaults boolForKey:@"auto_login"];<p>
+● 注意:UserDefaults设置数据时,不是⽴立即写⼊入,⽽而是根据时间戳定时地把缓存中<p> 的数据写⼊入本地磁盘。所以调⽤用了set⽅方法之后数据有可能还没有写⼊入磁盘应⽤用程序<p> 就终⽌止了。出现以上问题,可以通过调⽤用synchornize⽅方法强制写⼊入<p>
+[defaults synchornize];<p>
+<p>
+<p>
+<p>
+NSKeyedArchiver-归档对象的注意<p>
+● 如果⽗父类也遵守了NSCoding协议,请注意:<p>
+● 应该在encodeWithCoder:⽅方法中加上⼀一句 [super encodeWithCode:encode];<p> 确保继承的实例变量也能被编码,即也能被归档 ● 应该在initWithCoder:⽅方法中加上⼀一句
+self = [super initWithCoder:decoder];<p>
+确保继承的实例变量也能被解码,即也能被恢复<p>
+<p>
+<p>
+NSData-归档2个Person对象到同⼀一⽂文件中<p>
+● 归档(编码)<p>
+// 新建⼀一块可变数据区<p>
+NSMutableData *data = [NSMutableData data];<p>
+// 将数据区连接到⼀一个NSKeyedArchiver对象<p>
+NSKeyedArchiver *archiver = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];<p>
+// 开始存档对象,存档的数据都会存储到NSMutableData中 [archiver encodeObject:person1 forKey:@"person1"]; [archiver encodeObject:person2 forKey:@"person2"];<p>
+// 存档完毕(⼀一定要调⽤用这个⽅方法)<p>
+￼￼[archiver finishEncoding]; // 将存档的数据写⼊入⽂文<p>件
+<p>
+<p>
+NSData-从同⼀一⽂文件中恢复2个Person对象<p>
+● 恢复(解码)<p>
+// 从⽂文件中读取数据<p>
+NSData *data = [NSData dataWithContentsOfFile:path];<p>
+// 根据数据,解析成⼀一个NSKeyedUnarchiver对象<p>
+NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];<p>
+Person *person1 = [unarchiver decodeObjectForKey:@"person1"]; Person *person2 = [unarchiver<p> decodeObjectForKey:@"person2"]; // 恢复完毕<p><p><p>
+[unarchiver finishDecoding];<p><p><p>
+<p><p><p>
+<p><p><p>
+利⽤用归档实现深复制<p><p><p>
+eDaO● ⽐比如对⼀一个Person对象进⾏行深复制<p><p><p>
+tbja //临时存储person1的数据<p><p><p>
+eWNSData *data = [NSKeyedArchiver archivedDataWithRootObject:person1];<p><p><p>
+ict // 解析data,⽣生成⼀一个新的Person对象<p><p><p>
+hWStudent *person2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];<p><p><p>
 iR // 分别打印内存地址 to
-oh NSLog(@"person1:0x%x", person1); // person1:0x7177a60
-￼NSLog(@"person2:0x%x", person2); // person2:0x7177cf0
+oh NSLog(@"person1:0x%x", person1); // person1:0x7177a60<p><p><p>
+￼NSLog(@"person2:0x%x", person2); // person2:0x7177cf0<p><p><p>
+<p><p><p>
 
+<p><p><p>
 
+<h5>�>创建、打开、关闭数据库<p><p><p>
+<p><p><p>
+● 创建或打开数据库<p><p><p>
+// path为:~/Documents/person.db<p><p>
+sqlite3 *db;<p><p>
+int result = sqlite3_open([path UTF8String], &db);<p><p>
+￼● 代码解析:<p><p>
+● sqlite3_open()将根据⽂文件路径打开数据库,如果不存在,则会创建⼀一个新的数据<p><p>
+￼库。如果result等于常量SQLITE_OK,则表⽰示成功打开数据库<p><p>
+● sqlite3 *db:⼀一个打开的数据库实例<p><p>
+● 数据库⽂文件的路径必须以C字符串(⽽而⾮非NSString)传⼊入<p><p>
+￼● 关闭数据库:sqlite3_close(db);<p><p>
+<p><p>
+<p><p>
+带占位符插⼊入数据<p><p>
+char *sql = "insert into t_person(name, age) values(?, ?);"; sqlite3_stmt *stmt;<p><p>
+if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) == SQLITE_OK) {<p><p>
+sqlite3_bind_text(stmt, 1, "母鸡", -1, NULL);<p><p>
+sqlite3_bind_int(stmt, 2, 27); }<p><p>
+if (sqlite3_step(stmt) != SQLITE_DONE) { NSLog(@"插⼊入数据错误");<p><p>
+} sqlite3_finalize(stmt);<p><p>
+<p><p>
+<p><p>
 
+查询数据<p>
+char *sql = "select id,name,age from t_person;";<p>
+sqlite3_stmt *stmt;<p>
+if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) == SQLITE_OK) {<p>
+while (sqlite3_step(stmt) == SQLITE_ROW) {<p>
+int _id = sqlite3_column_int(stmt, 0);<p>
+char *_name = (char *)sqlite3_column_text(stmt, 1); NSString *name = [NSString stringWithUTF8String:_name]; int<p> _age = sqlite3_column_int(stmt, 2);<p>
+NSLog(@"id=%i, name=%@, age=%i", _id, name, _age);<p>
+￼￼} }<p>
+sqlite3_finalize(stmt);<p>
 
-<h5>�>创建、打开、关闭数据库
+<p><p>
 
-● 创建或打开数据库
-// path为:~/Documents/person.db
-sqlite3 *db;
-int result = sqlite3_open([path UTF8String], &db);
-￼● 代码解析:
-● sqlite3_open()将根据⽂文件路径打开数据库,如果不存在,则会创建⼀一个新的数据
-￼库。如果result等于常量SQLITE_OK,则表⽰示成功打开数据库
-● sqlite3 *db:⼀一个打开的数据库实例
-● 数据库⽂文件的路径必须以C字符串(⽽而⾮非NSString)传⼊入
-￼● 关闭数据库:sqlite3_close(db);
-
-
-带占位符插⼊入数据
-char *sql = "insert into t_person(name, age) values(?, ?);"; sqlite3_stmt *stmt;
-if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) == SQLITE_OK) {
-sqlite3_bind_text(stmt, 1, "母鸡", -1, NULL);
-sqlite3_bind_int(stmt, 2, 27); }
-if (sqlite3_step(stmt) != SQLITE_DONE) { NSLog(@"插⼊入数据错误");
-} sqlite3_finalize(stmt);
-
-
-
-查询数据
-char *sql = "select id,name,age from t_person;";
-sqlite3_stmt *stmt;
-if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) == SQLITE_OK) {
-while (sqlite3_step(stmt) == SQLITE_ROW) {
-int _id = sqlite3_column_int(stmt, 0);
-char *_name = (char *)sqlite3_column_text(stmt, 1); NSString *name = [NSString stringWithUTF8String:_name]; int _age = sqlite3_column_int(stmt, 2);
-NSLog(@"id=%i, name=%@, age=%i", _id, name, _age);
-￼￼} }
-sqlite3_finalize(stmt);
-
-
-
-
-# Core Data
-搭建Core Data上下⽂文环境 
-● 从应⽤用程序包中加载模型⽂文件
-NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:nil];
-● 传⼊入模型,初始化NSPersistentStoreCoordinator NSPersistentStoreCoordinator *psc = [[[NSPersistentStoreCoordinator alloc]
-initWithManagedObjectModel:model] autorelease];
-● 构建SQLite⽂文件路径
-NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-NSURL *url = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"person.data"]];
-
-
-● 添加持久化存储库,这⾥里使⽤用SQLite作为存储库
-NSError *error = nil;
-NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error];
-if (store == nil) { // 直接抛异常
-[NSException raise:@"添加数据库错误" format:@"%@", [error localizedDescription]];
-}
-● 初始化上下⽂文,设置persistentStoreCoordinator属性 NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init]; context.persistentStoreCoordinator = psc;
-// ⽤用完之后,还是要[context release];
-
-
-<h4>添加数据
+<p><p>
+# Core Data<p><p>
+搭建Core Data上下⽂文环境 <p><p>
+● 从应⽤用程序包中加载模型⽂文件<p><p>
+NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:nil];<p><p>
+● 传⼊入模型,初始化NSPersistentStoreCoordinator NSPersistentStoreCoordinator *psc = [[[NSPersistentStoreCoordinator alloc]<p><p>
+initWithManagedObjectModel:model] autorelease];<p><p>
+● 构建SQLite⽂文件路径<p><p>
+NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];<p><p>
+NSURL *url = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"person.data"]];<p><p>
+<p><p>
+<p><p>
+● 添加持久化存储库,这⾥里使⽤用SQLite作为存储库<p><p>
+NSError *error = nil;<p><p>
+NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error];<p><p>
+if (store == nil) { // 直接抛异常<p><p>
+[NSException raise:@"添加数据库错误" format:@"%@", [error localizedDescription]];<p><p>
+}<p><p>
+● 初始化上下⽂文,设置persistentStoreCoordinator属性 NSManagedObjectContext *context = [[NSManagedObjectContext alloc] init]; context.persistentStoreCoordinator = psc;<p><p>
+// ⽤用完之后,还是要[context release];<p>
+<p>
+<p>
+<h4>添加数据<p>
 ● 传⼊入上下⽂文,创建⼀一个Person实体对象 NSManagedObject *person = [NSEntityDescription
-insertNewObjectForEntityForName:@"Person" inManagedObjectContext:context]; ● 设置简单属性
-[person setValue:@"MJ" forKey:@"name"];
-[person setValue:[NSNumber numberWithInt:27] forKey:@"age"];
+insertNewObjectForEntityForName:@"Person" inManagedObjectContext:context]; ● 设置简单属性<p>
+[person setValue:@"MJ" forKey:@"name"];<p>
+[person setValue:[NSNumber numberWithInt:27] forKey:@"age"];<p>
 ● 传⼊入上下⽂文,创建⼀一个Card实体对象 NSManagedObject *card = [NSEntityDescription
-insertNewObjectForEntityForName:@"Card" inManagedObjectContext:context]; [card setValue:@"4414241933432" forKey:@"no"];
-● 设置Person和Card之间的关联关系
-￼￼￼[person setValue:card forKey:@"card"];
+insertNewObjectForEntityForName:@"Card" inManagedObjectContext:context]; [card setValue:@"4414241933432" forKey:@"no"];<p>
+● 设置Person和Card之间的关联关系<p>
+￼￼￼[person setValue:card forKey:@"card"];<p>
+<p>
+<p>
+<p>
+<h4>查询数据<p>
+● 初始化⼀一个查询请求<p>
+NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];<p>
+● 设置要查询的实体<p>
+NSEntityDescription *desc = [NSEntityDescription entityForName:@"Person" inManagedObjectContext:context];<p>
+● 设置排序(按照age降序)<p>
+NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"age"<p>
+ascending:NO];<p>
+request.sortDescriptors = [NSArray arrayWithObject:sort];<p>
+● 设置条件过滤(name like '%Itcast-1%')<p>
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like %@",<p>
+￼￼@"*Itcast-1*"]; request.predicate = predicate;<p>
+<p>
+<p>
+● 执⾏行请求<p>
+NSError *error = nil;<p>
+NSArray *objs = [context executeFetchRequest:request error:&error]; if (error) {<p>
+[NSException raise:@"查询错误" format:@"%@", [error localizedDescription]]; }<p>
+● 遍历数据<p>
+for (NSManagedObject *obj in objs) {<p>
+NSLog(@"name=%@", [obj valueForKey:@"name"] }<p>
+<p>
+<p>
+<p>
 
 
+<h4>删除数据<p>
+● 传⼊入需要删除的实体对象<p>
+[context deleteObject:managedObject]; ● 将结果同步到数据库<p>
+NSError *error = nil;<p>
+[context save:&error];<p>
+if (error) {<p>
+[NSException raise:@"删除错误" format:@"%@", [error localizedDescription]];<p>
+}<p>
+<p>
+<p>
+<p>
+# Autolayout<p>
+● 代码实现Autolayout的步骤<p>
+● 利⽤用NSLayoutConstraint类创建具体的约束对象<p>
+● 添加约束对象到相应的view上<p>
+- (void)addConstraint:(NSLayoutConstraint *)constraint; - (void)addConstraints:(NSArray *)constraints;<p>
+● 代码实现Autolayout的注意点<p>
+● 要先禁⽌止autoresizing功能,设置view的下⾯面属性为NO<p>
+view.translatesAutoresizingMaskIntoConstraints = NO; ●<p> 添加约束之前,⼀一定要保证相关控件都已经在各⾃自的⽗父控件上<p>
+● 不⽤用再给view设置frame<p>
+<p>
+NSLayoutConstraint<p>
+● ⼀一个NSLayoutConstraint对象就代表⼀一个约束 ● 创建约束对象的常⽤用⽅方法<p>
++(id)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1<p>
+relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:<p>
+(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:<p>
+(CGFloat)c;<p>
+● view1 :要约束的控件<p>
+● attr1 :约束的类型(做怎样的约束)<p>
+● relation :与参照控件之间的关系<p>
+● view2 :参照的控件<p>
+● attr2 :约束的类型(做怎样的约束)<p>
+● multiplier :乘数<p>
+● c:常量<p>
+<p>
+● ⾃自动布局的核⼼心计算公式<p>
+obj1.property1 =(obj2.property2 * multiplier)+ constant value<p>
+<p>
+<p>
+# VFL语⾔言<p>
+● VFL全称是Visual Format Language,翻译过来是“可视化格式语⾔言” <p>
+● VFL是苹果公司为了简化Autolayout的编码⽽而推出的抽象语⾔言<p>
+<p>
+VFL示例<p>
+● H:[cancelButton(72)]-12-[acceptButton(50)]<p>
+● canelButton宽72,acceptButton宽50,它们之间间距12 ● H:[wideView(>=60@700)]<p>
+● wideView宽度⼤大于等于60point,该约束条件优先级为700(优先级最⼤大值为1000,优先级越⾼高的约束越先 被满⾜足)<p>
+● V:[redBox][yellowBox(==redBox)]<p>
+● 竖直⽅方向上,先有⼀一个redBox,其下⽅方紧接⼀一个⾼高度等于redBox⾼高度的yellowBox<p>
+● H:|-10-[Find]-[FindNext]-[FindField(>=20)]-|<p>
+● ⽔水平⽅方向上,Find距离⽗父view左边缘默认间隔宽度,之后是FindNext距离Find间隔默认宽度;再之后是宽度<p> 不⼩小于20的FindField,它和FindNext以及⽗父view右边缘的间距都是默认宽度。(竖线“|” 表⽰示superview的边 缘)<p>
+<p>
+<p>
+VFL的使⽤<p>
+● 使⽤用VFL来创建约束数组<p>
++ (NSArray *)constraintsWithVisualFormat:(NSString<p>
+*)format options:(NSLayoutFormatOptions)opts metrics:<p>
+(NSDictionary *)metrics views:(NSDictionary *)views;<p>
+● format :VFL语句<p>
+● opts :约束类型<p>
+● metrics :VFL语句中⽤用到的具体数值 ● views :VFL语句中⽤用到的控件<p>
+● 创建⼀一个字典(内部包含VFL语句中⽤用到的控件)的快捷宏定义 NSDictionaryOfVariableBindings(...)<p>
+<p>
+<p>
+基于Autolayout的动画<p>
+● 在修改了约束之后,只要执⾏行下⾯面代码,就能做动画效果 <p>
+[UIView animateWithDuration:1.0 animations:^{<p>
+[添加了约束的view layoutIfNeeded]; }];<p><p>
+<p><p>
+<p><p>
+# Quartz2D<p><p>
+● Quartz 2D能完成的⼯工作<p><p>
+➢ 绘制图形 : 线条\三⾓角形\矩形\圆\弧等<p><p>
+➢ 绘制⽂文字<p><p>
+➢ 绘制\⽣生成图⽚片(图像)<p><p>
+➢ 读取\⽣生成PDF<p><p>
+➢ 截图\裁剪图⽚片<p><p>
+➢ ⾃自定义UI控件<p><p>
+<p><p>
+<p><p>
+<h4>图形上下⽂(Bitmap Graphics Context/PDF Graphics Context/Window Graphics Context/Layer Graphics<p><p> Context/Printer Graphics Context)<p><p>
+● 图形上下⽂文(Graphics Context):是⼀一个CGContextRef类型的数据<p><p>
+● 图形上下⽂文的作⽤用<p><p>
+➢ 保存绘图信息、绘图状态<p><p>
+➢ 决定绘制的输出⽬目标(绘制到什么地⽅方去?) (输出⽬目标可以是PDF⽂文件、Bitmap或者显⽰示器的窗⼜⼝口上)<p><p>
+<p><p>
+<p><p>
+drawRect:中取得的上下⽂文<p><p>
+● 在drawRect:⽅方法中取得上下⽂文后,就可以绘制东西到view上<p><p>
+● View内部有个layer(图层)属性,drawRect:⽅方法中取得的是⼀一个Layer Graphics<p><p> Context,因此,绘制的东西其实是绘制到view的layer上去了<p><p>
+● View之所以能显⽰示东西,完全是因为它内部的layer<p><p>
+<p>
+<p>
+<h4>绘图的代码步骤 1. 获得图形上下⽂文<p>
+CGContextRef ctx = UIGraphicsGetCurrentContext();<p>
+2. 拼接路径(下⾯面代码是搞⼀一条线段) CGContextMoveToPoint(ctx, 10, 10); CGContextAddLineToPoint(ctx, 100, 100);<p>
+3. 绘制路径<p>
+CGContextStrokePath(ctx); // CGContextFillPath(ctx);<p>
+<p>
+<p>
 
-<h4>查询数据
-● 初始化⼀一个查询请求
-NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-● 设置要查询的实体
-NSEntityDescription *desc = [NSEntityDescription entityForName:@"Person" inManagedObjectContext:context];
-● 设置排序(按照age降序)
-NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"age"
-ascending:NO];
-request.sortDescriptors = [NSArray arrayWithObject:sort];
-● 设置条件过滤(name like '%Itcast-1%')
-NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like %@",
-￼￼@"*Itcast-1*"]; request.predicate = predicate;
+常⽤用拼接路径函数<p>
+● 新建⼀一个起点<p>
+void CGContextMoveToPoint(CGContextRef c, CGFloat x, CGFloat y)<p>
+● 添加新的线段到某个点<p>
+void CGContextAddLineToPoint(CGContextRef c, CGFloat x, CGFloat y)<p>
+● 添加⼀一个矩形<p>
+void CGContextAddRect(CGContextRef c, CGRect rect)<p>
+● 添加⼀一个椭圆<p>
+void CGContextAddEllipseInRect(CGContextRef context, CGRect rect)<p>
+● 添加⼀一个圆弧<p>
+void CGContextAddArc(CGContextRef c, CGFloat x, CGFloat y,<p>
+<p>
 
+<p>
+常⽤用绘制路径函数<p>
+● Mode参数决定绘制的模式<p>
+void CGContextDrawPath(CGContextRef c, CGPathDrawingMode mode)<p>
+● 绘制空⼼心路径<p>
+void CGContextStrokePath(CGContextRef c)<p>
+● 绘制实⼼心路径<p>
+void CGContextFillPath(CGContextRef c)<p>
+一般以CGContextDraw、CGContextStroke、CGContextFill开头的函数, 都是⽤用来绘制路径的<p>
+<p>
+<p>
 
-● 执⾏行请求
-NSError *error = nil;
-NSArray *objs = [context executeFetchRequest:request error:&error]; if (error) {
-[NSException raise:@"查询错误" format:@"%@", [error localizedDescription]]; }
-● 遍历数据
-for (NSManagedObject *obj in objs) {
-NSLog(@"name=%@", [obj valueForKey:@"name"] }
+图形上下⽂文栈的操作<p>
+● 将当前的上下⽂文copy⼀一份,保存到栈顶(那个栈叫做”图形上下⽂文栈”) void CGContextSaveGState(CGContextRef c)<p>
+● 将栈顶的上下⽂文出栈,替换掉当前的上下⽂文<p>
+void CGContextRestoreGState(CGContextRef c)<p>
+<p>
+<p>
+矩阵操作<p>
+● 利⽤用矩阵操作,能让绘制到上下⽂文中的所有路径⼀一起发⽣生变化<p>
+➢ 缩放<p>
+void CGContextScaleCTM(CGContextRef c, CGFloat sx, CGFloat sy)<p>
+➢ 旋转<p>
+void CGContextRotateCTM(CGContextRef c, CGFloat angle)<p>
+➢ 平移<p>
+void CGContextTranslateCTM(CGContextRef c, CGFloat tx, CGFloat ty)<p>
+<p>
+<p>
+<p>
+Quartz2D的内存管理<p>
+● 使⽤用含有“Create”或“Copy”的函数创建的对象,使⽤用完后必须释放,否则将导致内存泄<p>
+露<p>
+● 使⽤用不含有“Create”或“Copy”的函数获取的对象,则不需要释放<p>
+● 如果retain了⼀一个对象,不再使⽤用时,需要将其release掉<p>
+● 可以使⽤用Quartz 2D的函数来指定retain和release⼀一个对象。例如,如果创建了⼀一<p> 个CGColorSpace对象,则使⽤用函数CGColorSpaceRetain和CGColorSpaceRelease来retain 和release对象。<p>
+● 也可以使⽤用Core Foundation的CFRetain和CFRelease。注意不能传递NULL值给这些函数<p>
+<p>
+<p>
+<p>
+图⽚片⽔水印<p>
+● 有时候,在⼿手机客户端app中也需要⽤用到⽔水印技术<p>
+● ⽐比如,⽤用户拍完照⽚片后,可以在照⽚片上打个⽔水印,标识这个图⽚片是属于哪个⽤用户的 ●<p> 实现⽅方式:利⽤用Quartz2D,将⽔水印(⽂文字、LOGO)画到图⽚片的右下⾓角<p>
+水印PPT简介<p>
+    *  图片水印作用：防止他人盗取图片，加一些Logo，生成一张新的图片。<p>
+    *  怎么生成新的图片?和绘图一样的，需要拿到上下文做事情，这里也需要拿到上下文，生成一个新的图片。<p>
+    *  什么上下文？位图上下文，在这个上下文画东西，就能输出到新的图片上。<p>
+    *  怎么获取？之前用的都是图层上下文，系统会自动创建，但是我们位图上下文，需要我们手动创建<p>
+    *  总结：只要不和view有关系的上下文，都需要我们手动创建。<p>
+    *  在哪获取图像上下文，viewDidLoad,<p> 不需要拿到系统创建的图层上下文，没必要在drawRect方法里写,直接viewDidLo<p>ad就行了。<p>
+    *  怎么创建图像上下文了？之前说过跟上下文有关的以什么开头，UIGraphics<p>
+    *  UIGraphicsBeginImageContextWithOptions:看注释,create<p> bitmap，创建一个位图上下文,而且这种方法得到的图片最清晰。<p>
+    *  解释参数（size:新图片尺寸 opaque: YES:不透明 NO:透明 scale:0.0 不伸缩）<p>
+    *  绘制内容(图片，文字)<p>
+    *  获取图片：把位图上下文的内容生成一个图片给你。<p>
+    *  关闭上下文，不关闭一直占用着内存。<p>
+    *  显示UIImageView上<p>
+    *  保存图片，写到文件，UIImage不能写，需要转换成NSData二进制数据<p>
+    *  UIImageJPEGRepresentation:可以设置图片质量<p>
+    *  UIImagePNGRepresentation：把图片转换成png格式的二进制数据,png格式默认是最高清的。<p>
+    *  写到桌面<p>
+<p>
 
-
-
-
-
-<h4>删除数据
-● 传⼊入需要删除的实体对象
-[context deleteObject:managedObject]; ● 将结果同步到数据库
-NSError *error = nil;
-[context save:&error];
-if (error) {
-[NSException raise:@"删除错误" format:@"%@", [error localizedDescription]];
-}
-
-
-
-# Autolayout
-● 代码实现Autolayout的步骤
-● 利⽤用NSLayoutConstraint类创建具体的约束对象
-● 添加约束对象到相应的view上
-- (void)addConstraint:(NSLayoutConstraint *)constraint; - (void)addConstraints:(NSArray *)constraints;
-● 代码实现Autolayout的注意点
-● 要先禁⽌止autoresizing功能,设置view的下⾯面属性为NO
-view.translatesAutoresizingMaskIntoConstraints = NO; ● 添加约束之前,⼀一定要保证相关控件都已经在各⾃自的⽗父控件上
-● 不⽤用再给view设置frame
-
-NSLayoutConstraint
-● ⼀一个NSLayoutConstraint对象就代表⼀一个约束 ● 创建约束对象的常⽤用⽅方法
-+(id)constraintWithItem:(id)view1 attribute:(NSLayoutAttribute)attr1
-relatedBy:(NSLayoutRelation)relation toItem:(id)view2 attribute:
-(NSLayoutAttribute)attr2 multiplier:(CGFloat)multiplier constant:
-(CGFloat)c;
-● view1 :要约束的控件
-● attr1 :约束的类型(做怎样的约束)
-● relation :与参照控件之间的关系
-● view2 :参照的控件
-● attr2 :约束的类型(做怎样的约束)
-● multiplier :乘数
-● c:常量
-
-● ⾃自动布局的核⼼心计算公式
-obj1.property1 =(obj2.property2 * multiplier)+ constant value
-
-
-# VFL语⾔言
-● VFL全称是Visual Format Language,翻译过来是“可视化格式语⾔言” 
-● VFL是苹果公司为了简化Autolayout的编码⽽而推出的抽象语⾔言
-
-VFL示例
-● H:[cancelButton(72)]-12-[acceptButton(50)]
-● canelButton宽72,acceptButton宽50,它们之间间距12 ● H:[wideView(>=60@700)]
-● wideView宽度⼤大于等于60point,该约束条件优先级为700(优先级最⼤大值为1000,优先级越⾼高的约束越先 被满⾜足)
-● V:[redBox][yellowBox(==redBox)]
-● 竖直⽅方向上,先有⼀一个redBox,其下⽅方紧接⼀一个⾼高度等于redBox⾼高度的yellowBox
-● H:|-10-[Find]-[FindNext]-[FindField(>=20)]-|
-● ⽔水平⽅方向上,Find距离⽗父view左边缘默认间隔宽度,之后是FindNext距离Find间隔默认宽度;再之后是宽度 不⼩小于20的FindField,它和FindNext以及⽗父view右边缘的间距都是默认宽度。(竖线“|” 表⽰示superview的边 缘)
-
-
-VFL的使⽤
-● 使⽤用VFL来创建约束数组
-+ (NSArray *)constraintsWithVisualFormat:(NSString
-*)format options:(NSLayoutFormatOptions)opts metrics:
-(NSDictionary *)metrics views:(NSDictionary *)views;
-● format :VFL语句
-● opts :约束类型
-● metrics :VFL语句中⽤用到的具体数值 ● views :VFL语句中⽤用到的控件
-● 创建⼀一个字典(内部包含VFL语句中⽤用到的控件)的快捷宏定义 NSDictionaryOfVariableBindings(...)
-
-
-基于Autolayout的动画
-● 在修改了约束之后,只要执⾏行下⾯面代码,就能做动画效果 
-[UIView animateWithDuration:1.0 animations:^{
-[添加了约束的view layoutIfNeeded]; }];
-
-
-# Quartz2D
-● Quartz 2D能完成的⼯工作
-➢ 绘制图形 : 线条\三⾓角形\矩形\圆\弧等
-➢ 绘制⽂文字
-➢ 绘制\⽣生成图⽚片(图像)
-➢ 读取\⽣生成PDF
-➢ 截图\裁剪图⽚片
-➢ ⾃自定义UI控件
-
-
-<h4>图形上下⽂(Bitmap Graphics Context/PDF Graphics Context/Window Graphics Context/Layer Graphics Context/Printer Graphics Context)
-● 图形上下⽂文(Graphics Context):是⼀一个CGContextRef类型的数据
-● 图形上下⽂文的作⽤用
-➢ 保存绘图信息、绘图状态
-➢ 决定绘制的输出⽬目标(绘制到什么地⽅方去?) (输出⽬目标可以是PDF⽂文件、Bitmap或者显⽰示器的窗⼜⼝口上)
-
-
-drawRect:中取得的上下⽂文
-● 在drawRect:⽅方法中取得上下⽂文后,就可以绘制东西到view上
-● View内部有个layer(图层)属性,drawRect:⽅方法中取得的是⼀一个Layer Graphics Context,因此,绘制的东西其实是绘制到view的layer上去了
-● View之所以能显⽰示东西,完全是因为它内部的layer
-
-
-<h4>绘图的代码步骤 1. 获得图形上下⽂文
-CGContextRef ctx = UIGraphicsGetCurrentContext();
-2. 拼接路径(下⾯面代码是搞⼀一条线段) CGContextMoveToPoint(ctx, 10, 10); CGContextAddLineToPoint(ctx, 100, 100);
-3. 绘制路径
-CGContextStrokePath(ctx); // CGContextFillPath(ctx);
-
-
-
-常⽤用拼接路径函数
-● 新建⼀一个起点
-void CGContextMoveToPoint(CGContextRef c, CGFloat x, CGFloat y)
-● 添加新的线段到某个点
-void CGContextAddLineToPoint(CGContextRef c, CGFloat x, CGFloat y)
-● 添加⼀一个矩形
-void CGContextAddRect(CGContextRef c, CGRect rect)
-● 添加⼀一个椭圆
-void CGContextAddEllipseInRect(CGContextRef context, CGRect rect)
-● 添加⼀一个圆弧
-void CGContextAddArc(CGContextRef c, CGFloat x, CGFloat y,
-
-
-
-常⽤用绘制路径函数
-● Mode参数决定绘制的模式
-void CGContextDrawPath(CGContextRef c, CGPathDrawingMode mode)
-● 绘制空⼼心路径
-void CGContextStrokePath(CGContextRef c)
-● 绘制实⼼心路径
-void CGContextFillPath(CGContextRef c)
-一般以CGContextDraw、CGContextStroke、CGContextFill开头的函数, 都是⽤用来绘制路径的
-
-
-
-图形上下⽂文栈的操作
-● 将当前的上下⽂文copy⼀一份,保存到栈顶(那个栈叫做”图形上下⽂文栈”) void CGContextSaveGState(CGContextRef c)
-● 将栈顶的上下⽂文出栈,替换掉当前的上下⽂文
-void CGContextRestoreGState(CGContextRef c)
-
-
-矩阵操作
-● 利⽤用矩阵操作,能让绘制到上下⽂文中的所有路径⼀一起发⽣生变化
-➢ 缩放
-void CGContextScaleCTM(CGContextRef c, CGFloat sx, CGFloat sy)
-➢ 旋转
-void CGContextRotateCTM(CGContextRef c, CGFloat angle)
-➢ 平移
-void CGContextTranslateCTM(CGContextRef c, CGFloat tx, CGFloat ty)
-
-
-
-Quartz2D的内存管理
-● 使⽤用含有“Create”或“Copy”的函数创建的对象,使⽤用完后必须释放,否则将导致内存泄
-露
-● 使⽤用不含有“Create”或“Copy”的函数获取的对象,则不需要释放
-● 如果retain了⼀一个对象,不再使⽤用时,需要将其release掉
-● 可以使⽤用Quartz 2D的函数来指定retain和release⼀一个对象。例如,如果创建了⼀一 个CGColorSpace对象,则使⽤用函数CGColorSpaceRetain和CGColorSpaceRelease来retain 和release对象。
-● 也可以使⽤用Core Foundation的CFRetain和CFRelease。注意不能传递NULL值给这些函数
-
-
-
-图⽚片⽔水印
-● 有时候,在⼿手机客户端app中也需要⽤用到⽔水印技术
-● ⽐比如,⽤用户拍完照⽚片后,可以在照⽚片上打个⽔水印,标识这个图⽚片是属于哪个⽤用户的 ● 实现⽅方式:利⽤用Quartz2D,将⽔水印(⽂文字、LOGO)画到图⽚片的右下⾓角
-水印PPT简介
-    *  图片水印作用：防止他人盗取图片，加一些Logo，生成一张新的图片。
-    *  怎么生成新的图片?和绘图一样的，需要拿到上下文做事情，这里也需要拿到上下文，生成一个新的图片。
-    *  什么上下文？位图上下文，在这个上下文画东西，就能输出到新的图片上。
-    *  怎么获取？之前用的都是图层上下文，系统会自动创建，但是我们位图上下文，需要我们手动创建
-    *  总结：只要不和view有关系的上下文，都需要我们手动创建。
-    *  在哪获取图像上下文，viewDidLoad, 不需要拿到系统创建的图层上下文，没必要在drawRect方法里写,直接viewDidLoad就行了。
-    *  怎么创建图像上下文了？之前说过跟上下文有关的以什么开头，UIGraphics
-    *  UIGraphicsBeginImageContextWithOptions:看注释,create bitmap，创建一个位图上下文,而且这种方法得到的图片最清晰。
-    *  解释参数（size:新图片尺寸 opaque: YES:不透明 NO:透明 scale:0.0 不伸缩）
-    *  绘制内容(图片，文字)
-    *  获取图片：把位图上下文的内容生成一个图片给你。
-    *  关闭上下文，不关闭一直占用着内存。
-    *  显示UIImageView上
-    *  保存图片，写到文件，UIImage不能写，需要转换成NSData二进制数据
-    *  UIImageJPEGRepresentation:可以设置图片质量
-    *  UIImagePNGRepresentation：把图片转换成png格式的二进制数据,png格式默认是最高清的。
-    *  写到桌面
-
-
-<h3>图⽚片裁剪
-￼● 核⼼心代码
-// 图片
-    UIImage *image =[ UIImage imageNamed:@"1"];
+<h3>图⽚片裁剪<p>
+￼● 核⼼心代码<p>
+// 图片<p>
+    UIImage *image =[ UIImage imageNamed:@"1"];<p>
+    <p>
+    // 首先开启一个位图上下文<p>
+    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0);<p>
+    <p>
+    // 画一个源<p>
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, image.size.height,<p> image.size.height)];<p>
+    <p>
+    // 圆形剪裁<p>
+    [path addClip];<p>
+    <p>
+    // 图片绘制到上下文<p>
+    [image drawAtPoint:CGPointZero];<p>
+    <p>
+    // 获取图片<p>
+    image = UIGraphicsGetImageFromCurrentImageContext();<p>
+    // 关闭上下文<p>
+    UIGraphicsEndImageContext();<p>
+    <p>
+    <p>
+    // 输出<p>
+    NSData *data = UIImagePNGRepresentation(image);<p>
+    <p>
+    [data writeToFile:@"/Users/JS/Desktop/dd2.png" atomically:YES];<p>
+<p>
+<p>
+<h3>屏幕截图<p>
+ 核⼼心代码<p>
+// 开启位图上下文<p>
+    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0);<p>
+    <p>
+    // 获取当前上下文<p>
+    CGContextRef ctr = UIGraphicsGetCurrentContext();<p>
+    <p>
+    //  渲染到上下文(图层只能用渲染)<p>
+    [self.view.layer renderInContext:ctr];<p>
+    <p>
+    <p>
+    <p>
+    // 生成一张新的图片<p>
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();<p>
+    <p>
+    // 关闭上下文<p>
+    UIGraphicsEndImageContext();<p>
+    <p>
+    // 输出<p>
+    NSData *data = UIImagePNGRepresentation(image);<p>
+    <p><p>
+    [data writeToFile:@"/Users/JS/Desktop/2c97690e72365e38e3e2ab934b8dd2.png" atomically:YES];<p><p>
+    <p><p>
     
-    // 首先开启一个位图上下文
-    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0);
-    
-    // 画一个源
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, image.size.height, image.size.height)];
-    
-    // 圆形剪裁
-    [path addClip];
-    
-    // 图片绘制到上下文
-    [image drawAtPoint:CGPointZero];
-    
-    // 获取图片
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    // 关闭上下文
-    UIGraphicsEndImageContext();
-    
-    
-    // 输出
-    NSData *data = UIImagePNGRepresentation(image);
-    
-    [data writeToFile:@"/Users/JS/Desktop/dd2.png" atomically:YES];
+    <p><p>
+   <p><p>
 
 
-<h3>屏幕截图
- 核⼼心代码
-// 开启位图上下文
-    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0);
+# CALayer<p><p>
+● 在iOS中,你能看得见摸得着的东西基本上都是UIView,⽐比如⼀一个按钮、⼀一个⽂文本标签、<p><p> ⼀一个⽂文本输⼊入框、⼀一个图标等等,这些都是UIView<p><p>
+● 其实UIView之所以能显⽰示在屏幕上,完全是因为它内部的⼀一个图层<p><p>
+● 在创建UIView对象时,UIView内部会⾃自动创建⼀一个图层(即CALayer对象),通过UIView<p><p>
+的layer属性可以访问这个层 @property(nonatomic,readonly,retain) CALayer *layer;<p><p>
+● 当UIView需要显⽰示到屏幕上时,会调⽤用drawRect:⽅方法进⾏行绘图,并且会将所有内容绘制在<p><p> ⾃自⼰己的图层上,绘图完毕后,系统会将图层拷贝到屏幕上,于是就完成了UIView的显⽰示<p><p>
+● 换句话说,UIView本⾝身不具备显⽰示的功能,是它内部的层才有显⽰示功能<p><p>
+<p>
+CALayer的基本使⽤<p>
+● 通过操作CALayer对象,可以很⽅方便地调整UIView的⼀一些外观属性,⽐比如: ➢ 阴影<p>
+➢ 圆⾓角⼤大⼩小<p>
+➢ 边框宽度和颜⾊色<p>
+<p>
+<p>
+CALayer的属性 <p>
+● 宽度和⾼高度<p>
+@property CGRect bounds;<p>
+● 位置(默认指中点,具体由anchorPoint决定)<p>
+@property CGPoint position;<p>
+● 锚点(x,y的范围都是0-1),决定了position的含义<p>
+@property CGPoint anchorPoint; <p>
+● 背景颜⾊色(CGColorRef类型)<p>
+@property CGColorRef backgroundColor;<p>
+￼￼● 形变属性<p>
+@property CATransform3D transform;<p>
+● 边框颜⾊色(CGColorRef类型)<p>
+@property CGColorRef borderColor; <p>
+● 边框宽度<p>
+@property CGFloat borderWidth; <p>
+● 圆⾓角半径<p>
+@property CGColorRef borderColor; <p>
+● 内容(⽐比如设置为图⽚片CGImageRef)<p>
+@property(retain) id contents;<p>
+<p>
+<p>
+CALayer的疑惑<p>
+● ⾸首先<p>
+➢ CALayer是定义在QuartzCore框架中的<p>
+➢ CGImageRef、CGColorRef两种数据类型是定义在CoreGraphics框架中的<p>
+➢ UIColor、UIImage是定义在UIKit框架中的<p>
+● 其次<p>
+➢ QuartzCore框架和CoreGraphics框架是可以跨平台使⽤用的,在iOS和Mac OS X上都能使⽤用<p>
+➢ 但是UIKit只能在iOS中使⽤用<p>
+● 为了保证可移植性,QuartzCore不能使⽤用UIImage、UIColor,只能使 ⽤用CGImageRef、CGColorRef<p>
+<p>
+<p>
+<p>
+UIView和CALayer的选择<p>
+● 通过CALayer,就能做出跟UIImageView⼀一样的界⾯面效果<p>
+● 既然CALayer和UIView都能实现相同的显⽰示效果,那究竟该选择谁好呢?<p>
+➢ 其实,对⽐比CALayer,UIView多了⼀一个事件处理的功能。也就是说,CALayer不能<p>
+处理⽤用户的触摸事件,⽽而UIView可以<p>
+➢ 所以,如果显⽰示出来的东西需要跟⽤用户进⾏行交互的话,⽤用UIView;如果不需要跟⽤用户<p>
+进⾏行交互,⽤用UIView或者CALayer都可以<p>
+➢ 当然,CALayer的性能会⾼高⼀一些,因为它少了事件处理的功能,更加轻量级<p>
+<p>
+<p>
+<p>
+position和anchorPoint<p>
+● CALayer有2个⾮非常重要的属性:position和anchorPoint<p>
+● @propertyCGPointposition; ➢ ⽤用来设置CALayer在⽗父层中的位置<p>
+➢ 以⽗父层的左上⾓角为原点(0, 0)<p>
+● @propertyCGPointanchorPoint; ➢ 称为“定位点”、“锚点”<p>
+➢ 决定着CALayer⾝身上的哪个点会在position属性所指的位置 ➢ 以⾃自⼰己的左上⾓角为原点(0, 0)<p>
+➢ 它的x、y取值范围都是0~1,默认值为(0.5,0.5)<p>
+<p>
+<p>
+隐式动画<p>
+● 可以通过动画事务(CATransaction)关闭默认的隐式动画效果 [CATransaction begin];<p><p>
+[CATransaction setDisableActions:YES]; <p><p>
+self.myview.layer.position = CGPointMake(10, 10); <p><p>
+[CATransaction commit];<p><p>
+<p><p>
+<p><p>
+ # Core Animation 核心动画<p><p>
+ 使⽤用步骤<p><p>
+ ● 1.⾸首先得有CALayer<p><p>
+● 2.初始化⼀一个CAAnimation对象,并设置⼀一些动画相关属性<p><p>
+● 3.通过调⽤用CALayer的addAnimation:forKey:⽅方法,增加CAAnimation对 象到CALayer中,这样就能开始执⾏行动画了<p><p>
+● 4.通过调⽤用CALayer的removeAnimationForKey:⽅方法可以停⽌止CALayer 中的动画<p><p>
+<p><p>
+● duration:动画的持续时间<p><p>
+● repeatCount:重复次数,⽆无限循环可以设置HUGE_VALF或者MAXFLOAT ● repeatDuration:重复时间<p><p>
+● removedOnCompletion:默认为YES,代表动画执⾏行完毕后就从图层上移除,图形会<p><p> 恢复到动画执⾏行前的状态。如果想让图层保持显⽰示动画执⾏行后的状态,那就设置<p><p> 为NO,不过还要设置fillMode为kCAFillModeForwards<p><p>
+● fillMode:决定当前对象在⾮非active时间段的⾏行为。⽐比如动画开始之前或者动画结束 之后<p><p>
+● beginTime:可以⽤用来设置动画延迟执⾏行时间,若想延迟2s,就设置<p><p> 为CACurrentMediaTime()+2,CACurrentMediaTime()为图层的当前时间<p><p>
+● timingFunction:速度控制函数,控制动画运⾏行的节奏 ● delegate:动画代理<p><p>
+<p>
+<p>
+CAAnimation——速度控制函数<p>
+● 速度控制函数(CAMediaTimingFunction)<p>
+kCAMediaTimingFunctionLinear(线性):匀速,给你⼀一个相对静态的感觉<p>
+kCAMediaTimingFunctionEaseIn(渐进):动画缓慢进⼊入,然后加速离开<p>
+kCAMediaTimingFunctionEaseOut(渐出):动画全速进⼊入,然后减速的到达⽬目 的地<p>
+kCAMediaTimingFunctionEaseInEaseOut(渐进渐出):动画缓慢的进⼊入,中间<p> 加速,然后减速的到达⽬目的地。这个是默认的动画⾏行为。<p>
+<p>
+<p>
+<p>
+# CALayer上动画的暂停和恢复<p>
+#pragma mark 暂停CALayer的动画 -(void)pauseLayer:(CALayer*)layer {<p>
+   CFTimeInterval pausedTime = [layer<p>
+convertTime:CACurrentMediaTime() fromLayer:nil];<p>
+// 让CALayer的时间停⽌止⾛走动 layer.speed = 0.0;<p>
+// 让CALayer的时间停留在pausedTime这个时刻<p>
+   layer.timeOffset = pausedTime;<p>
+}<p>
+<p>
+#pragma mark 恢复CALayer的动画 -(void)resumeLayer:(CALayer*)layer {<p>
+CFTimeInterval pausedTime = layer.timeOffset; // 1. 让CALayer的时间继续⾏行⾛走<p>
+layer.speed = 1.0;<p>
+// 2. 取消上次记录的停留时刻<p>
+layer.timeOffset = 0.0; // 3. 取消上次设置的时间<p>
+     layer.beginTime = 0.0;<p>
+// 4. 计算暂停的时间(这⾥里也可以⽤用CACurrentMediaTime()-pausedTime)<p>
+   CFTimeInterval timeSincePause = [layer convertTime:CACurrentMediaTime()<p>
+fromLayer:nil] - pausedTime;<p>
+// 5. 设置相对于⽗父坐标系的开始时间(往后退timeSincePause) layer.beginTime = timeSincePause;<p>
+}<p>
+￼￼<p>
+
+
+<p>
+
+CABasicAnimation——基本动画 ● 基本动画,是CAPropertyAnimation的⼦子类<p>
+● 属性说明:<p>
+● fromValue:keyPath相应属性的初始值 ● toValue:keyPath相应属性的结束值<p>
+● 动画过程说明:<p>
+● 随着动画的进⾏行,在长度为duration的持续时间内,keyPath相应属性的值从<p>
+● keyPath内容是CALayer的可动画Animatable属性<p>
+● 如果fillMode=kCAFillModeForwards同时removedOnComletion=NO,那么在<p> 动画执⾏行完毕后,图层会保持显⽰示动画执⾏行后的状态。但在实质上,图层<p> 的属性值还是动画执⾏行前的初始值,并没有真正被改变。<p>
+    <h3>CABasicAnimation<p>
+    // 创建一个基本动画<p>
+    CABasicAnimation *cab = [CABasicAnimation animationWithKeyPath:@"position"];<p>
+    <p>
+    // 修改的值<p>
+    cab.toValue = [NSValue valueWithCGPoint:CGPointMake(200, 400)];<p>
+    <p>
+    // 取消反弹<p>
+    cab.removedOnCompletion = NO;<p>
+    cab.duration = 3;<p>
+    cab.repeatCount = MAXFLOAT;<p>
+    cab.autoreverses = YES;<p>
+    <p>
+    //  动画保存最新效果<p>
+    cab.fillMode = kCAFillModeForwards;<p>
+    <p>
+    [self.vie.layer addAnimation:cab forKey:nil];<p>
+    <p>
+    <p>
+    <p>
     
-    // 获取当前上下文
-    CGContextRef ctr = UIGraphicsGetCurrentContext();
-    
-    //  渲染到上下文(图层只能用渲染)
-    [self.view.layer renderInContext:ctr];
-    
-    
-    
-    // 生成一张新的图片
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    // 关闭上下文
-    UIGraphicsEndImageContext();
-    
-    // 输出
-    NSData *data = UIImagePNGRepresentation(image);
-    
-    [data writeToFile:@"/Users/JS/Desktop/2c97690e72365e38e3e2ab934b8dd2.png" atomically:YES];
-    
-    
-    
-   
-
-
-# CALayer
-● 在iOS中,你能看得见摸得着的东西基本上都是UIView,⽐比如⼀一个按钮、⼀一个⽂文本标签、 ⼀一个⽂文本输⼊入框、⼀一个图标等等,这些都是UIView
-● 其实UIView之所以能显⽰示在屏幕上,完全是因为它内部的⼀一个图层
-● 在创建UIView对象时,UIView内部会⾃自动创建⼀一个图层(即CALayer对象),通过UIView
-的layer属性可以访问这个层 @property(nonatomic,readonly,retain) CALayer *layer;
-● 当UIView需要显⽰示到屏幕上时,会调⽤用drawRect:⽅方法进⾏行绘图,并且会将所有内容绘制在 ⾃自⼰己的图层上,绘图完毕后,系统会将图层拷贝到屏幕上,于是就完成了UIView的显⽰示
-● 换句话说,UIView本⾝身不具备显⽰示的功能,是它内部的层才有显⽰示功能
-
-CALayer的基本使⽤
-● 通过操作CALayer对象,可以很⽅方便地调整UIView的⼀一些外观属性,⽐比如: ➢ 阴影
-➢ 圆⾓角⼤大⼩小
-➢ 边框宽度和颜⾊色
-
-
-CALayer的属性 
-● 宽度和⾼高度
-@property CGRect bounds;
-● 位置(默认指中点,具体由anchorPoint决定)
-@property CGPoint position;
-● 锚点(x,y的范围都是0-1),决定了position的含义
-@property CGPoint anchorPoint; 
-● 背景颜⾊色(CGColorRef类型)
-@property CGColorRef backgroundColor;
-￼￼● 形变属性
-@property CATransform3D transform;
-● 边框颜⾊色(CGColorRef类型)
-@property CGColorRef borderColor; 
-● 边框宽度
-@property CGFloat borderWidth; 
-● 圆⾓角半径
-@property CGColorRef borderColor; 
-● 内容(⽐比如设置为图⽚片CGImageRef)
-@property(retain) id contents;
-
-
-CALayer的疑惑
-● ⾸首先
-➢ CALayer是定义在QuartzCore框架中的
-➢ CGImageRef、CGColorRef两种数据类型是定义在CoreGraphics框架中的
-➢ UIColor、UIImage是定义在UIKit框架中的
-● 其次
-➢ QuartzCore框架和CoreGraphics框架是可以跨平台使⽤用的,在iOS和Mac OS X上都能使⽤用
-➢ 但是UIKit只能在iOS中使⽤用
-● 为了保证可移植性,QuartzCore不能使⽤用UIImage、UIColor,只能使 ⽤用CGImageRef、CGColorRef
-
-
-
-UIView和CALayer的选择
-● 通过CALayer,就能做出跟UIImageView⼀一样的界⾯面效果
-● 既然CALayer和UIView都能实现相同的显⽰示效果,那究竟该选择谁好呢?
-➢ 其实,对⽐比CALayer,UIView多了⼀一个事件处理的功能。也就是说,CALayer不能
-处理⽤用户的触摸事件,⽽而UIView可以
-➢ 所以,如果显⽰示出来的东西需要跟⽤用户进⾏行交互的话,⽤用UIView;如果不需要跟⽤用户
-进⾏行交互,⽤用UIView或者CALayer都可以
-➢ 当然,CALayer的性能会⾼高⼀一些,因为它少了事件处理的功能,更加轻量级
-
-
-
-position和anchorPoint
-● CALayer有2个⾮非常重要的属性:position和anchorPoint
-● @propertyCGPointposition; ➢ ⽤用来设置CALayer在⽗父层中的位置
-➢ 以⽗父层的左上⾓角为原点(0, 0)
-● @propertyCGPointanchorPoint; ➢ 称为“定位点”、“锚点”
-➢ 决定着CALayer⾝身上的哪个点会在position属性所指的位置 ➢ 以⾃自⼰己的左上⾓角为原点(0, 0)
-➢ 它的x、y取值范围都是0~1,默认值为(0.5,0.5)
-
-
-隐式动画
-● 可以通过动画事务(CATransaction)关闭默认的隐式动画效果 [CATransaction begin];
-[CATransaction setDisableActions:YES]; 
-self.myview.layer.position = CGPointMake(10, 10); 
-[CATransaction commit];
-
-
- # Core Animation 核心动画
- 使⽤用步骤
- ● 1.⾸首先得有CALayer
-● 2.初始化⼀一个CAAnimation对象,并设置⼀一些动画相关属性
-● 3.通过调⽤用CALayer的addAnimation:forKey:⽅方法,增加CAAnimation对 象到CALayer中,这样就能开始执⾏行动画了
-● 4.通过调⽤用CALayer的removeAnimationForKey:⽅方法可以停⽌止CALayer 中的动画
-
-● duration:动画的持续时间
-● repeatCount:重复次数,⽆无限循环可以设置HUGE_VALF或者MAXFLOAT ● repeatDuration:重复时间
-● removedOnCompletion:默认为YES,代表动画执⾏行完毕后就从图层上移除,图形会 恢复到动画执⾏行前的状态。如果想让图层保持显⽰示动画执⾏行后的状态,那就设置 为NO,不过还要设置fillMode为kCAFillModeForwards
-● fillMode:决定当前对象在⾮非active时间段的⾏行为。⽐比如动画开始之前或者动画结束 之后
-● beginTime:可以⽤用来设置动画延迟执⾏行时间,若想延迟2s,就设置 为CACurrentMediaTime()+2,CACurrentMediaTime()为图层的当前时间
-● timingFunction:速度控制函数,控制动画运⾏行的节奏 ● delegate:动画代理
-
-
-CAAnimation——速度控制函数
-● 速度控制函数(CAMediaTimingFunction)
-kCAMediaTimingFunctionLinear(线性):匀速,给你⼀一个相对静态的感觉
-kCAMediaTimingFunctionEaseIn(渐进):动画缓慢进⼊入,然后加速离开
-kCAMediaTimingFunctionEaseOut(渐出):动画全速进⼊入,然后减速的到达⽬目 的地
-kCAMediaTimingFunctionEaseInEaseOut(渐进渐出):动画缓慢的进⼊入,中间 加速,然后减速的到达⽬目的地。这个是默认的动画⾏行为。
-
-
-
-# CALayer上动画的暂停和恢复
-#pragma mark 暂停CALayer的动画 -(void)pauseLayer:(CALayer*)layer {
-   CFTimeInterval pausedTime = [layer
-convertTime:CACurrentMediaTime() fromLayer:nil];
-// 让CALayer的时间停⽌止⾛走动 layer.speed = 0.0;
-// 让CALayer的时间停留在pausedTime这个时刻
-   layer.timeOffset = pausedTime;
-}
-
-#pragma mark 恢复CALayer的动画 -(void)resumeLayer:(CALayer*)layer {
-CFTimeInterval pausedTime = layer.timeOffset; // 1. 让CALayer的时间继续⾏行⾛走
-layer.speed = 1.0;
-// 2. 取消上次记录的停留时刻
-layer.timeOffset = 0.0; // 3. 取消上次设置的时间
-     layer.beginTime = 0.0;
-// 4. 计算暂停的时间(这⾥里也可以⽤用CACurrentMediaTime()-pausedTime)
-   CFTimeInterval timeSincePause = [layer convertTime:CACurrentMediaTime()
-fromLayer:nil] - pausedTime;
-// 5. 设置相对于⽗父坐标系的开始时间(往后退timeSincePause) layer.beginTime = timeSincePause;
-}
-￼￼
-
-
-
-
-CABasicAnimation——基本动画 ● 基本动画,是CAPropertyAnimation的⼦子类
-● 属性说明:
-● fromValue:keyPath相应属性的初始值 ● toValue:keyPath相应属性的结束值
-● 动画过程说明:
-● 随着动画的进⾏行,在长度为duration的持续时间内,keyPath相应属性的值从
-● keyPath内容是CALayer的可动画Animatable属性
-● 如果fillMode=kCAFillModeForwards同时removedOnComletion=NO,那么在 动画执⾏行完毕后,图层会保持显⽰示动画执⾏行后的状态。但在实质上,图层 的属性值还是动画执⾏行前的初始值,并没有真正被改变。
-    <h3>CABasicAnimation
-    // 创建一个基本动画
-    CABasicAnimation *cab = [CABasicAnimation animationWithKeyPath:@"position"];
-    
-    // 修改的值
-    cab.toValue = [NSValue valueWithCGPoint:CGPointMake(200, 400)];
-    
-    // 取消反弹
-    cab.removedOnCompletion = NO;
-    cab.duration = 3;
-    cab.repeatCount = MAXFLOAT;
-    cab.autoreverses = YES;
-    
-    //  动画保存最新效果
-    cab.fillMode = kCAFillModeForwards;
-    
-    [self.vie.layer addAnimation:cab forKey:nil];
-    
-    
-    
-    
-   <h3> CAKeyframeAnimation
-   CAKeyframeAnimation——关键帧动画
-● 关键帧动画,也是CAPropertyAnimation的⼦子类,与CABasicAnimation的区别是:
-● CABasicAnimation只能从⼀一个数值(fromValue)变到另⼀一个数值(toValue), ⽽而CAKeyframeAnimation会使⽤用⼀一个NSArray保存这些数值
-● 属性说明:
-● values:上述的NSArray对象。⾥里⾯面的元素称为“关键帧”(keyframe)。动画对象会在指
-定的时间(duration)内,依次显⽰示values数组中的每⼀一个关键帧
-● path:可以设置⼀一个CGPathRef、CGMutablePathRef,让图层按照路径轨迹移 动。path只对CALayer的anchorPoint和position起作⽤用。如果设置了path,那么values将 被忽略
-● keyTimes:可以为对应的关键帧指定对应的时间点,其取值范围为0到1.0,keyTimes 中的每⼀一个时间值都对应values中的每⼀一帧。如果没有设置keyTimes,各个关键帧的 时间是平分的
-● CABasicAnimation可看做是只有2个关键帧的CAKeyframeAnimation
-    // 创建一个帧动画
-    CAKeyframeAnimation *cak = [CAKeyframeAnimation animation];
-    
-    cak.keyPath = @"transform.rotation";
-    
-    cak.values = @[@0.1,@0,@-0.1,@0.1];
-    
-    
-    cak.duration = 0.3;
-    cak.repeatCount = MAXFLOAT;
-    
-    [self.image.layer addAnimation:cak forKey:nil];
+   <h3> CAKeyframeAnimation<p>
+   CAKeyframeAnimation——关键帧动画<p>
+● 关键帧动画,也是CAPropertyAnimation的⼦子类,与CABasicAnimation的区别是:<p>
+● CABasicAnimation只能从⼀一个数值(fromValue)变到另⼀一个数值(toValue),<p> ⽽而CAKeyframeAnimation会使⽤用⼀一个NSArray保存这些数值<p>
+● 属性说明:<p>
+● values:上述的NSArray对象。⾥里⾯面的元素称为“关键帧”(keyframe)。动画对象会在指<p>
+定的时间(duration)内,依次显⽰示values数组中的每⼀一个关键帧<p>
+● path:可以设置⼀一个CGPathRef、CGMutablePathRef,让图层按照路径轨迹移<p> 动。path只对CALayer的anchorPoint和position起作⽤用。如果设置了path,那么values将 被忽略<p>
+● keyTimes:可以为对应的关键帧指定对应的时间点,其取值范围为0到1.0,keyTimes<p> 中的每⼀一个时间值都对应values中的每⼀一帧。如果没有设置keyTimes,各个关键帧的 时间是平分的<p>
+● CABasicAnimation可看做是只有2个关键帧的CAKeyframeAnimation<p>
+    // 创建一个帧动画<p>
+    CAKeyframeAnimation *cak = [CAKeyframeAnimation animation];<p>
+    <p>
+    cak.keyPath = @"transform.rotation";<p>
+    <p>
+    cak.values = @[@0.1,@0,@-0.1,@0.1];<p>
+    <p>
+    <p>
+    cak.duration = 0.3;<p>
+    cak.repeatCount = MAXFLOAT;<p>
+    <p>
+    [self.image.layer addAnimation:cak forKey:nil];<p>
+    <p>
+    <p>
+    <h4>CATransition<p>
+    转场动画——CATransition<p>
+● CATransition是CAAnimation的⼦子类,⽤用于做转场动画,能够为层提供 移出屏幕和移⼊入屏幕的动画效果。iOS⽐比Mac OS<p> X的转场动画效果少 ⼀一点<p>
+● UINavigationController就是通过CATransition实现了将控制器的视图推 ⼊入屏幕的动画效果<p>
+● 动画属性:<p>
+● type:动画过渡类型<p>
+● subtype:动画过渡⽅方向<p>
+● startProgress:动画起点(在整体动画的百分⽐比) ● endProgress:动画终点(在整体动画的百分⽐比)<p>
+<p>
+    static int i = 1;<p>
+    <p>
+    if (i == 4) {<p>
+        i =1;<p>
+    }<p>
+    <p>
+    // 转场动画必须先进行判断,在写动画,这样才会执行<p>
+    <p>
+    self.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",i]];<p>
+    <p>
+    i++;<p>
+    <p>
+    // 添加转场动画<p>
+    CATransition *cat = [CATransition animation];<p>
+    <p>
+    <p>
+    // 设置转场样式<p>
+    // 立体反转效果<p>
+    cat.type = @"cube";<p>
+    <p>
+//    // 水滴效果<p>
+//    cat.type = @"rippleEffect";<p>
+    <p>
+    // 抽布效果<p>
+//    cat.type = @"suckEffect";<p>
+    <p>
+    // 相机关闭效果<p>
+//    cat.type = @"cameraIrisHollowOpen";<p>
+    <p>
+    <p>
+    [self.image.layer addAnimation:cat forKey:nil];<p>
+    <p>
+    <p>
     
     
-    <h4>CATransition
-    转场动画——CATransition
-● CATransition是CAAnimation的⼦子类,⽤用于做转场动画,能够为层提供 移出屏幕和移⼊入屏幕的动画效果。iOS⽐比Mac OS X的转场动画效果少 ⼀一点
-● UINavigationController就是通过CATransition实现了将控制器的视图推 ⼊入屏幕的动画效果
-● 动画属性:
-● type:动画过渡类型
-● subtype:动画过渡⽅方向
-● startProgress:动画起点(在整体动画的百分⽐比) ● endProgress:动画终点(在整体动画的百分⽐比)
-
-    static int i = 1;
-    
-    if (i == 4) {
-        i =1;
-    }
-    
-    // 转场动画必须先进行判断,在写动画,这样才会执行
-    
-    self.image.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",i]];
-    
-    i++;
-    
-    // 添加转场动画
-    CATransition *cat = [CATransition animation];
-    
-    
-    // 设置转场样式
-    // 立体反转效果
-    cat.type = @"cube";
-    
-//    // 水滴效果
-//    cat.type = @"rippleEffect";
-    
-    // 抽布效果
-//    cat.type = @"suckEffect";
-    
-    // 相机关闭效果
-//    cat.type = @"cameraIrisHollowOpen";
-    
-    
-    [self.image.layer addAnimation:cat forKey:nil];
-    
-    
-    
-    
-CAAnimationGroup——动画组
-● 动画组,是CAAnimation的⼦子类,可以保存⼀一组动画对象,
-￼将CAAnimationGroup对象加⼊入层后,组中所有动画对象可以同时并发运⾏行
-● 属性说明:
-● animations:⽤用来保存⼀一组动画对象的NSArray
-● 默认情况下,⼀一组动画对象是同时运⾏行的,也可以通过设置动画对象的 beginTime属性来更改动画的开始时间
-
-
-使⽤用UIView动画函数实现转场动画——单视 图
-● + (void)transitionWithView:(UIView *)view duration:(NSTimeInterval)duration options: (UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;
-● 参数说明:
-● duration:动画的持续时间
-● view:需要进⾏行转场动画的视图
-● options:转场动画的类型
-● animations:将改变视图属性的代码放在这个block中 ● completion:动画结束后,会⾃自动调⽤用这个block
-
-
-
-使⽤用UIView动画函数实现转场动画——双视 图
-● + (void)transitionFromView:(UIView *)fromView toView:(UIView *)toView duration: (NSTimeInterval)duration options: (UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion;
-● 参数说明:
-● duration:动画的持续时间
-● options:转场动画的类型
-● animations:将改变视图属性的代码放在这个block中 ● completion:动画结束后,会⾃自动调⽤用这个block
-
-
-
-
-CADisplayLink
-● CADisplayLink是⼀一种以屏幕刷新频率触发的时钟机制,每秒钟执⾏行 ⼤大约60次左右
-● CADisplayLink是⼀一个计时器,可以使绘图代码与视图的刷新频率保 持同步,⽽而NSTimer⽆无法确保计时器实际被触发的准确时间
-● 使⽤用⽅方法:
-● 定义CADisplayLink并制定触发调⽤用⽅方法 ● 将显⽰示链接添加到主运⾏行循环队列
-
-
-# 源代码管理⼯工具
-
-
-● SVN
-● 全称是Subversion,集中式版本控制之王者
-● 是CVS的接班⼈人,速度⽐比CVS快,功能⽐比CVS多且强⼤大 ● 在国内软件企业中使⽤用最为普遍(70%~90%)
-● GIT
-● ⼀一款伟⼤大的分布式源代码管理⼯工具 ● ⽬目前被越来越多的开源项⽬目使⽤用
-● 不过在国内企业尚未⼤大范围普及
-
-
-SVN 是集中式源代码管理工具
-
-概念：
-1> Repository   代码仓库，保存代码的仓库
-2> Server       服务器，保存所有版本的代码仓库
-3> Client       客户端，只保存当前用户的代码仓库
-4> 用户名&密码   访问代码仓库需要使用自己的"用户名和密码"，从而可以区分出不同的人对代码做的修改
-
-使⽤用环境
-
-要想利⽤用SVN管理源代码,必须得有2套环境
-服务器
-⽤用于存储客户端上传的源代码 可以在Windows上安装Visual SVN Server ⼤大部分情况下,公司的开发⼈人员不必亲⾃自搭建SVN服务器
-客户端
-上传本地的源代码到服务器,或者更新服务器的代码到本地,保持同步 可以在Mac上使⽤用命令⾏行、Versions、Cornerstone、Xcode 开发⼈人员就属于客户端这个⾓角⾊色
-￼
-
-SVN客户端命令
-● svn checkout :下载服务器的代码到本地 (简写svn co)
-● svn commit :将改动的⽂文件提交到服务器(简写svn ci)
-● svn update :更新服务器的代码到本地 (简写svn up)
-● svn add :向本地的版本控制库中添加新⽂文件
-● svn delete、svn remove :从本地的版本控制库中删除⽂文件(简写svn del、svn rm)
-● svn move :移动⽂文件或者⽬目录或⽂文件更名
-● svn mkdir :创建纳⼊入版本控制下的新⽬目录
-● svn revert :撤销之前的⼀一切修改
-● svn merge :将两个版本之间的差异合并到当前⽂文件
-
-
-SVN客户端命令
-● svn info :查看⽂文件的详细信息
-● svn diff :查看不同版本的区别
-● svn log :查看⽇日志信息
-● svn list :列出版本库下的⽂文件和⽬目录列表
-● svn status :查看⽂文件状态(简写svn st)
-● svn help :获取帮助信息(⽐比如svn help ci)
-● svn lock :加锁
-● svn unlock :解锁
-
-
-提交
-● 将改动过的⽂文件提交⾄至服务器
-● svn commit -m "注释" [PATH]
-● svn ci -m "注释" [PATH] 注意:⼀一定要养成写注释的良好习惯
-● ⽰示例
-svn commit -m “修改了User.m⽂文件”
-/Users/Desktop/workspace/Weibo/branches/User.m
-● 橙⾊色代表的是:提交哪个⽂文件到服务器
-● 如果省略橙⾊色的路径,就将命令⾏行所在路径中所有改动过的⽂文件提交 到服务器
-
-
-
-添加
-● 提交⼀一个新建的⽂文件到服务器,需要2个步骤
-● 添加新建的⽂文件到本地的版本控制库中:svnadd
-● 提交刚才的添加操作到服务器:svncommit
-● 如果直接提交⼀一个没有添加到本地版本控制库中的⽂文件,会报下⾯面的错误
-● is not a working copy
-
-删除
-● 删除服务器上的某个⽂文件,需要做2个步骤
-● 将⽂文件从本地的版本控制库中移除:svndelete、svnremove
-● 提交刚才的删除操作到服务器:svncommit
-● 将⽂文件从本地的版本控制库中移除
-● svn delete PATH
-● ⽰示例
-svn delete /Users/Desktop/workspace/Weibo/branches/User.m 
-● 橙⾊色代表的是:将哪个⽂文件从版本控制库中移除
-
-
-更新
-● 将服务器的最新代码更新到本地
-● svn update [PATH]
-● ⽰示例
-svn update /Users/lnj/Desktop/workspace/Weibo/branches/User.m
-● 橙⾊色代表的是:更新哪个⽂文件的内容
-● 如果省略橙⾊色的路径,就更新命令⾏行所在路径的所有内容
-● 将⽂文件恢复⾄至某个版本
-● svn update -r 版本号 [PATH]
-
-
-常见问题总结
-● 去到公司的第⼀一天,下载公司的代码到电脑上
-● svn checkout
-● 修改了某个早已存在的旧⽂文件,然后提交到服务器
-● svn commit
-● 提交⼀一个⾃自⼰己新建的⽂文件到服务器
-● svn add ! svn commit
-● 删除⼀一个早已存在的旧⽂文件,然后同步到服务器上
-● svn delete ! svn commit
-● 将其他同事提交的新代码更新到⾃自⼰己电脑上
-● svn update
-
-
-常见问题总结
-● 不⼩小⼼心写错了很多东西,想撤销所写的东西(还未把修改提交到服务 器)
-● svn revert
-● 不⼩小⼼心删错了⽂文件,想把⽂文件恢复回来(还未把删除提交到服务器)
-● svn revert
-● 不⼩小⼼心写错了很多东西,想撤销所写的东西(已经把修改提交到服务
-器)
-● svn update -r 版本号
-● 不⼩小⼼心删错了⽂文件,想把⽂文件恢复回来(已经把删除提交到服务器)
-● svn update -r 版本号
-
-
-注意!!!
-● 注意
-● .svn这个隐藏⽬目录记录着⾮非常关键的信息
-● 千万不要⼿手⼯工修改或删除这个.svn隐藏⽬目录和⾥里⾯面的⽂文件!否则将会 导致本地的⼯工作副本被破坏,⽆无法再进⾏行操作
-
-
-
-操作：
-1> checkout     将服务器上最新的代码仓库下载到本地，"只需要做一次"
-2> update       从服务器上将其他人所做的修改下载到本地，"每天上班必须要做的事情"
-3> commit       将工作提交到服务器，"每天下班之前至少做一次"
-
-03.	SVN服务器安装 Visual SVN Server
-
-# checkout服务器上的代码仓库
-$ svn co http://192.168.1.103/svn/weibo --username=manager --password=manager
-
-提示：checkout(co)之后，命令行会记录用户名和密码，后续操作不用再另行指定
-
-
-# 查看工作目录状态
-$ svn st
-# 将文件添加到本地版本库中
-$ svn add main.c
-# 将文件提交到服务器的版本库中
-$ svn ci -m "添加了main.c文件"
-
-
-
-
-# 多线程
-
-创建和启动线程
-● ⼀一个NSThread对象就代表⼀一条线程 ● 创建、启动线程
-NSThread *thread = [[NSThread alloc] initWithTarget:self
-selector:@selector(run) object:nil];
-[thread start];
-// 线程⼀一启动,就会在线程thread中执⾏行self的run⽅方法
-● 主线程相关⽤用法
-+ (NSThread *)mainThread; // 获得主线程 - (BOOL)isMainThread; // 是否为主线程
-+ (BOOL)isMainThread; // 是否为主线程
-
-
-其他⽤用法
-● 获得当前线程
-NSThread *current = [NSThread currentThread];
-● 线程的名字
-- (void)setName:(NSString *)n; - (NSString *)name;
-- 
-
-其他创建线程⽅方式
-● 创建线程后⾃自动启动线程
-[NSThread detachNewThreadSelector:@selector(run)
-toTarget:self withObject:nil]; ● 隐式创建并启动线程
-[self performSelectorInBackground:@selector(run)
-withObject:nil];
-● 上述2种创建线程⽅方式的优缺点
-● 优点:简单快捷
-● 缺点:⽆无法对线程进⾏行更详细的设置
-
-
-控制线程状态
-● 启动线程
-- (void)start;
-// 进⼊入就绪状态 -> 运⾏行状态。当线程任务执⾏行完毕,⾃自动进⼊入死亡状态
-● 阻塞(暂停)线程
-+ (void)sleepUntilDate:(NSDate *)date;
-+ (void)sleepForTimeInterval:(NSTimeInterval)ti; // 进⼊入阻塞状态
-● 强制停⽌止线程 + (void)exit; // 进⼊入死亡状态
-注意:⼀一旦线程停⽌止(死亡)了,就不能再次开启任务
-
-
-安全隐患解决 – 互斥锁
-● 互斥锁使⽤用格式
-@synchronized(锁对象) { // 需要锁定的代码 } 注意:锁定1份代码只⽤用1把锁,⽤用多把锁是⽆无效的
-● 互斥锁的优缺点
-● 优点:能有效防⽌止因多线程抢夺资源造成的数据安全问题 ● 缺点:需要消耗⼤大量的CPU资源
-● 互斥锁的使⽤用前提:多条线程抢夺同⼀一块资源
-
-
-原⼦子和⾮非原⼦子属性
-● OC在定义属性时有nonatomic和atomic两种选择
-● atomic:原⼦子属性,为setter⽅方法加锁(默认就是atomic) ● nonatomic:⾮非原⼦子属性,不会为setter⽅方法加锁
-
-
-
-<h4>线程间通信
-● 什么叫做线程间通信
-● 在1个进程中,线程往往不是孤⽴立存在的,多个线程之间需要经常进⾏行通信
-● 线程间通信的体现
-● 1个线程传递数据给另1个线程
-● 在1个线程中执⾏行完特定任务后,转到另1个线程继续执⾏行任务
-● 线程间通信常⽤用⽅方法
-- (void)performSelectorOnMainThread:(SEL)aSelector
-withObject:(id)arg waitUntilDone:(BOOL)wait;
-- (void)performSelector:(SEL)aSelector onThread:(NSThread
-*)thr withObject:(id)arg waitUntilDone:(BOOL)wait;
-
-
-
-
-# GCD
-● GCD的优势
-● GCD是苹果公司为多核的并⾏行运算提出的解决⽅方案
-● GCD会⾃自动利⽤用更多的CPU内核(⽐比如双核、四核)
-● GCD会⾃自动管理线程的⽣生命周期(创建线程、调度任务、销毁线程)
-● 程序员只需要告诉GCD想要执⾏行什么任务,不需要编写任何线程管理代码
-
-● 将任务添加到队列中
-• GCD会⾃自动将队列中的任务取出,放到对应的线程中执⾏行 • 任务的取出遵循队列的FIFO原则:先进先出,后进后出
-
-
-执⾏行任务
-● GCD中有2个⽤用来执⾏行任务的常⽤用函数 ● ⽤用同步的⽅方式执⾏行任务
+CAAnimationGroup——动画组<p>
+● 动画组,是CAAnimation的⼦子类,可以保存⼀一组动画对象,<p>
+￼将CAAnimationGroup对象加⼊入层后,组中所有动画对象可以同时并发运⾏行<p>
+● 属性说明:<p>
+● animations:⽤用来保存⼀一组动画对象的NSArray<p>
+● 默认情况下,⼀一组动画对象是同时运⾏行的,也可以通过设置动画对象的 beginTime属性来更改动画的开始时间<p>
+<p>
+<p>
+使⽤用UIView动画函数实现转场动画——单视 图<p>
+● + (void)transitionWithView:(UIView *)view duration:(NSTimeInterval)duration options:<p> (UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL<p> finished))completion;<p>
+● 参数说明:<p>
+● duration:动画的持续时间<p>
+● view:需要进⾏行转场动画的视图<p>
+● options:转场动画的类型<p>
+● animations:将改变视图属性的代码放在这个block中 ● completion:动画结束后,会⾃自动调⽤用这个block<p>
+<p>
+<p>
+<p>
+使⽤用UIView动画函数实现转场动画——双视 图<p>
+● + (void)transitionFromView:(UIView *)fromView toView:(UIView *)toView duration: (NSTimeInterval)duration options: (UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion;<p>
+● 参数说明:<p>
+● duration:动画的持续时间<p>
+● options:转场动画的类型<p>
+● animations:将改变视图属性的代码放在这个block中 ● completion:动画结束后,会⾃自动调⽤用这个block<p>
+
+<p>
+<p>
+<p>
+CADisplayLink<p>
+● CADisplayLink是⼀一种以屏幕刷新频率触发的时钟机制,每秒钟执⾏行 ⼤大约60次左右<p>
+● CADisplayLink是⼀一个计时器,可以使绘图代码与视图的刷新频率保<p> 持同步,⽽而NSTimer⽆无法确保计时器实际被触发的准确时间<p>
+● 使⽤用⽅方法:<p>
+● 定义CADisplayLink并制定触发调⽤用⽅方法 ● 将显⽰示链接添加到主运⾏行循环队列<p>
+<p>
+<p>
+# 源代码管理⼯工具<p>
+<p>
+<p>
+● SVN<p>
+● 全称是Subversion,集中式版本控制之王者<p>
+● 是CVS的接班⼈人,速度⽐比CVS快,功能⽐比CVS多且强⼤大 ● 在国内软件企业中使⽤用最为普遍(70%~90%)<p>
+● GIT<p>
+● ⼀一款伟⼤大的分布式源代码管理⼯工具 ● ⽬目前被越来越多的开源项⽬目使⽤用<p>
+● 不过在国内企业尚未⼤大范围普及<p>
+<p>
+<p>
+SVN 是集中式源代码管理工具<p>
+<p>
+概念：<p>
+1> Repository   代码仓库，保存代码的仓库<p>
+2> Server       服务器，保存所有版本的代码仓库<p>
+3> Client       客户端，只保存当前用户的代码仓库<p>
+4> 用户名&密码   访问代码仓库需要使用自己的"用户名和密码"，从而可以区分出不同的人对代码做的修改<p>
+<p>
+使⽤用环境<p>
+<p>
+要想利⽤用SVN管理源代码,必须得有2套环境<p>
+服务器<p>
+⽤用于存储客户端上传的源代码 可以在Windows上安装Visual SVN Server<p> ⼤大部分情况下,公司的开发⼈人员不必亲⾃自搭建SVN服务器<p>
+客户端<p>
+上传本地的源代码到服务器,或者更新服务器的代码到本地,保持同步<p> 可以在Mac上使⽤用命令⾏行、Versions、Cornerstone、Xcode 开发⼈人员就属于客户端这个⾓角⾊色<p>
+￼<p>
+<p>
+SVN客户端命令<p>
+● svn checkout :下载服务器的代码到本地 (简写svn co)<p>
+● svn commit :将改动的⽂文件提交到服务器(简写svn ci)<p>
+● svn update :更新服务器的代码到本地 (简写svn up)<p>
+● svn add :向本地的版本控制库中添加新⽂文件<p>
+● svn delete、svn remove :从本地的版本控制库中删除⽂文件(简写svn del、svn rm)<p>
+● svn move :移动⽂文件或者⽬目录或⽂文件更名<p>
+● svn mkdir :创建纳⼊入版本控制下的新⽬目录<p>
+● svn revert :撤销之前的⼀一切修改<p>
+● svn merge :将两个版本之间的差异合并到当前⽂文件<p>
+<p>
+<p>
+SVN客户端命令<p>
+● svn info :查看⽂文件的详细信息<p>
+● svn diff :查看不同版本的区别<p>
+● svn log :查看⽇日志信息<p>
+● svn list :列出版本库下的⽂文件和⽬目录列表<p>
+● svn status :查看⽂文件状态(简写svn st)<p>
+● svn help :获取帮助信息(⽐比如svn help ci)<p>
+● svn lock :加锁<p>
+● svn unlock :解锁<p>
+<p>
+<p>
+提交<p>
+● 将改动过的⽂文件提交⾄至服务器<p>
+● svn commit -m "注释" [PATH]<p>
+● svn ci -m "注释" [PATH] 注意:⼀一定要养成写注释的良好习惯<p>
+● ⽰示例<p>
+svn commit -m “修改了User.m⽂文件”<p>
+/Users/Desktop/workspace/Weibo/branches/User.m<p>
+● 橙⾊色代表的是:提交哪个⽂文件到服务器<p>
+● 如果省略橙⾊色的路径,就将命令⾏行所在路径中所有改动过的⽂文件提交 到服务器<p>
+<p>
+<p>
+<p>
+添加<p>
+● 提交⼀一个新建的⽂文件到服务器,需要2个步骤<p>
+● 添加新建的⽂文件到本地的版本控制库中:svnadd<p>
+● 提交刚才的添加操作到服务器:svncommit<p>
+● 如果直接提交⼀一个没有添加到本地版本控制库中的⽂文件,会报下⾯面的错误<p>
+● is not a working copy<p>
+<p>
+删除<p>
+● 删除服务器上的某个⽂文件,需要做2个步骤<p>
+● 将⽂文件从本地的版本控制库中移除:svndelete、svnremove<p>
+● 提交刚才的删除操作到服务器:svncommit<p>
+● 将⽂文件从本地的版本控制库中移除<p>
+● svn delete PATH<p>
+● ⽰示例<p>
+svn delete /Users/Desktop/workspace/Weibo/branches/User.m <p>
+● 橙⾊色代表的是:将哪个⽂文件从版本控制库中移除<p>
+<p>
+<p>
+更新<p>
+● 将服务器的最新代码更新到本地<p>
+● svn update [PATH]<p>
+● ⽰示例<p>
+svn update /Users/lnj/Desktop/workspace/Weibo/branches/User.m<p>
+● 橙⾊色代表的是:更新哪个⽂文件的内容<p>
+● 如果省略橙⾊色的路径,就更新命令⾏行所在路径的所有内容<p>
+● 将⽂文件恢复⾄至某个版本<p>
+● svn update -r 版本号 [PATH]<p>
+<p>
+<p>
+常见问题总结<p>
+● 去到公司的第⼀一天,下载公司的代码到电脑上<p>
+● svn checkout<p>
+● 修改了某个早已存在的旧⽂文件,然后提交到服务器<p>
+● svn commit<p>
+● 提交⼀一个⾃自⼰己新建的⽂文件到服务器<p>
+● svn add ! svn commit<p>
+● 删除⼀一个早已存在的旧⽂文件,然后同步到服务器上<p>
+● svn delete ! svn commit<p>
+● 将其他同事提交的新代码更新到⾃自⼰己电脑上<p>
+● svn update<p>
+<p>
+<p>
+常见问题总结<p>
+● 不⼩小⼼心写错了很多东西,想撤销所写的东西(还未把修改提交到服务 器)<p>
+● svn revert<p>
+● 不⼩小⼼心删错了⽂文件,想把⽂文件恢复回来(还未把删除提交到服务器)<p>
+● svn revert<p>
+● 不⼩小⼼心写错了很多东西,想撤销所写的东西(已经把修改提交到服务<p>
+器)<p>
+● svn update -r 版本号<p>
+● 不⼩小⼼心删错了⽂文件,想把⽂文件恢复回来(已经把删除提交到服务器)<p>
+● svn update -r 版本号<p>
+<p>
+
+注意!!!<p>
+● 注意<p>
+● .svn这个隐藏⽬目录记录着⾮非常关键的信息<p>
+● 千万不要⼿手⼯工修改或删除这个.svn隐藏⽬目录和⾥里⾯面的⽂文件!否则将会<p> 导致本地的⼯工作副本被破坏,⽆无法再进⾏行操作<p>
+<p>
+<p>
+<p>
+操作：<p>
+1> checkout     将服务器上最新的代码仓库下载到本地，"只需要做一次"<p>
+2> update       从服务器上将其他人所做的修改下载到本地，"每天上班必须要做的事情"<p>
+3> commit       将工作提交到服务器，"每天下班之前至少做一次"<p>
+<p>
+03.	SVN服务器安装 Visual SVN Server<p>
+<p>
+# checkout服务器上的代码仓库<p>
+$ svn co http://192.168.1.103/svn/weibo --username=manager --password=manager<p>
+<p>
+提示：checkout(co)之后，命令行会记录用户名和密码，后续操作不用再另行指定<p>
+<p>
+<p>
+# 查看工作目录状态<p>
+$ svn st<p>
+# 将文件添加到本地版本库中<p>
+$ svn add main.c<p>
+# 将文件提交到服务器的版本库中<p>
+$ svn ci -m "添加了main.c文件"<p>
+<p>
+<p>
+<p>
+
+# 多线程<p>
+<p>
+创建和启动线程<p>
+● ⼀一个NSThread对象就代表⼀一条线程 ● 创建、启动线程<p>
+NSThread *thread = [[NSThread alloc] initWithTarget:self<p>
+selector:@selector(run) object:nil];<p>
+[thread start];<p>
+// 线程⼀一启动,就会在线程thread中执⾏行self的run⽅方法<p>
+● 主线程相关⽤用法<p>
++ (NSThread *)mainThread; // 获得主线程 - (BOOL)isMainThread; // 是否为主线程<p>
++ (BOOL)isMainThread; // 是否为主线程<p>
+<p>
+<p>
+其他⽤用法<p>
+● 获得当前线程<p>
+NSThread *current = [NSThread currentThread];<p>
+● 线程的名字<p>
+- (void)setName:(NSString *)n; - (NSString *)name;<p>
+- <p>
+<p>
+其他创建线程⽅方式<p>
+● 创建线程后⾃自动启动线程<p>
+[NSThread detachNewThreadSelector:@selector(run)<p>
+toTarget:self withObject:nil]; ● 隐式创建并启动线程<p>
+[self performSelectorInBackground:@selector(run)<p>
+withObject:nil];<p>
+● 上述2种创建线程⽅方式的优缺点<p>
+● 优点:简单快捷<p>
+● 缺点:⽆无法对线程进⾏行更详细的设置<p>
+<p>
+<p>
+控制线程状态<p>
+● 启动线程<p>
+- (void)start;<p>
+// 进⼊入就绪状态 -> 运⾏行状态。当线程任务执⾏行完毕,⾃自动进⼊入死亡状态<p>
+● 阻塞(暂停)线程<p>
++ (void)sleepUntilDate:(NSDate *)date;<p>
++ (void)sleepForTimeInterval:(NSTimeInterval)ti; // 进⼊入阻塞状态<p>
+● 强制停⽌止线程 + (void)exit; // 进⼊入死亡状态<p>
+注意:⼀一旦线程停⽌止(死亡)了,就不能再次开启任务<p>
+<p>
+<p>
+安全隐患解决 – 互斥锁<p>
+● 互斥锁使⽤用格式<p>
+@synchronized(锁对象) { // 需要锁定的代码 } 注意:锁定1份代码只⽤用1把锁,⽤用多把锁是⽆无效的<p>
+● 互斥锁的优缺点<p>
+● 优点:能有效防⽌止因多线程抢夺资源造成的数据安全问题 ● 缺点:需要消耗⼤大量的CPU资源<p>
+● 互斥锁的使⽤用前提:多条线程抢夺同⼀一块资源<p>
+<p>
+<p>
+原⼦子和⾮非原⼦子属性<p>
+● OC在定义属性时有nonatomic和atomic两种选择<p>
+● atomic:原⼦子属性,为setter⽅方法加锁(默认就是atomic) ● nonatomic:⾮非原⼦子属性,不会为setter⽅方法加锁<p>
+<p>
+<p>
+
+<h4>线程间通信<p>
+● 什么叫做线程间通信<p>
+● 在1个进程中,线程往往不是孤⽴立存在的,多个线程之间需要经常进⾏行通信<p>
+● 线程间通信的体现<p>
+● 1个线程传递数据给另1个线程<p>
+● 在1个线程中执⾏行完特定任务后,转到另1个线程继续执⾏行任务<p>
+● 线程间通信常⽤用⽅方法<p>
+- (void)performSelectorOnMainThread:(SEL)aSelector<p>
+withObject:(id)arg waitUntilDone:(BOOL)wait;<p>
+- (void)performSelector:(SEL)aSelector onThread:(NSThread<p>
+*)thr withObject:(id)arg waitUntilDone:(BOOL)wait;<p>
+<p>
+<p>
+<p>
+
+# GCD<p>
+● GCD的优势<p>
+● GCD是苹果公司为多核的并⾏行运算提出的解决⽅方案<p>
+● GCD会⾃自动利⽤用更多的CPU内核(⽐比如双核、四核)<p>
+● GCD会⾃自动管理线程的⽣生命周期(创建线程、调度任务、销毁线程)<p>
+● 程序员只需要告诉GCD想要执⾏行什么任务,不需要编写任何线程管理代码<p>
+<p>
+● 将任务添加到队列中<p>
+• GCD会⾃自动将队列中的任务取出,放到对应的线程中执⾏行 • 任务的取出遵循队列的FIFO原则:先进先出,后进后出<p>
+<p>
+
+执⾏行任务<p>
+● GCD中有2个⽤用来执⾏行任务的常⽤用函数 ● ⽤用同步的⽅方式执⾏行任务<p>
 dispatch_sync(dispatch_queue_t queue, dispatch_block_t
-block);
-• queue:队列 • block:任务
-● ⽤用异步的⽅方式执⾏行任务
+block);<p>
+• queue:队列 • block:任务<p>
+● ⽤用异步的⽅方式执⾏行任务<p>
 dispatch_async(dispatch_queue_t queue, dispatch_block_t
-block);
-● 同步和异步的区别
-● 同步:只能在当前线程中执⾏行任务,不具备开启新线程的能⼒
-● 异步:可以在新的线程中执⾏行任务,具备开启新线程的能⼒
-
-
-执⾏行任务
-● GCD中还有个⽤用来执⾏行任务的函数: dispatch_barrier_async(dispatch_queue_t queue,
+block);<p>
+● 同步和异步的区别<p>
+● 同步:只能在当前线程中执⾏行任务,不具备开启新线程的能⼒<p>
+● 异步:可以在新的线程中执⾏行任务,具备开启新线程的能⼒<p>
+<p>
+<p>
+执⾏行任务<p>
+● GCD中还有个⽤用来执⾏行任务的函数: dispatch_barrier_async(dispatch_queue_t queue,<p>
 dispatch_block_t block); 在前⾯面的任务执⾏行结束后它才执⾏行,⽽而且它后⾯面的任务等它执⾏行完成之后才会执
-⾏
-● 这个queue不能是全局的并发队列
+⾏<p>
+● 这个queue不能是全局的并发队列<p>
 
-
-
-<h4>队列的类型
-● GCD的队列可以分为2⼤大类型
-● 并发队列(Concurrent Dispatch Queue)
-• 可以让多个任务并发(同时)执⾏行(⾃自动开启多个线程同时执⾏行任务) • 并发功能只有在异步(dispatch_async)函数下才有效
-● 串⾏行队列(Serial Dispatch Queue)
-• 让任务⼀一个接着⼀一个地执⾏行(⼀一个任务执⾏行完毕后,再执⾏行下⼀一个任务)
-
-
-<h3>并发队列
-● 使⽤用dispatch_queue_create函数创建队列 dispatch_queue_t
-dispatch_queue_create(const char *label, // 队列名称 dispatch_queue_attr_t attr); // 队列的类型
-● 创建并发队列
-dispatch_queue_t queue = dispatch_queue_create("com.520it.queue",
-DISPATCH_QUEUE_CONCURRENT);
+<p>
+<p>
+<h4>队列的类型<p>
+● GCD的队列可以分为2⼤大类型<p>
+● 并发队列(Concurrent Dispatch Queue)<p>
+• 可以让多个任务并发(同时)执⾏行(⾃自动开启多个线程同时执⾏行任务) <p>• 并发功能只有在异步(dispatch_async)函数下才有效<p>
+● 串⾏行队列(Serial Dispatch Queue)<p>
+• 让任务⼀一个接着⼀一个地执⾏行(⼀一个任务执⾏行完毕后,再执⾏行下⼀一个任务)<p>
+<p>
+<p>
+<h3>并发队列<p>
+● 使⽤用dispatch_queue_create函数创建队列 dispatch_queue_t<p>
+dispatch_queue_create(const char *label, // 队列名称 dispatch_queue_attr_t attr); // 队列的类型<p>
+● 创建并发队列<p>
+dispatch_queue_t queue = dispatch_queue_create("com.520it.queue",<p>
+DISPATCH_QUEUE_CONCURRENT);<p>
 ● 获得全局并发队列 dispatch_queue_t queue =
-dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);(和并发队列要区分)
+dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);(和并发队列要区分)<p>
+<p>
+<p>
 
+<h3>串⾏行队列<p>
+● GCD中获得串⾏行有2种途径<p>
+● 使⽤用dispatch_queue_create函数创建串⾏行队列<p>
+// 创建串⾏行队列(队列类型传递NULL或者DISPATCH_QUEUE_SERIAL)<p>
+dispatch_queue_t queue = dispatch_queue_create("com.520it.queue", NULL);<p>
+● 使⽤用主队列(跟主线程相关联的队列)<p>
+• 主队列是GCD⾃自带的⼀一种特殊的串⾏行队列<p>
+• 放在主队列中的任务,都会放到主线程中执⾏行<p>
+• 使⽤用dispatch_get_main_queue()获得主队列 dispatch_queue_t queue = dispatch_get_main_queue();<p>
 
+<p>
+<p>
+<p>
+<h4>线程间通信⽰示例<p>
+● 从⼦子线程回到主线程<p>
+dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{<p>
+// 执⾏行耗时的异步操作... dispatch_async(dispatch_get_main_queue(), ^{<p>
+// 回到主线程,执⾏行UI刷新操作<p>
+}); })<p>
+<p>
+<p>
 
-<h3>串⾏行队列
-● GCD中获得串⾏行有2种途径
-● 使⽤用dispatch_queue_create函数创建串⾏行队列
-// 创建串⾏行队列(队列类型传递NULL或者DISPATCH_QUEUE_SERIAL)
-dispatch_queue_t queue = dispatch_queue_create("com.520it.queue", NULL);
-● 使⽤用主队列(跟主线程相关联的队列)
-• 主队列是GCD⾃自带的⼀一种特殊的串⾏行队列
-• 放在主队列中的任务,都会放到主线程中执⾏行
-• 使⽤用dispatch_get_main_queue()获得主队列 dispatch_queue_t queue = dispatch_get_main_queue();
-
-
-
-
-<h4>线程间通信⽰示例
-● 从⼦子线程回到主线程
-dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-// 执⾏行耗时的异步操作... dispatch_async(dispatch_get_main_queue(), ^{
-// 回到主线程,执⾏行UI刷新操作
-}); })
-
-
-
-<h4>延时执⾏行
-● iOS常见的延时执⾏行
-● 调⽤用NSObject的⽅方法
+<h4>延时执⾏行<p>
+● iOS常见的延时执⾏行<p>
+● 调⽤用NSObject的⽅方法<p>
 [self performSelector:@selector(run) withObject:nil
-afterDelay:2.0];
-// 2秒后再调⽤用self的run⽅方法 ● 使⽤用GCD函数
+afterDelay:2.0];<p>
+// 2秒后再调⽤用self的run⽅方法 ● 使⽤用GCD函数<p>
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 *
-NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-// 2秒后执⾏行这⾥里的代码... });
-● 使⽤用NSTimer
+NSEC_PER_SEC)), dispatch_get_main_queue(), ^{<p>
+// 2秒后执⾏行这⾥里的代码... });<p>
+● 使⽤用NSTimer<p>
 [NSTimer scheduledTimerWithTimeInterval:2.0 target:self
-selector:@selector(test) userInfo:nil repeats:NO]
+selector:@selector(test) userInfo:nil repeats:NO]<p>
+<p>
+<p>
 
+<h4>一次性代码<p>
+● 使⽤用dispatch_once函数能保证某段代码在程序运⾏行过程中只被执⾏行1次 static dispatch_once_t onceToken;<p>
+dispatch_once(&onceToken, ^{<p>
+// 只执⾏行1次的代码(这⾥里⾯面默认是线程安全的) });<p>
+<p>
 
-
-<h4>一次性代码
-● 使⽤用dispatch_once函数能保证某段代码在程序运⾏行过程中只被执⾏行1次 static dispatch_once_t onceToken;
-dispatch_once(&onceToken, ^{
-// 只执⾏行1次的代码(这⾥里⾯面默认是线程安全的) });
-
-
-
-<h4>快速迭代
+<p>
+<h4>快速迭代<p>
 ● 使⽤用dispatch_apply函数能进⾏行快速迭代遍历 dispatch_apply(10, dispatch_get_global_queue(0, 0), ^(size_t
-index){
-// 执⾏行10次代码,index顺序不确定 });
+index){<p>
+// 执⾏行10次代码,index顺序不确定 });<p>
 
+<p>
+<p>
+<h4>队列组<p>
+● 有这么1种需求<p>
+● ⾸首先:分别异步执⾏行2个耗时的操作<p>
+● 其次:等2个异步操作都执⾏行完毕后,再回到主线程执⾏行操作<p>
+● 如果想要快速⾼高效地实现上述需求,可以考虑⽤用队列组 dispatch_group_t group = dispatch_group_create();<p>
+dispatch_group_async(group,<p>
+dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),<p>
+^{<p>
+// 执⾏行1个耗时的异步操作 });<p>
+dispatch_group_async(group,<p>
+dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),<p>
+^{<p>
+￼￼// 执⾏行1个耗时的异步操作 });<p>
+dispatch_group_async(group, dispatch_get_main_queue(),<p>
+^{<p>
+// 最后面执行的操作 });<p>
+<p>
+<p>
 
+<h4>单例模式<p>
+● ARC中,单例模式的实现<p>
+● 在.m中保留⼀一个全局的static的实例 static id _instance;<p>
+● 重写allocWithZone:⽅方法,在这⾥里创建唯⼀一的实例(注意线程安全) + (instancetype)allocWithZone:(struct _NSZone *)zone<p>
+{<p>
+   static dispatch_once_t onceToken;<p>
+   dispatch_once(&onceToken, ^{<p>
+       _instance = [super allocWithZone:zone];<p>
+   });<p>
+   return _instance;<p>
+}<p>
+<p>
+● 提供1个类⽅方法让外界访问唯⼀一的实例 + (instancetype)sharedInstance {<p>
+   static dispatch_once_t onceToken;<p>
+   dispatch_once(&onceToken, ^{<p>
+       _instance = [[self alloc] init];<p>
+   });<p>
+   return _instance;<p>
+}<p>
+● 实现copyWithZone:⽅方法<p>
+- (id)copyWithZone:(struct _NSZone *)zone {<p>
+￼￼   return _instance;<p>
+}<p>
+<p>
+<p>
 
-<h4>队列组
-● 有这么1种需求
-● ⾸首先:分别异步执⾏行2个耗时的操作
-● 其次:等2个异步操作都执⾏行完毕后,再回到主线程执⾏行操作
-● 如果想要快速⾼高效地实现上述需求,可以考虑⽤用队列组 dispatch_group_t group = dispatch_group_create();
-dispatch_group_async(group,
-dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-^{
-// 执⾏行1个耗时的异步操作 });
-dispatch_group_async(group,
-dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-^{
-￼￼// 执⾏行1个耗时的异步操作 });
-dispatch_group_async(group, dispatch_get_main_queue(),
-^{
-// 最后面执行的操作 });
-
-
-
-<h4>单例模式
-● ARC中,单例模式的实现
-● 在.m中保留⼀一个全局的static的实例 static id _instance;
-● 重写allocWithZone:⽅方法,在这⾥里创建唯⼀一的实例(注意线程安全) + (instancetype)allocWithZone:(struct _NSZone *)zone
-{
-   static dispatch_once_t onceToken;
-   dispatch_once(&onceToken, ^{
-       _instance = [super allocWithZone:zone];
-   });
-   return _instance;
-}
-
-
-● 提供1个类⽅方法让外界访问唯⼀一的实例 + (instancetype)sharedInstance {
-   static dispatch_once_t onceToken;
-   dispatch_once(&onceToken, ^{
-       _instance = [[self alloc] init];
-   });
-   return _instance;
-}
-● 实现copyWithZone:⽅方法
-- (id)copyWithZone:(struct _NSZone *)zone {
-￼￼   return _instance;
-}
-
-
-
-# NSOperation
-
-● 创建NSInvocationOperation对象
-- (id)initWithTarget:(id)target selector:(SEL)sel object:
-(id)arg;
-● 调⽤用start⽅方法开始执⾏行操作
-- (void)start; ⼀一旦执⾏行操作,就会调⽤用target的sel⽅方法
-￼● 注意
-● 默认情况下,调⽤用了start⽅方法后并不会开⼀一条新线程去执⾏行操作,⽽而是在当
-￼前线程同步执⾏行操作
-● 只有将NSOperation放到⼀一个NSOperationQueue中,才会异步执⾏行操作
-
-
-NSBlockOperation
-● 创建NSBlockOperation对象
-+ (id)blockOperationWithBlock:(void (^)(void))block;
-● 通过addExecutionBlock:⽅方法添加更多的操作
-- (void)addExecutionBlock:(void (^)(void))block;
-注意:只要NSBlockOperation封装的操作数 > 1,就会异步执⾏行操作
-
-
-NSOperationQueue
-● NSOperationQueue的作⽤用
-● NSOperation可以调⽤用start⽅方法来执⾏行任务,但默认是同步执⾏行的
-● 如果将NSOperation添加到NSOperationQueue(操作队列)中,系统会 ⾃自动异步执⾏行NSOperation中的操作
-● 添加操作到NSOperationQueue中
-- (void)addOperation:(NSOperation *)op;
-- (void)addOperationWithBlock:(void (^)(void))block;
+# NSOperation<p>
+<p>
+● 创建NSInvocationOperation对象<p>
+- (id)initWithTarget:(id)target selector:(SEL)sel object:<p>
+(id)arg;<p>
+● 调⽤用start⽅方法开始执⾏行操作<p>
+- (void)start; ⼀一旦执⾏行操作,就会调⽤用target的sel⽅方法<p>
+￼● 注意<p>
+● 默认情况下,调⽤用了start⽅方法后并不会开⼀一条新线程去执⾏行操作,⽽而是在当<p>
+￼前线程同步执⾏行操作<p>
+● 只有将NSOperation放到⼀一个NSOperationQueue中,才会异步执⾏行操作<p>
+<p>
+<p>
+NSBlockOperation<p>
+● 创建NSBlockOperation对象<p>
++ (id)blockOperationWithBlock:(void (^)(void))block;<p>
+● 通过addExecutionBlock:⽅方法添加更多的操作<p>
+- (void)addExecutionBlock:(void (^)(void))block;<p>
+注意:只要NSBlockOperation封装的操作数 > 1,就会异步执⾏行操作<p>
+<p>
+<p>
+NSOperationQueue<p>
+● NSOperationQueue的作⽤用<p>
+● NSOperation可以调⽤用start⽅方法来执⾏行任务,但默认是同步执⾏行的<p>
+● 如果将NSOperation添加到NSOperationQueue(操作队列)中,系统会 ⾃自动异步执⾏行NSOperation中的操作<p>
+● 添加操作到NSOperationQueue中<p>
+- (void)addOperation:(NSOperation *)op;<p>
+- (void)addOperationWithBlock:(void (^)(void))block;<p>
+- <p>
+<p>
+最⼤大并发数<p>
+● 什么是并发数<p>
+● 同时执⾏行的任务数<p>
+● ⽐比如,同时开3个线程执⾏行3个任务,并发数就是3<p>
+● 最⼤大并发数的相关⽅方法<p>
+- (NSInteger)maxConcurrentOperationCount;<p>
+- (void)setMaxConcurrentOperationCount:(NSInteger)cnt;<p>
 - 
+<p>
+<p>
+队列的取消、暂停、恢复<p>
+● 取消队列的所有操作<p>
+- (void)cancelAllOperations; 提⽰示:也可以调⽤用NSOperation的- (void)cancel⽅方法取消单个操作<p>
+● 暂停和恢复队列<p>
+- (void)setSuspended:(BOOL)b; // YES代表暂停队列,NO代表恢复队列 - (BOOL)isSuspended;<p>
+- <p>
+<p>
+<p>
+<h4>操作依赖<p>
+● NSOperation之间可以设置依赖来保证执⾏行顺序<p>
+● ⽐比如⼀一定要让操作A执⾏行完后,才能执⾏行操作B,可以这么写 [operationB addDependency:operationA]; //<p> 操作B依赖于操作A<p>
+● 可以在不同queue的NSOperation之间创建依赖关系<p>
+<p>
 
-最⼤大并发数
-● 什么是并发数
-● 同时执⾏行的任务数
-● ⽐比如,同时开3个线程执⾏行3个任务,并发数就是3
-● 最⼤大并发数的相关⽅方法
-- (NSInteger)maxConcurrentOperationCount;
-- (void)setMaxConcurrentOperationCount:(NSInteger)cnt;
-- 
-
-
-队列的取消、暂停、恢复
-● 取消队列的所有操作
-- (void)cancelAllOperations; 提⽰示:也可以调⽤用NSOperation的- (void)cancel⽅方法取消单个操作
-● 暂停和恢复队列
-- (void)setSuspended:(BOOL)b; // YES代表暂停队列,NO代表恢复队列 - (BOOL)isSuspended;
-- 
-
-
-<h4>操作依赖
-● NSOperation之间可以设置依赖来保证执⾏行顺序
-● ⽐比如⼀一定要让操作A执⾏行完后,才能执⾏行操作B,可以这么写 [operationB addDependency:operationA]; // 操作B依赖于操作A
-● 可以在不同queue的NSOperation之间创建依赖关系
-
-
-<h4>操作的监听
-● 可以监听⼀一个操作的执⾏行完毕
-- (void (^)(void))completionBlock;
-- (void)setCompletionBlock:(void (^)(void))block;
-- 
+<h4>操作的监听<p>
+● 可以监听⼀一个操作的执⾏行完毕<p>
+- (void (^)(void))completionBlock;<p>
+- (void)setCompletionBlock:(void (^)(void))block;<p>
+- <p>
+<p>
 
 
+<h4>自定义NSOperation<p>
+● ⾃自定义NSOperation的步骤很简单<p>
+● 重写- (void)main⽅方法,在⾥里⾯面实现想执⾏行的任务<p>
+● 重写- (void)main⽅方法的注意点<p>
+● ⾃自⼰己创建⾃自动释放池(因为如果是异步操作,⽆无法访问主线程的⾃自动释放池)<p>
+● 经常通过- (BOOL)isCancelled⽅方法检测操作是否被取消,对取消做出响应<p>
+<p>
+<p>
+<p>
+# 网络<p>
+<p>
+<h5>NSURLConnection<p>
+<p>
+NSURLConnection的使⽤用步骤<p>
+● 使⽤用NSURLConnection发送请求的步骤很简单<p>
+● 创建⼀一个NSURL对象,设置请求路径<p>
+● 传⼊入NSURL创建⼀一个NSURLRequest对象,设置请求头和请求体 ● 使⽤用NSURLConnection发送请求<p>
+<p>
+<p>
+NSURLConnection发送请求<p>
+● NSURLConnection常见的发送请求⽅方法有以下⼏几种 ● 同步请求<p>
++ (NSData *)sendSynchronousRequest:(NSURLRequest *)request<p>
+returningResponse:(NSURLResponse **)response error:(NSError<p>
+**)error;<p>
+● 异步请求:根据对服务器返回数据的处理⽅方式的不同,又可以分为2种<p>
+• block回调<p>
++ (void)sendAsynchronousRequest:(NSURLRequest*) request<p>
+                     queue:(NSOperationQueue*) queue<p>
+ completionHandler:(void (^)(NSURLResponse* response,<p>
+NSData* data, NSError* connectionError)) handler;<p>
+￼<p>
+• 代理<p><p>
+- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate;<p>
++ (NSURLConnection*)connectionWithRequest:(NSURLRequest *)request<p>
+delegate:(id)delegate;<p>
+- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate<p>
+startImmediately:(BOOL)startImmediately;<p>
+● 在startImmediately = NO的情况下,需要调⽤用start⽅方法开始发送请求 - (void)start;<p>
+● 成为NSURLConnection的代理,最好遵守NSURLConnectionDataDelegate协议<p>
+<p>
+<p>
+NSURLConnectionDelegate<p>
+● NSURLConnectionDataDelegate协议中的代理⽅方法 ● 开始接收到服务器的响应时调⽤用<p>
+- (void)connection:(NSURLConnection *)connection<p>
+didReceiveResponse:(NSURLResponse *)response;<p>
+● 接收到服务器返回的数据时调⽤用(服务器返回的数据⽐比较⼤大时会调⽤用多次)<p>
+- (void)connection:(NSURLConnection *)connection didReceiveData:<p>
+(NSData *)data;<p>
+● 服务器返回的数据完全接收完毕后调⽤用<p>
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection; ● 请求出错时调⽤用(⽐比如请求超时)<p>
+- (void)connection:(NSURLConnection *)connection didFailWithError:<p>
+(NSError *)error;<p>
+<p>
+<h4>获得⽂文件的MIMEType<p>
+● 利⽤用NSURLConnection<p>
+- (NSString *)MIMEType:(NSURL *)url {<p>
+// 1.创建⼀一个请求<p>
+NSURLRequest *request = [NSURLRequest<p>
+requestWithURL:url];<p>
+// 2.发送请求(返回响应)<p>
+   NSURLResponse *response = nil;<p>
+   [NSURLConnection sendSynchronousRequest:request<p>
+returningResponse:&response error:nil];<p>
+// 3.获得MIMEType<p>
+   return response.MIMEType;<p>
+}<p>
+<p>
+<p>
 
-<h4>自定义NSOperation
-● ⾃自定义NSOperation的步骤很简单
-● 重写- (void)main⽅方法,在⾥里⾯面实现想执⾏行的任务
-● 重写- (void)main⽅方法的注意点
-● ⾃自⼰己创建⾃自动释放池(因为如果是异步操作,⽆无法访问主线程的⾃自动释放池)
-● 经常通过- (BOOL)isCancelled⽅方法检测操作是否被取消,对取消做出响应
+NSMutableURLRequest<p>
+● NSMutableURLRequest是NSURLRequest的⼦子类,常⽤用⽅方法有<p>
+● 设置请求超时等待时间(超过这个时间就算超时,请求失败)<p>
+- (void)setTimeoutInterval:(NSTimeInterval)seconds;<p>
+● 设置请求⽅方法(⽐比如GET和POST)<p>
+- (void)setHTTPMethod:(NSString *)method;<p>
+● 设置请求体<p>
+- (void)setHTTPBody:(NSData *)data;<p>
+● 设置请求头<p>
+- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString<p>
+*)field;<p>
 
-
-
-# 网络
-
-<h5>NSURLConnection
-
-NSURLConnection的使⽤用步骤
-● 使⽤用NSURLConnection发送请求的步骤很简单
-● 创建⼀一个NSURL对象,设置请求路径
-● 传⼊入NSURL创建⼀一个NSURLRequest对象,设置请求头和请求体 ● 使⽤用NSURLConnection发送请求
-
-
-NSURLConnection发送请求
-● NSURLConnection常见的发送请求⽅方法有以下⼏几种 ● 同步请求
-+ (NSData *)sendSynchronousRequest:(NSURLRequest *)request
-returningResponse:(NSURLResponse **)response error:(NSError
-**)error;
-● 异步请求:根据对服务器返回数据的处理⽅方式的不同,又可以分为2种
-• block回调
-+ (void)sendAsynchronousRequest:(NSURLRequest*) request
-                     queue:(NSOperationQueue*) queue
- completionHandler:(void (^)(NSURLResponse* response,
-NSData* data, NSError* connectionError)) handler;
-￼
-• 代理
-- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate;
-+ (NSURLConnection*)connectionWithRequest:(NSURLRequest *)request
-delegate:(id)delegate;
-- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate
-startImmediately:(BOOL)startImmediately;
-● 在startImmediately = NO的情况下,需要调⽤用start⽅方法开始发送请求 - (void)start;
-● 成为NSURLConnection的代理,最好遵守NSURLConnectionDataDelegate协议
-
-
-NSURLConnectionDelegate
-● NSURLConnectionDataDelegate协议中的代理⽅方法 ● 开始接收到服务器的响应时调⽤用
-- (void)connection:(NSURLConnection *)connection
-didReceiveResponse:(NSURLResponse *)response;
-● 接收到服务器返回的数据时调⽤用(服务器返回的数据⽐比较⼤大时会调⽤用多次)
-- (void)connection:(NSURLConnection *)connection didReceiveData:
-(NSData *)data;
-● 服务器返回的数据完全接收完毕后调⽤用
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection; ● 请求出错时调⽤用(⽐比如请求超时)
-- (void)connection:(NSURLConnection *)connection didFailWithError:
-(NSError *)error;
-
-<h4>获得⽂文件的MIMEType
-● 利⽤用NSURLConnection
-- (NSString *)MIMEType:(NSURL *)url {
-// 1.创建⼀一个请求
-NSURLRequest *request = [NSURLRequest
-requestWithURL:url];
-// 2.发送请求(返回响应)
-   NSURLResponse *response = nil;
-   [NSURLConnection sendSynchronousRequest:request
-returningResponse:&response error:nil];
-// 3.获得MIMEType
-   return response.MIMEType;
-}
-
-
-
-NSMutableURLRequest
-● NSMutableURLRequest是NSURLRequest的⼦子类,常⽤用⽅方法有
-● 设置请求超时等待时间(超过这个时间就算超时,请求失败)
-- (void)setTimeoutInterval:(NSTimeInterval)seconds;
-● 设置请求⽅方法(⽐比如GET和POST)
-- (void)setHTTPMethod:(NSString *)method;
-● 设置请求体
-- (void)setHTTPBody:(NSData *)data;
-● 设置请求头
-- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString
-*)field;
-
-
-
-创建GET和POST请求 ● 创建GET请求
-NSString *urlStr = [@"http://120.25.226.186:32812/login?
-username=123&pwd=123"
-stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-NSURL *url = [NSURL URLWithString:urlStr];
-NSMutableURLRequest *request = [NSMutableURLRequest
-requestWithURL:url];
-● 创建POST请求
-NSString *urlStr = @"http://120.25.226.186:32812/login";
-NSURL *url = [NSURL URLWithString:urlStr];
-NSMutableURLRequest *request = [NSMutableURLRequest
-requestWithURL:url];
-request.HTTPMethod = @"POST";
-// 请求体
-NSString *bodyStr = @"username=123&pwd=123";
-request.HTTPBody = [bodyStr dataUsingEncoding:NSUTF8StringEncoding];
-
-
-
-<h5> NSURLSession
-获得NSURLSession 
-● 获得共享的Session
-+ (NSURLSession *)sharedSession; 
-+ ● ⾃自定义Session
-+ (NSURLSession *)sessionWithConfiguration:
+<p>
+<p>
+创建GET和POST请求 ● 创建GET请求<p>
+NSString *urlStr = [@"http://120.25.226.186:32812/login?<p>
+username=123&pwd=123"<p>
+stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];<p>
+NSURL *url = [NSURL URLWithString:urlStr];<p>
+NSMutableURLRequest *request = [NSMutableURLRequest<p>
+requestWithURL:url];<p>
+● 创建POST请求<p>
+NSString *urlStr = @"http://120.25.226.186:32812/login";<p>
+NSURL *url = [NSURL URLWithString:urlStr];<p>
+NSMutableURLRequest *request = [NSMutableURLRequest<p>
+requestWithURL:url];<p>
+request.HTTPMethod = @"POST";<p>
+// 请求体<p>
+NSString *bodyStr = @"username=123&pwd=123";<p>
+request.HTTPBody = [bodyStr dataUsingEncoding:NSUTF8StringEncoding];<p>
+<p>
+<p>
+<p>
+<h5> NSURLSession<p>
+获得NSURLSession <p>
+● 获得共享的Session<p>
++ (NSURLSession *)sharedSession; <p>
++ ● ⾃自定义Session<p>
++ (NSURLSession *)sessionWithConfiguration:<p>
 (NSURLSessionConfiguration *)configuration delegate:(id
-<NSURLSessionDelegate>)delegate delegateQueue:
-(NSOperationQueue *)queue;
+<NSURLSessionDelegate>)delegate delegateQueue:<p>
+(NSOperationQueue *)queue;<p>
+<p>
+<p>
+NSURLSessionTask<p>
+● 常见⽅方法<p>
+● - (void)suspend; // 暂停<p>
+● - (void)resume; // 恢复<p>
+● - (void)cancel; // 取消<p>
+● @property (readonly, copy) NSError *error; // 错误<p>
+● @property (readonly, copy) NSURLResponse *response; // 响应<p>
+<p>
+<p>
+NSURLSessionDownloadTask<p>
+￼● 常见⽅方法<p>
+- (void)cancelByProducingResumeData:(void (^)(NSData<p>
+*resumeData))completionHandler; // 取消任务<p>
+<p>
+<p>
+<h5> AFN<p>
+<p>
+AFHTTPSessionManager<p>
+● AFHTTPSessionManager<p>
+● 是AFN中最重要的对象之⼀一 ● 封装了HTTP请求的常见处理 • GET\POST请求<p>
+• 解析服务器的响应数据<p>
+• 创建<p>
+AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];<p>
+<p>
+GET\POST请求<p>
+● GET请求<p>
+- (NSURLSessionDataTask *)GET:(NSString *)URLString<p>
+                  parameters:(id)parameters<p>
+                  success:(void (^)(NSURLSessionDataTask *task, id<p>
+responseObject))success<p>
+                  failure:(void (^)(NSURLSessionDataTask *task,<p>
+NSError *error))failure<p>
+● POST请求<p>
+- (NSURLSessionDataTask *)POST:(NSString *)URLString<p>
+                  parameters:(id)parameters<p>
+                  success:(void (^)(NSURLSessionDataTask *task, id<p>
+responseObject))success<p>
+                  failure:(void (^)(NSURLSessionDataTask *task,<p>
+NSError *error))failure<p>
+<p>
 
-
-NSURLSessionTask
-● 常见⽅方法
-● - (void)suspend; // 暂停
-● - (void)resume; // 恢复
-● - (void)cancel; // 取消
-● @property (readonly, copy) NSError *error; // 错误
-● @property (readonly, copy) NSURLResponse *response; // 响应
-
-
-NSURLSessionDownloadTask
-￼● 常见⽅方法
-- (void)cancelByProducingResumeData:(void (^)(NSData
-*resumeData))completionHandler; // 取消任务
-
-
-<h5> AFN
-
-AFHTTPSessionManager
-● AFHTTPSessionManager
-● 是AFN中最重要的对象之⼀一 ● 封装了HTTP请求的常见处理 • GET\POST请求
-• 解析服务器的响应数据
-• 创建
-AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-
-GET\POST请求
-● GET请求
-- (NSURLSessionDataTask *)GET:(NSString *)URLString
-                  parameters:(id)parameters
-                  success:(void (^)(NSURLSessionDataTask *task, id
-responseObject))success
-                  failure:(void (^)(NSURLSessionDataTask *task,
-NSError *error))failure
-● POST请求
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
-                  parameters:(id)parameters
-                  success:(void (^)(NSURLSessionDataTask *task, id
-responseObject))success
-                  failure:(void (^)(NSURLSessionDataTask *task,
-NSError *error))failure
-
-
-<h4>⽂文件上传
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
-                   parameters:(id)parameters
-    constructingBodyWithBlock:(void (^)(id <AFMultipartFormData>
-formData))block
-                   success:(void (^)(NSURLSessionDataTask *task, id
-responseObject))success
-                   failure:(void (^)(NSURLSessionDataTask *task,
-NSError *error))failure
-
-
-<h4>监控联⽹网状态
-// 创建一个网络监听对象
-    AFNetworkReachabilityManager *net = [AFNetworkReachabilityManager sharedManager];
+<h4>⽂文件上传<p>
+- (NSURLSessionDataTask *)POST:(NSString *)URLString<p>
+                   parameters:(id)parameters<p>
+    constructingBodyWithBlock:(void (^)(id <AFMultipartFormData><p>
+formData))block<p>
+                   success:(void (^)(NSURLSessionDataTask *task, id<p>
+responseObject))success<p>
+                   failure:(void (^)(NSURLSessionDataTask *task,<p>
+NSError *error))failure<p>
+<p>
+<p>
+<h4>监控联⽹网状态<p>
+// 创建一个网络监听对象<p>
+    AFNetworkReachabilityManager *net = [AFNetworkReachabilityManager sharedManager];<p>
+    <p>
+    // 设置监听<p>
+    [net setReachabilityStatusChangeBlock:^ void(AFNetworkReachabilityStatus status) {<p>
+        switch (status) {<p>
+           <p>
+            case AFNetworkReachabilityStatusNotReachable:<p>
+                // 做一些这个网络环境下得操作<p>
+                // ..<p>
+                 NSLog(@"未识别");<p>
+                break;<p>
+                <p>
+            case AFNetworkReachabilityStatusReachableViaWWAN:<p>
+                 NSLog(@"3G");<p>
+                break;<p>
+                <p>
+            case AFNetworkReachabilityStatusReachableViaWiFi:<p>
+                 NSLog(@"WIFI");<p>
+                break;<p>
+                <p>
+            default:<p>
+                NSLog(@"未连接");<p>
+                break;<p>
+        }<p>
+    }];<p>
+    <p>
+    // 开始监听<p>
+    [net startMonitoring];⽰示:要监控⽹网络连接状态,必须要先调⽤用单例的startMonitoring⽅方法<p>
+    <p>
     
-    // 设置监听
-    [net setReachabilityStatusChangeBlock:^ void(AFNetworkReachabilityStatus status) {
-        switch (status) {
-           
-            case AFNetworkReachabilityStatusNotReachable:
-                // 做一些这个网络环境下得操作
-                // ..
-                 NSLog(@"未识别");
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-                 NSLog(@"3G");
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-                 NSLog(@"WIFI");
-                break;
-                
-            default:
-                NSLog(@"未连接");
-                break;
-        }
-    }];
-    
-    // 开始监听
-    [net startMonitoring];⽰示:要监控⽹网络连接状态,必须要先调⽤用单例的startMonitoring⽅方法
-    
-    
-    # JSON和XML
-JSON解析⽅方案
-● 在iOS中,JSON的常见解析⽅方案有4种
-● 第三⽅方框架:JSONKit、SBJson、TouchJSON(性能从左到右,越差)
-● 苹果原⽣生(⾃自带):NSJSONSerialization(性能最好)
-● NSJSONSerialization的常见⽅方法
-● JSON数据 -- OC对象
-+ (id)JSONObjectWithData:(NSData *)data options:
-(NSJSONReadingOptions)opt error:(NSError **)error;
-● OC对象 -- JSON数据
-+ (NSData *)dataWithJSONObject:(id)obj options:
-(NSJSONWritingOptions)opt error:(NSError **)error;
+    # JSON和XML<p>
+JSON解析⽅方案<p>
+● 在iOS中,JSON的常见解析⽅方案有4种<p>
+● 第三⽅方框架:JSONKit、SBJson、TouchJSON(性能从左到右,越差)<p>
+● 苹果原⽣生(⾃自带):NSJSONSerialization(性能最好)<p>
+● NSJSONSerialization的常见⽅方法<p>
+● JSON数据 -- OC对象<p>
++ (id)JSONObjectWithData:(NSData *)data options:<p>
+(NSJSONReadingOptions)opt error:(NSError **)error;<p>
+● OC对象 -- JSON数据<p>
++ (NSData *)dataWithJSONObject:(id)obj options:<p>
+(NSJSONWritingOptions)opt error:(NSError **)error;<p>
+<p>
+<h4>iOS中的XML解析<p>
+● 在iOS中,解析XML的⼿手段有很多<p>
+● 苹果原⽣生<p>
+• NSXMLParser:SAX⽅方式解析,使⽤用简单<p>
+● 第三⽅方框架<p>
+• libxml2:纯C语⾔言,默认包含在iOS SDK中,同时⽀支持DOM和SAX⽅方式解析 •<p> GDataXML:DOM⽅方式解析,由Google开发,基于libxml2<p>
+● XML解析⽅方式的选择建议<p>
+● ⼤大⽂文件:NSXMLParser、libxml2<p>
+● ⼩小⽂文件:GDataXML、NSXMLParser、libxml2<p>
+<p>
+NSXMLParser<p>
+● 使⽤用步骤<p>
+// 传⼊入XML数据,创建解析器<p>
+NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data]; // 设置代理,监听解析过程<p>
+parser.delegate = self;<p>
+// 开始解析<p>
+[parser parse];<p>
+● NSXMLParser采取的是SAX⽅方式解析,特点是事件驱动,下⾯面情况都会通知代理 ● 当扫描到⽂文档(Document)的开始与结束<p>
+● 当扫描到元素(Element)的开始与结束<p>
+<p>
+<p>
+NSXMLParserDelegate<p>
+● 当扫描到⽂文档的开始时调⽤用(开始解析)<p>
+- (void)parserDidStartDocument:(NSXMLParser *)parser<p>
+● 当扫描到⽂文档的结束时调⽤用(解析完毕)<p>
+- (void)parserDidEndDocument:(NSXMLParser *)parser<p>
+● 当扫描到元素的开始时调⽤用(attributeDict存放着元素的属性)<p>
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString<p>
+*)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:<p>
+(NSString *)qName attributes:(NSDictionary *)attributeDict<p>
+● 当扫描到元素的结束时调⽤用<p>
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString<p>
+*)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:<p>
+(NSString *)qName<p>
+<p>
 
-<h4>iOS中的XML解析
-● 在iOS中,解析XML的⼿手段有很多
-● 苹果原⽣生
-• NSXMLParser:SAX⽅方式解析,使⽤用简单
-● 第三⽅方框架
-• libxml2:纯C语⾔言,默认包含在iOS SDK中,同时⽀支持DOM和SAX⽅方式解析 • GDataXML:DOM⽅方式解析,由Google开发,基于libxml2
-● XML解析⽅方式的选择建议
-● ⼤大⽂文件:NSXMLParser、libxml2
-● ⼩小⽂文件:GDataXML、NSXMLParser、libxml2
+<p>
+<h5> RunLoop<p>
+<p>
+RunLoop对象<p>
+● iOS中有2套API来访问和使⽤用RunLoop<p>
+● Foundation<p>
+● NSRunLoop<p>
+● Core Foundation<p>
+● CFRunLoopRef<p>
+● NSRunLoop和CFRunLoopRef都代表着RunLoop对象<p>
+RunLoop与线程<p>
+● 每条线程都有唯⼀一的⼀一个与之对应的RunLoop对象<p>
+● 主线程的RunLoop已经⾃自动创建好了,⼦子线程的RunLoop需要主动创建 <p>● RunLoop在第⼀一次获取时创建,在线程结束时销毁
+● NSRunLoop是基于CFRunLoopRef的⼀一层OC包装,所以要了解RunLoop内部<p>
+结构,需要多研究CFRunLoopRef层⾯面的API(Core Foundation层⾯面)<p>
+<p>
+<p>
 
-NSXMLParser
-● 使⽤用步骤
-// 传⼊入XML数据,创建解析器
-NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data]; // 设置代理,监听解析过程
-parser.delegate = self;
-// 开始解析
-[parser parse];
-● NSXMLParser采取的是SAX⽅方式解析,特点是事件驱动,下⾯面情况都会通知代理 ● 当扫描到⽂文档(Document)的开始与结束
-● 当扫描到元素(Element)的开始与结束
-
-
-NSXMLParserDelegate
-● 当扫描到⽂文档的开始时调⽤用(开始解析)
-- (void)parserDidStartDocument:(NSXMLParser *)parser
-● 当扫描到⽂文档的结束时调⽤用(解析完毕)
-- (void)parserDidEndDocument:(NSXMLParser *)parser
-● 当扫描到元素的开始时调⽤用(attributeDict存放着元素的属性)
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString
-*)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:
-(NSString *)qName attributes:(NSDictionary *)attributeDict
-● 当扫描到元素的结束时调⽤用
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString
-*)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:
-(NSString *)qName
-
-
-
-<h5> RunLoop
-
-RunLoop对象
-● iOS中有2套API来访问和使⽤用RunLoop
-● Foundation
-● NSRunLoop
-● Core Foundation
-● CFRunLoopRef
-● NSRunLoop和CFRunLoopRef都代表着RunLoop对象
-RunLoop与线程
-● 每条线程都有唯⼀一的⼀一个与之对应的RunLoop对象
-● 主线程的RunLoop已经⾃自动创建好了,⼦子线程的RunLoop需要主动创建 ● RunLoop在第⼀一次获取时创建,在线程结束时销毁
-● NSRunLoop是基于CFRunLoopRef的⼀一层OC包装,所以要了解RunLoop内部
-结构,需要多研究CFRunLoopRef层⾯面的API(Core Foundation层⾯面)
-
-
-
-获得RunLoop对象
-● Foundation
-[NSRunLoop currentRunLoop]; // 获得当前线程的RunLoop对象 [NSRunLoop mainRunLoop]; // 获得主线程的RunLoop对象
-● Core Foundation
-CFRunLoopGetCurrent(); // 获得当前线程的RunLoop对象 CFRunLoopGetMain(); // 获得主线程的RunLoop对象
-
-
-RunLoop相关类
-● Core Foundation中关于RunLoop的5个类
-● CFRunLoopRef
-● CFRunLoopModeRef
-● CFRunLoopSourceRef
-● CFRunLoopTimerRef
-● CFRunLoopObserverRef
-
-
-CFRunLoopModeRef
-● CFRunLoopModeRef代表RunLoop的运⾏行模式
-● ⼀一个RunLoop包含若⼲干个Mode,每个Mode又包含若⼲干
-个Source/Timer/Observer
-● 每次RunLoop启动时,只能指定其中⼀一个Mode,这个Mode被称作
-CurrentMode
-● 如果需要切换Mode,只能退出Loop,再重新指定⼀一个Mode进⼊入
-● 这样做主要是为了分隔开不同组的Source/Timer/Observer,让其互不影响
-
-● 系统默认注册了5个Mode:
-● NSDefaultRunLoopMode:App的默认Mode,通常主线程是在这个Mode下运⾏行
-● UITrackingRunLoopMode:界⾯面跟踪 Mode,⽤用于 ScrollView 追踪触摸滑动, 保证界⾯面滑动时不受其他 Mode 影响
-● UIInitializationRunLoopMode: 在刚启动 App 时第进⼊入的第⼀一个 Mode,启动完成后 就不再使⽤用
-● GSEventReceiveRunLoopMode: 接受系统事件的内部 Mode,通常⽤用不到
-● NSRunLoopCommonModes: 这是⼀一个占位⽤用的Mode,不是⼀一种真正的Mode
-
-
-CFRunLoopTimerRef
-● CFRunLoopTimerRef是基于时间的触发器
-● CFRunLoopTimerRef基本上说的就是NSTimer,它受RunLoop的Mode影响 ● GCD的定时器不受RunLoop的Mode影响
-
-
-CFRunLoopSourceRef
-● CFRunLoopSourceRef是事件源(输⼊入源)
-● 按照官⽅方⽂文档,Source的分类
-● Port-Based Sources
-● Custom Input Sources
-● Cocoa Perform Selector Sources
-● 按照函数调⽤用栈,Source的分类
-● Source0:⾮非基于Port的, ⽤用于⽤用户主动触发事件
-● Source1:基于Port的,通过内核和其他线程相互发送消息
-
-
-
-CFRunLoopObserverRef
-● 添加Observer // 创建observer
+获得RunLoop对象<p>
+● Foundation<p>
+[NSRunLoop currentRunLoop]; // 获得当前线程的RunLoop对象 [NSRunLoop mainRunLoop]; // 获得主线程的RunLoop对象<p>
+● Core Foundation<p>
+CFRunLoopGetCurrent(); // 获得当前线程的RunLoop对象 CFRunLoopGetMain(); // 获得主线程的RunLoop对象<p>
+<p>
+<p>
+RunLoop相关类<p>
+● Core Foundation中关于RunLoop的5个类<p>
+● CFRunLoopRef<p>
+● CFRunLoopModeRef<p>
+● CFRunLoopSourceRef<p>
+● CFRunLoopTimerRef<p>
+● CFRunLoopObserverRef<p>
+<p>
+<p>
+CFRunLoopModeRef<p>
+● CFRunLoopModeRef代表RunLoop的运⾏行模式<p>
+● ⼀一个RunLoop包含若⼲干个Mode,每个Mode又包含若⼲干<p>
+个Source/Timer/Observer<p>
+● 每次RunLoop启动时,只能指定其中⼀一个Mode,这个Mode被称作<p>
+CurrentMode<p>
+● 如果需要切换Mode,只能退出Loop,再重新指定⼀一个Mode进⼊入<p>
+● 这样做主要是为了分隔开不同组的Source/Timer/Observer,让其互不影响<p>
+<p>
+● 系统默认注册了5个Mode:<p>
+● NSDefaultRunLoopMode:App的默认Mode,通常主线程是在这个Mode下运⾏行<p>
+● UITrackingRunLoopMode:界⾯面跟踪 Mode,⽤用于 ScrollView 追踪触摸滑动, 保证界⾯面滑动时不受其他 Mode 影响<p>
+● UIInitializationRunLoopMode: 在刚启动 App 时第进⼊入的第⼀一个 Mode,启动完成后 就不再使⽤用<p>
+● GSEventReceiveRunLoopMode: 接受系统事件的内部 Mode,通常⽤用不到<p>
+● NSRunLoopCommonModes: 这是⼀一个占位⽤用的Mode,不是⼀一种真正的Mode<p>
+<p>
+<p>
+CFRunLoopTimerRef<p>
+● CFRunLoopTimerRef是基于时间的触发器<p>
+● CFRunLoopTimerRef基本上说的就是NSTimer,它受RunLoop的Mode影响 ● GCD的定时器不受RunLoop的Mode影响<p>
+<p>
+<p>
+CFRunLoopSourceRef<p>
+● CFRunLoopSourceRef是事件源(输⼊入源)<p>
+● 按照官⽅方⽂文档,Source的分类<p>
+● Port-Based Sources<p>
+● Custom Input Sources<p>
+● Cocoa Perform Selector Sources<p>
+● 按照函数调⽤用栈,Source的分类<p>
+● Source0:⾮非基于Port的, ⽤用于⽤用户主动触发事件<p>
+● Source1:基于Port的,通过内核和其他线程相互发送消息<p>
+<p>
+<p>
+<p>
+CFRunLoopObserverRef<p>
+● 添加Observer // 创建observer<p>
 CFRunLoopObserverRef observer =
-CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(),
-kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer,
-CFRunLoopActivity activity) {
-NSLog(@"----监听到RunLoop状态发⽣生改变---%zd", activity); });
-// 添加观察者:监听RunLoop的状态 CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer,
-kCFRunLoopDefaultMode);
-// 释放Observer CFRelease(observer);
+CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(),<p>
+kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer,<p>
+CFRunLoopActivity activity) {<p>
+NSLog(@"----监听到RunLoop状态发⽣生改变---%zd", activity); });<p>
+// 添加观察者:监听RunLoop的状态 CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer,<p>
+kCFRunLoopDefaultMode);<p>
+// 释放Observer CFRelease(observer);<p>
+<p>
+<p>
+RunLoop应⽤用<p>
+● NSTimer<p>
+● ImageView显⽰<p>
+● PerformSelector <p>
+● 常驻线程<p>
+ 1.源实现造成线程停驻(用当前的runloop添加一个mach事件源)<p>
+//    [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];<p>
+[[NSRunLoop currentRunLoop] run];<p>
+// 2.定时器实现线程停驻<p>
+    NSTimer *time = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(test) userInfo:nil repeats:YES];<p>
+    [[NSRunLoop currentRunLoop] run];<p>
+● 自动释放池<p>
+<p>
+<p>
 
+<h5>视频<p>
+● iOS提供了MPMoviePlayerController、MPMoviePlayerViewController两个类,<p> 可以⽤用来轻松播放视频和⽹网络流媒体/⽹网络⾳音频<p>
+● 提⽰示:⽹网络⾳音频同样使⽤用此控制器播放<p>
+● YouTobe就是⽤用MPMoviePlayerController实现的 <p>
+● MPMoviePlayerViewController只能全屏播放视频 <p>
+● 上述两个类都定义在了MediaPlayer框架中<p>
+<p>
+MPMoviePlayerController⽀支持的格式<p>
+<p>
+MPMoviePlayerController<p>
+● 继承⾃自NSObject<p>
+● 内部有个view可以展⽰示视频内容<p>
+● 将该视图添加其他控制器的view上,即可显⽰示视频内容<p>
+MPMoviePlayerController可以播放的视频格式包括: <p>● H.264、MPEG-4等
+⽀支持的⽂文件扩展名包括:avi,mkv,mov,m4v,mp4等<p>
+<p>
+<p>
+MPMoviePlayerController的使⽤用<p>
+● 加载视频资源(注意,如果url为nil同样可以加载)<p>
+NSAssert(self.url, @"URL不能为空");<p>
+[[MPMoviePlayerController alloc] initWithContentURL:self.url];<p>
+● 显⽰示<p>
+[self.view addSubview:self.moviePlayer.view];<p>
+通过设置AutoresizingMask属性可以在横竖屏转换时⾃自动调整视图⼤大⼩小<p>
+● 播放<p>
+  [self.moviePlayer play];<p>
+● 全屏<p>
+  [self.moviePlayer setFullscreen:YES animated:YES];<p>
+● MPMoviePlayerController的播放状态是通过通知中⼼心监听的<p>
+<p>
+<p>
+常⽤用监听通知事件<p>
+● 状态变化 MPMoviePlayerPlaybackStateDidChangeNotification<p>
+● 播放结束 MPMoviePlayerPlaybackDidFinishNotification<p>
+● 退出全屏 MPMoviePlayerDidExitFullscreenNotification<p>
+● 截屏完成 MPMoviePlayerThumbnailImageRequestDidFinishNotification<p>
+● 截屏⽅方法 -requestThumbnailImagesAtTimes:timeOption:<p>
+<p>
+<p>
+<h5>UIWebView<p>
+<p>
+● 什么是UIWebView<p>
+● UIWebView是iOS内置的浏览器控件<p>
+● 系统⾃自带的Safari浏览器就是通过UIWebView实现的<p>
+● UIWebView不但能加载远程的⽹网页资源,还能加载绝⼤大部分的常见⽂文件 ● html\htm<p>
+● pdf、doc、ppt、txt<p>
+● mp4<p>
+●......<p>
+● UIWebView常⽤用的加载资源的⽅方法<p>
+- (void)loadRequest:(NSURLRequest *)request;<p>
+- <p>
+常⽤用属性和⽅方法<p>
+● 重新加载(刷新) - (void)reload;<p>
+● 停⽌止加载<p>
+- (void)stopLoading;<p>
+● 回退<p>
+- (void)goBack;<p>
+● 前进<p>
+- (void)goForward;<p>
+● 需要进⾏行检测的数据类型<p>
+@property(nonatomic) UIDataDetectorTypes dataDetectorTypes<p>
+<p>
+● 是否能回退 @property(nonatomic,readonly,getter=canGoBack) BOOL<p>
+canGoBack;<p>
+● 是否能前进 @property(nonatomic,readonly,getter=canGoForward) BOOL<p>
+canGoForward;<p>
+● 是否正在加载中<p>
+@property(nonatomic,readonly,getter=isLoading) BOOL loading;<p>
+● 是否伸缩内容⾄至适应屏幕当前尺⼨寸 @property(nonatomic) BOOL scalesPageToFit;<p>
+<p>
+<p>
+监听UIWebView的加载过程<p>
+● 成为UIWebView的代理,遵守UIWebViewDelegate协议,就能监<p>
+听UIWebView的加载过程<p>
+● 开始发送请求(加载数据)时调⽤用这个⽅方法<p>
+- (void)webViewDidStartLoad:(UIWebView *)webView;<p>
+● 请求完毕(加载数据完毕)时调⽤用这个⽅方法<p>
+- (void)webViewDidFinishLoad:(UIWebView *)webView;<p>
+● 请求错误时调⽤用这个⽅方法<p>
+- (void)webView:(UIWebView *)webView didFailLoadWithError:<p>
+(NSError *)error;<p>
+<p>
+<p>
+监听UIWebView的加载过程<p>
+● UIWebView在发送请求之前,都会调⽤用这个⽅方法,如果返回NO,代表停⽌止加载<p>
+- (BOOL)webView:(UIWebView *)webView<p>
+shouldStartLoadWithRequest:(NSURLRequest *)request<p>
+navigationType:(UIWebViewNavigationType)navigationType;<p>
+<p>
+<p>
+<p>
 
-RunLoop应⽤用
-● NSTimer
-● ImageView显⽰
-● PerformSelector 
-● 常驻线程
- 1.源实现造成线程停驻(用当前的runloop添加一个mach事件源)
-//    [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];
-[[NSRunLoop currentRunLoop] run];
-// 2.定时器实现线程停驻
-    NSTimer *time = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(test) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] run];
-● 自动释放池
-
-
-
-<h5>视频
-● iOS提供了MPMoviePlayerController、MPMoviePlayerViewController两个类, 可以⽤用来轻松播放视频和⽹网络流媒体/⽹网络⾳音频
-● 提⽰示:⽹网络⾳音频同样使⽤用此控制器播放
-● YouTobe就是⽤用MPMoviePlayerController实现的 
-● MPMoviePlayerViewController只能全屏播放视频 
-● 上述两个类都定义在了MediaPlayer框架中
-
-MPMoviePlayerController⽀支持的格式
-
-MPMoviePlayerController
-● 继承⾃自NSObject
-● 内部有个view可以展⽰示视频内容
-● 将该视图添加其他控制器的view上,即可显⽰示视频内容
-MPMoviePlayerController可以播放的视频格式包括: ● H.264、MPEG-4等
-⽀支持的⽂文件扩展名包括:avi,mkv,mov,m4v,mp4等
-
-
-MPMoviePlayerController的使⽤用
-● 加载视频资源(注意,如果url为nil同样可以加载)
-NSAssert(self.url, @"URL不能为空");
-[[MPMoviePlayerController alloc] initWithContentURL:self.url];
-● 显⽰示
-[self.view addSubview:self.moviePlayer.view];
-通过设置AutoresizingMask属性可以在横竖屏转换时⾃自动调整视图⼤大⼩小
-● 播放
-  [self.moviePlayer play];
-● 全屏
-  [self.moviePlayer setFullscreen:YES animated:YES];
-● MPMoviePlayerController的播放状态是通过通知中⼼心监听的
-
-
-常⽤用监听通知事件
-● 状态变化 MPMoviePlayerPlaybackStateDidChangeNotification
-● 播放结束 MPMoviePlayerPlaybackDidFinishNotification
-● 退出全屏 MPMoviePlayerDidExitFullscreenNotification
-● 截屏完成 MPMoviePlayerThumbnailImageRequestDidFinishNotification
-● 截屏⽅方法 -requestThumbnailImagesAtTimes:timeOption:
-
-
-<h5>UIWebView
-
-● 什么是UIWebView
-● UIWebView是iOS内置的浏览器控件
-● 系统⾃自带的Safari浏览器就是通过UIWebView实现的
-● UIWebView不但能加载远程的⽹网页资源,还能加载绝⼤大部分的常见⽂文件 ● html\htm
-● pdf、doc、ppt、txt
-● mp4
-●......
-● UIWebView常⽤用的加载资源的⽅方法
-- (void)loadRequest:(NSURLRequest *)request;
-- 
-常⽤用属性和⽅方法
-● 重新加载(刷新) - (void)reload;
-● 停⽌止加载
-- (void)stopLoading;
-● 回退
-- (void)goBack;
-● 前进
-- (void)goForward;
-● 需要进⾏行检测的数据类型
-@property(nonatomic) UIDataDetectorTypes dataDetectorTypes
-
-● 是否能回退 @property(nonatomic,readonly,getter=canGoBack) BOOL
-canGoBack;
-● 是否能前进 @property(nonatomic,readonly,getter=canGoForward) BOOL
-canGoForward;
-● 是否正在加载中
-@property(nonatomic,readonly,getter=isLoading) BOOL loading;
-● 是否伸缩内容⾄至适应屏幕当前尺⼨寸 @property(nonatomic) BOOL scalesPageToFit;
-
-
-监听UIWebView的加载过程
-● 成为UIWebView的代理,遵守UIWebViewDelegate协议,就能监
-听UIWebView的加载过程
-● 开始发送请求(加载数据)时调⽤用这个⽅方法
-- (void)webViewDidStartLoad:(UIWebView *)webView;
-● 请求完毕(加载数据完毕)时调⽤用这个⽅方法
-- (void)webViewDidFinishLoad:(UIWebView *)webView;
-● 请求错误时调⽤用这个⽅方法
-- (void)webView:(UIWebView *)webView didFailLoadWithError:
-(NSError *)error;
-
-
-监听UIWebView的加载过程
-● UIWebView在发送请求之前,都会调⽤用这个⽅方法,如果返回NO,代表停⽌止加载
-- (BOOL)webView:(UIWebView *)webView
-shouldStartLoadWithRequest:(NSURLRequest *)request
-navigationType:(UIWebViewNavigationType)navigationType;
-
-
-
-
-# HTML5
-⽹网页的组成
-● ⼀一个有具体功能的完整的⽹网页,⼀一般由3部分组成 ● HTML
-• ⽹网页的具体内容和结构
-● CSS
-• ⽹网页的样式(美化⽹网页最重要的⼀一块)
-● JavaScript(掌握)
-• ⽹网页的交互效果,⽐比如对⽤用户⿏鼠标事件做出响应
-
-常见的HTML标签
-● 标题:h1、h2、h3、h4、h5....
-● 段落:p
-● 换⾏行:br
-● 容器:div、span(⽤用来容纳其他标签) ● 表格:table、tr、td
-● 列表:ul、ol、li ● 图⽚片:img
-● 表单:input
-● 链接:a
-
-HTML5新增标签 HTML5新增了27个标签元素,废弃了16个标签元素,主要包括结构
-1.结构性标签 负责Web上下⽂文结构的定义,确保HTML⽂文档,包括:
-● article ⽂文章主体内容(⼀一篇博客、⼀一篇论坛帖⼦子、⼀一段⽤用户评论、插件)
-● header 标记头部区域内容
-● footer 标记脚部区域内容
-● section 区域章节表述
-● nav 菜单导航,链接导航
-
-HTML5新增标签
-2.块级性标签 完成Web页⾯面区域的划分,确保内容的有效分隔,包括:
-● aside 注记,贴⼠士,侧栏,摘要,插⼊入的引⽤用作为补充主体的内容
-● figure 对多个元素组合并展⽰示的元素,常与figcaption联合使⽤用 ● code 表⽰示⼀一段代码块
-● dialog ⼈人与⼈人之间对话,包含dt和dd两个组合元素(dt⽤用于表⽰示说话者、dd⽤用 于表⽰示说话者的内容)
-
-
-HTML5新增标签 3.⾏行内语义性标签
-完成Web页⾯面具体内容的引⽤用和表述,丰富展⽰示内容,包括:
-● meter 特定范围内的数值,如⼯工资、数量、百分⽐比
-● time 时间值
-● progress 进度条,可⽤用max、min、step进⾏行控制,完成对进度的表⽰示和监听 ● video 视频元素,⽤用于视频播放,⽀支持缓冲预载和多种视频媒体格式
-● audio ⾳音频元素,⽤用于⾳音频播放,⽀支持缓冲预载和多种⾳音频媒体格式
-
-HTML5新增标签 4.交互性标签
+# HTML5<p>
+⽹网页的组成<p>
+● ⼀一个有具体功能的完整的⽹网页,⼀一般由3部分组成<p> ● HTML
+• ⽹网页的具体内容和结构<p>
+● CSS<p>
+• ⽹网页的样式(美化⽹网页最重要的⼀一块)<p>
+● JavaScript(掌握)<p>
+• ⽹网页的交互效果,⽐比如对⽤用户⿏鼠标事件做出响应<p>
+<p>
+常见的HTML标签<p>
+● 标题:h1、h2、h3、h4、h5....<p>
+● 段落:p<p>
+● 换⾏行:br<p>
+● 容器:div、span(⽤用来容纳其他标签) ● 表格:table、tr、td<p>
+● 列表:ul、ol、li ● 图⽚片:img<p>
+● 表单:input<p>
+● 链接:a<p>
+<p>
+HTML5新增标签 HTML5新增了27个标签元素,废弃了16个标签元素,主要包括结构<p>
+1.结构性标签 负责Web上下⽂文结构的定义,确保HTML⽂文档,包括:<p>
+● article ⽂文章主体内容(⼀一篇博客、⼀一篇论坛帖⼦子、⼀一段⽤用户评论、插件)<p>
+● header 标记头部区域内容<p>
+● footer 标记脚部区域内容<p>
+● section 区域章节表述<p>
+● nav 菜单导航,链接导航<p>
+<p>
+HTML5新增标签<p>
+2.块级性标签 完成Web页⾯面区域的划分,确保内容的有效分隔,包括:<p>
+● aside 注记,贴⼠士,侧栏,摘要,插⼊入的引⽤用作为补充主体的内容<p>
+● figure 对多个元素组合并展⽰示的元素,常与figcaption联合使⽤用 ● code 表⽰示⼀一段代码块<p>
+● dialog ⼈人与⼈人之间对话,包含dt和dd两个组合元素(dt⽤用于表⽰示说话者、dd⽤用 于表⽰示说话者的内容)<p>
+<p>
+<p>
+HTML5新增标签 3.⾏行内语义性标签<p>
+完成Web页⾯面具体内容的引⽤用和表述,丰富展⽰示内容,包括:<p>
+● meter 特定范围内的数值,如⼯工资、数量、百分⽐比<p>
+● time 时间值<p>
+● progress 进度条,可⽤用max、min、step进⾏行控制,完成对进度的表⽰示和监听<p> ● video 视频元素,⽤用于视频播放,⽀支持缓冲预载和多种视频媒体格式<p>
+● audio ⾳音频元素,⽤用于⾳音频播放,⽀支持缓冲预载和多种⾳音频媒体格式<p>
+<p>
+HTML5新增标签 4.交互性标签<p>
 功能性内容的表达,有⼀一定的内容和数据的关联,是各种事件的基础,包
-括:
-● details 表⽰示⼀一段具体的内容,默认不显⽰示,通过某种⽅方式(单击)与legend交互 才会显⽰示
-● datagrid 控制客户端数据与显⽰示,可⽤用于动态脚本及时更新 ● menu ⽤用于交互菜单
-● command ⽤用来处理命令按钮
+括:<p>
+● details 表⽰示⼀一段具体的内容,默认不显⽰示,通过某种⽅方式(单击)与legend交互 才会显⽰示<p>
+● datagrid 控制客户端数据与显⽰示,可⽤用于动态脚本及时更新 ● menu ⽤用于交互菜单<p>
+● command ⽤用来处理命令按钮<p>
+<p>
+<p>
+<h4>CSS<p>
+● 什么是CSS<p>
+● CSS的全称是Cascading Style Sheets,层叠样式表<p>
+● 它⽤用来控制HTML标签的样式,在美化⽹网页中起到⾮非常重要的作⽤用<p>
+● CSS的编写格式是键值对形式的,⽐比如 color: red;<p>
+background-color: blue; font-size: 20px;<p>
+● 冒号:左边的是属性名,冒号:右边的属性值<p>
+<p>
+<p>
+CSS的3种书写形式<p>
+● CSS有3种书写形式<p>
+● ⾏行内样式:(内联样式)直接在标签的style属性中书写 <body style="color: red;"><p>
+● 页内样式:在本⽹网页的style标签中书写 <style><p>
+   body {<p>
+       color: red;<p>
+}<p>
+</style><p>
+● 外部样式:在单独的CSS⽂文件中书写,然后在⽹网页中⽤用link标签引⽤用 <link rel="stylesheet" href="index.css"><p>
+<p>
+<p>
+CSS的两⼤大重点 ● 属性<p>
+通过属性的复杂叠加才能做出漂亮的⽹网页<p>
+● 选择器 通过选择器找到对应的标签设置样式<p>
+<p>
+<p>
+CSS选择器 – 选择器优先级 ● 优先级排序<p>
+● important > 内联 > id > 类 > 标签 | 伪类 | 属性选择 > 伪元素 > 通配符 > 继承<p>
+<p>
+<p>
 
+HTML标签类型<p>
+● HTML有N多标签,根据显⽰示的类型,主要可以分为3⼤大类 ● 块级标签<p>
+• 独占⼀一⾏行的标签<p>
+• 能随时设置宽度和⾼高度(⽐比如div、p、h1、h2、ul、li)<p>
+● ⾏行内标签(内联标签)<p>
+• 多个⾏行内标签能同时显⽰示在⼀一⾏行<p>
+• 宽度和⾼高度取决于内容的尺⼨寸(⽐比如span、a、label)<p>
+● ⾏行内-块级标签(内联-块级标签)<p>
+• 多个⾏行内-块级标签可以显⽰示在同⼀一⾏行<p>
+• 能随时设置宽度和⾼高度(⽐比如input、button)<p>
+<p>
+<p>
+修改标签的显⽰示类型<p>
+● CSS中有个display属性,能修改标签的显⽰示类型 ● none:隐藏标签<p>
+● block:让标签变为块级标签<p>
+● inline:让标签变为⾏行内标签<p>
+● inline-block:让标签变为⾏行内-块级标签(内联-块级标签)<p>
+<p>
+<p>
+CSS属性<p>
+● CSS有N多属性,根据继承性,主要可以分为2⼤大类 ● 可继承属性<p>
+• ⽗父标签的属性值会传递给⼦子标签<p>
+• ⼀一般是⽂文字控制属性<p>
+● 不可继承属性<p>
+• ⽗父标签的属性值不能传递给⼦子标签 • ⼀一般是区块控制属性<p>
+<p>
+<p>
+<h5>盒⼦子模型<p>
+● ⽹网页上的每⼀一个标签都是⼀一个盒⼦子<p>
+● 每个盒⼦子都有四个属性<p>
+● 内容(content)<p>
+• 盒⼦子⾥里装的东西<p>
+• ⽹网页中通常是指⽂文字和图⽚片<p>
+● 填充(padding,内边距)<p>
+• 怕盒⼦子⾥里装的(贵重的)东西损坏,⽽而添加的泡沫或者其它抗震的辅料<p>
+● 边框(border):盒⼦子本⾝身 ● 边界(margin,外边距)<p>
+• 盒⼦子摆放的时候的不能全部堆在⼀一起,盒⼦子之间要留⼀一定空隙保持通风,同时也为了⽅方 便取出<p>
+<p>
 
-<h4>CSS
-● 什么是CSS
-● CSS的全称是Cascading Style Sheets,层叠样式表
-● 它⽤用来控制HTML标签的样式,在美化⽹网页中起到⾮非常重要的作⽤用
-● CSS的编写格式是键值对形式的,⽐比如 color: red;
-background-color: blue; font-size: 20px;
-● 冒号:左边的是属性名,冒号:右边的属性值
+<p>
 
+<h5>JavaScript<p>
+<p>
+● JS的常见⽤用途<p>
+• HTML DOM操作(节点操作,⽐比如添加、修改、删除节点) • 给HTML⽹网页增加动态功能,⽐比如动画<p>
+• 事件处理:⽐比如监听⿏鼠标点击、⿏鼠标滑动、键盘输⼊入<p>
+<p>
 
-CSS的3种书写形式
-● CSS有3种书写形式
-● ⾏行内样式:(内联样式)直接在标签的style属性中书写 <body style="color: red;">
-● 页内样式:在本⽹网页的style标签中书写 <style>
-   body {
-       color: red;
-}
-</style>
-● 外部样式:在单独的CSS⽂文件中书写,然后在⽹网页中⽤用link标签引⽤用 <link rel="stylesheet" href="index.css">
+JavaScript的书写⽅方式<p>
+● JS常见的书写⽅方式有2种<p>
+● 页内JS:在当前⽹网页的script标签中编写 <script type="text/javascript"> </script><p>
+● 外部JS<p>
+<script src="index.js"></script><p>
+<p>
+Canvas<p>
+● HTML<p>
+<canvas id="canvas"></canvas><p>
+● JS<p>
+var canvas = document.getElementById('canvas');<p>
+var context = canvas.getContext('2d');<p>
+context是⼀一个绘图的上下⽂文环境 2d是⼆二维图形<p>
+<p>
+<p>
+Canvas绘制直线<p>
+● 起点 context.moveTo(100,100);<p>
+● 终点 context.lineTo(400, 400);<p>
+● 绘制 context.stroke();<p>
+● 设置线条颜⾊色和宽度 context.strokeStyle = 'red'; context.lineWidth = 5;<p>
+● 设置填充⾊色 context.fillStyle = 'blue';<p>
+<p>
 
-
-CSS的两⼤大重点 ● 属性
-通过属性的复杂叠加才能做出漂亮的⽹网页
-● 选择器 通过选择器找到对应的标签设置样式
-
-
-CSS选择器 – 选择器优先级 ● 优先级排序
-● important > 内联 > id > 类 > 标签 | 伪类 | 属性选择 > 伪元素 > 通配符 > 继承
-
-
-
-HTML标签类型
-● HTML有N多标签,根据显⽰示的类型,主要可以分为3⼤大类 ● 块级标签
-• 独占⼀一⾏行的标签
-• 能随时设置宽度和⾼高度(⽐比如div、p、h1、h2、ul、li)
-● ⾏行内标签(内联标签)
-• 多个⾏行内标签能同时显⽰示在⼀一⾏行
-• 宽度和⾼高度取决于内容的尺⼨寸(⽐比如span、a、label)
-● ⾏行内-块级标签(内联-块级标签)
-• 多个⾏行内-块级标签可以显⽰示在同⼀一⾏行
-• 能随时设置宽度和⾼高度(⽐比如input、button)
-
-
-修改标签的显⽰示类型
-● CSS中有个display属性,能修改标签的显⽰示类型 ● none:隐藏标签
-● block:让标签变为块级标签
-● inline:让标签变为⾏行内标签
-● inline-block:让标签变为⾏行内-块级标签(内联-块级标签)
-
-
-CSS属性
-● CSS有N多属性,根据继承性,主要可以分为2⼤大类 ● 可继承属性
-• ⽗父标签的属性值会传递给⼦子标签
-• ⼀一般是⽂文字控制属性
-● 不可继承属性
-• ⽗父标签的属性值不能传递给⼦子标签 • ⼀一般是区块控制属性
-
-
-<h5>盒⼦子模型
-● ⽹网页上的每⼀一个标签都是⼀一个盒⼦子
-● 每个盒⼦子都有四个属性
-● 内容(content)
-• 盒⼦子⾥里装的东西
-• ⽹网页中通常是指⽂文字和图⽚片
-● 填充(padding,内边距)
-• 怕盒⼦子⾥里装的(贵重的)东西损坏,⽽而添加的泡沫或者其它抗震的辅料
-● 边框(border):盒⼦子本⾝身 ● 边界(margin,外边距)
-• 盒⼦子摆放的时候的不能全部堆在⼀一起,盒⼦子之间要留⼀一定空隙保持通风,同时也为了⽅方 便取出
-
-
-
-
-<h5>JavaScript
-
-● JS的常见⽤用途
-• HTML DOM操作(节点操作,⽐比如添加、修改、删除节点) • 给HTML⽹网页增加动态功能,⽐比如动画
-• 事件处理:⽐比如监听⿏鼠标点击、⿏鼠标滑动、键盘输⼊入
-
-
-JavaScript的书写⽅方式
-● JS常见的书写⽅方式有2种
-● 页内JS:在当前⽹网页的script标签中编写 <script type="text/javascript"> </script>
-● 外部JS
-<script src="index.js"></script>
-
-Canvas
-● HTML
-<canvas id="canvas"></canvas>
-● JS
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-context是⼀一个绘图的上下⽂文环境 2d是⼆二维图形
-
-
-Canvas绘制直线
-● 起点 context.moveTo(100,100);
-● 终点 context.lineTo(400, 400);
-● 绘制 context.stroke();
-● 设置线条颜⾊色和宽度 context.strokeStyle = 'red'; context.lineWidth = 5;
-● 设置填充⾊色 context.fillStyle = 'blue';
-
-
-Canvas绘制弧线
-context.arc(
-centerX, centerY, radius, startingAngle, endingAngle, anticlockwise=false
-)<p>
-centerX, centerY: 圆⼼心的坐标<p>
-radius: 半径<p>
+Canvas绘制弧线<p>
+context.arc(<p>
+centerX, centerY, radius, startingAngle, endingAngle, anticlockwise=false<p>
+)<p><p>
+centerX, centerY: 圆⼼心的坐标<p><p>
+radius: 半径<p><p>
 startingAngle, endingAngle: 开始⾓角度,结束⾓角度 anticlockwise: false顺时针 true逆时针<p>
 <p>
 <p>
